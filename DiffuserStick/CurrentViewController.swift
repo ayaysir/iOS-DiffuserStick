@@ -9,6 +9,8 @@ import UIKit
 
 class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var currentSelectedDiffuser: DiffuserInfo? = nil
+    
     // MVVM 2: view Model 클래스의 인스턴스 생성
     let viewModel = DiffuserViewModel()
     
@@ -29,6 +31,12 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+        currentSelectedDiffuser = viewModel.getDiffuserInfo(at: indexPath.row)
+        performSegue(withIdentifier: "detailView", sender: nil)
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +44,11 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Do any additional setup after loading the view.
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let detailViewController = segue.destination as? DiffuserDetailViewController else { return }
+        detailViewController.selectedDiffuser = currentSelectedDiffuser
+    }
     
     
 

@@ -19,6 +19,6 @@ struct DiffuserInfo {
         self.startDate = startDate
         self.id = "1"
         self.thumnail = #imageLiteral(resourceName: "diffuser")
-        self.photo = nil
+        self.photo = #imageLiteral(resourceName: "diffuser")
     }
 }
