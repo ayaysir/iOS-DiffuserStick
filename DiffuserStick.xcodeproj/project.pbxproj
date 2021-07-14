@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4456C9B1269D4E8400A29B77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9B0269D4E8400A29B77 /* AppDelegate.swift */; };
 		4456C9B3269D4E8400A29B77 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9B2269D4E8400A29B77 /* SceneDelegate.swift */; };
-		4456C9B5269D4E8400A29B77 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9B4269D4E8400A29B77 /* ViewController.swift */; };
+		4456C9B5269D4E8400A29B77 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9B4269D4E8400A29B77 /* MainViewController.swift */; };
 		4456C9B8269D4E8400A29B77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4456C9B6269D4E8400A29B77 /* Main.storyboard */; };
 		4456C9BB269D4E8400A29B77 /* DiffuserStick.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9B9269D4E8400A29B77 /* DiffuserStick.xcdatamodeld */; };
 		4456C9BD269D4E8500A29B77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4456C9BC269D4E8500A29B77 /* Assets.xcassets */; };
@@ -18,13 +18,16 @@
 		4456C9CA269D534200A29B77 /* CurrentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9C9269D534200A29B77 /* CurrentViewController.swift */; };
 		447A45D8269DC0A0009C4B47 /* DiffuserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A45D7269DC0A0009C4B47 /* DiffuserInfo.swift */; };
 		44FDCFBE269E96DA00A7A7FD /* DiffuserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCFBD269E96DA00A7A7FD /* DiffuserDetailViewController.swift */; };
+		44FDCFC0269EA7F300A7A7FD /* testprops.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44FDCFBF269EA7F300A7A7FD /* testprops.plist */; };
+		44FDCFC2269EA8B300A7A7FD /* ParsePlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCFC1269EA8B300A7A7FD /* ParsePlist.swift */; };
+		44FDCFC5269F1C3B00A7A7FD /* DiffuserAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCFC4269F1C3B00A7A7FD /* DiffuserAddViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4456C9AD269D4E8400A29B77 /* DiffuserStick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiffuserStick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4456C9B0269D4E8400A29B77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4456C9B2269D4E8400A29B77 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4456C9B4269D4E8400A29B77 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4456C9B4269D4E8400A29B77 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4456C9B7269D4E8400A29B77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4456C9BA269D4E8400A29B77 /* DiffuserStick.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiffuserStick.xcdatamodel; sourceTree = "<group>"; };
 		4456C9BC269D4E8500A29B77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -34,6 +37,9 @@
 		4456C9C9269D534200A29B77 /* CurrentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentViewController.swift; sourceTree = "<group>"; };
 		447A45D7269DC0A0009C4B47 /* DiffuserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuserInfo.swift; sourceTree = "<group>"; };
 		44FDCFBD269E96DA00A7A7FD /* DiffuserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuserDetailViewController.swift; sourceTree = "<group>"; };
+		44FDCFBF269EA7F300A7A7FD /* testprops.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = testprops.plist; sourceTree = "<group>"; };
+		44FDCFC1269EA8B300A7A7FD /* ParsePlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsePlist.swift; sourceTree = "<group>"; };
+		44FDCFC4269F1C3B00A7A7FD /* DiffuserAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuserAddViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,9 +72,10 @@
 		4456C9AF269D4E8400A29B77 /* DiffuserStick */ = {
 			isa = PBXGroup;
 			children = (
+				44FDCFC3269F1C1900A7A7FD /* New Group */,
 				4456C9B0269D4E8400A29B77 /* AppDelegate.swift */,
 				4456C9B2269D4E8400A29B77 /* SceneDelegate.swift */,
-				4456C9B4269D4E8400A29B77 /* ViewController.swift */,
+				4456C9B4269D4E8400A29B77 /* MainViewController.swift */,
 				4456C9B6269D4E8400A29B77 /* Main.storyboard */,
 				4456C9C7269D50B500A29B77 /* PreviousListController.swift */,
 				4456C9C9269D534200A29B77 /* CurrentViewController.swift */,
@@ -78,8 +85,18 @@
 				4456C9C1269D4E8500A29B77 /* Info.plist */,
 				4456C9B9269D4E8400A29B77 /* DiffuserStick.xcdatamodeld */,
 				44FDCFBD269E96DA00A7A7FD /* DiffuserDetailViewController.swift */,
+				44FDCFBF269EA7F300A7A7FD /* testprops.plist */,
+				44FDCFC1269EA8B300A7A7FD /* ParsePlist.swift */,
+				44FDCFC4269F1C3B00A7A7FD /* DiffuserAddViewController.swift */,
 			);
 			path = DiffuserStick;
+			sourceTree = "<group>";
+		};
+		44FDCFC3269F1C1900A7A7FD /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4456C9C0269D4E8500A29B77 /* LaunchScreen.storyboard in Resources */,
+				44FDCFC0269EA7F300A7A7FD /* testprops.plist in Resources */,
 				4456C9BD269D4E8500A29B77 /* Assets.xcassets in Resources */,
 				4456C9B8269D4E8400A29B77 /* Main.storyboard in Resources */,
 			);
@@ -154,12 +172,14 @@
 			files = (
 				447A45D8269DC0A0009C4B47 /* DiffuserInfo.swift in Sources */,
 				4456C9BB269D4E8400A29B77 /* DiffuserStick.xcdatamodeld in Sources */,
-				4456C9B5269D4E8400A29B77 /* ViewController.swift in Sources */,
+				44FDCFC5269F1C3B00A7A7FD /* DiffuserAddViewController.swift in Sources */,
+				4456C9B5269D4E8400A29B77 /* MainViewController.swift in Sources */,
 				44FDCFBE269E96DA00A7A7FD /* DiffuserDetailViewController.swift in Sources */,
 				4456C9C8269D50B500A29B77 /* PreviousListController.swift in Sources */,
 				4456C9B1269D4E8400A29B77 /* AppDelegate.swift in Sources */,
 				4456C9CA269D534200A29B77 /* CurrentViewController.swift in Sources */,
 				4456C9B3269D4E8400A29B77 /* SceneDelegate.swift in Sources */,
+				44FDCFC2269EA8B300A7A7FD /* ParsePlist.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

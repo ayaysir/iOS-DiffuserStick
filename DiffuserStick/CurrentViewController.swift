@@ -7,9 +7,11 @@
 
 import UIKit
 
-class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddDelegate {
     
     var currentSelectedDiffuser: DiffuserInfo? = nil
+    
+    @IBOutlet weak var tblList: UITableView!
     
     // MVVM 2: view Model 클래스의 인스턴스 생성
     let viewModel = DiffuserViewModel()
@@ -42,12 +44,41 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        do {
+            try print(parsePlistExample())
+        } catch {
+            print(error)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let detailViewController = segue.destination as? DiffuserDetailViewController else { return }
-        detailViewController.selectedDiffuser = currentSelectedDiffuser
+        
+        print(segue.destination)
+        if segue.identifier == "detailView" {
+            guard let detailViewController = segue.destination as? DiffuserDetailViewController else { return }
+            detailViewController.selectedDiffuser = currentSelectedDiffuser
+        } else if segue.identifier == "addView" {
+            // 디퓨저 추가(add)
+            guard let addViewController = segue.destination as? DiffuserAddViewController else { return }
+            addViewController.delegate = self
+        }
+    }
+    
+    @IBAction func btnAdd(_ sender: Any) {
+        performSegue(withIdentifier: "addView", sender: nil)
+    }
+    
+    // AddDelegate
+    func sendDiffuser(_ controller: DiffuserAddViewController, diffuser: DiffuserInfo) {
+        print("a")
+        print("넘어온거", diffuser)
+        viewModel.addDiffuserInfo(diffuser: diffuser)
+        tblList.reloadData()
     }
     
     
@@ -85,7 +116,7 @@ class DiffuserListCell: UITableViewCell {
 
 // MVVM 1: 뷰 모델 클래스 생성
 class DiffuserViewModel {
-    let diffuserInfoList: [DiffuserInfo] = [
+    var diffuserInfoList: [DiffuserInfo] = [
         DiffuserInfo(title: "제 2회의실 탁자에 있는 엘레강스 디퓨저", startDate: Date()),
         DiffuserInfo(title: "제 2회의실 TV 밑 선반에 있는 체리시 향의 디퓨저", startDate: Date()),
         DiffuserInfo(title: "로비 위에 있는 섬유향 디퓨저", startDate: Date()),
@@ -98,6 +129,15 @@ class DiffuserViewModel {
     
     func getDiffuserInfo(at index: Int) -> DiffuserInfo {
         return diffuserInfoList[index]
+    }
+    
+    func addDiffuserInfo(diffuser: DiffuserInfo) {
+        diffuserInfoList.insert(diffuser, at: 0)
+    }
+    
+    // test - 나중에 삭제
+    func printViewModel() {
+        print(diffuserInfoList)
     }
     
 }
