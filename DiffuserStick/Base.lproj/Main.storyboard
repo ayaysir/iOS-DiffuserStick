@@ -348,6 +348,7 @@
                     <connections>
                         <outlet property="imgPhoto" destination="2L8-zv-0gw" id="ezC-6R-lIA"/>
                         <outlet property="lblLastChangedDate" destination="Uum-8B-mKz" id="YNI-Mr-twt"/>
+                        <outlet property="lblRemainDays" destination="DhH-W1-d8c" id="bJ9-MY-5lm"/>
                         <outlet property="lblTitle" destination="VzY-fe-BSA" id="jba-eo-1RH"/>
                     </connections>
                 </viewController>

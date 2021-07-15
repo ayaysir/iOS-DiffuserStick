@@ -19,6 +19,7 @@ class DiffuserDetailViewController: UIViewController {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblLastChangedDate: UILabel!
     @IBOutlet weak var imgPhoto: UIImageView!
+    @IBOutlet weak var lblRemainDays: UILabel!
     
     var selectedDiffuser: DiffuserInfo?
     
@@ -27,6 +28,16 @@ class DiffuserDetailViewController: UIViewController {
         lblTitle.text = selectedDiffuser?.title
         imgPhoto.image = selectedDiffuser?.photo
         lblLastChangedDate.text = formatLastChanged(date: selectedDiffuser!.startDate)
+        
+        // 마지막 교체일과 오늘 날짜와의 차이
+        let calendar = Calendar(identifier: .gregorian)
+        let betweenDays = 15 - calendar.numberOfDaysBetween(selectedDiffuser!.startDate, and: Date())
+        
+        if betweenDays > 0 {
+            lblRemainDays.text = "\(betweenDays)일 후 교체 필요"
+        } else {
+            lblRemainDays.text = "교체일이 지났습니다. 당장 교체해야 합니다!"
+        }
         // Do any additional setup after loading the view.
     }
     

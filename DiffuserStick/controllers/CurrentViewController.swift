@@ -80,18 +80,6 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
         viewModel.addDiffuserInfo(diffuser: diffuser)
         tblList.reloadData()
     }
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -103,11 +91,21 @@ class DiffuserListCell: UITableViewCell {
     
     // 커스텀 셀의 데이터 업데이트
     func update(info: DiffuserInfo) {
-        lblTitle.text = info.title
-        lblRemainDayText.text = "30일 후 교체 필요"
+        // 마지막 교체일과 오늘 날짜와의 차이
+        let calendar = Calendar(identifier: .gregorian)
+        let betweenDays = 15 - calendar.numberOfDaysBetween(info.startDate, and: Date())
         
+        lblTitle.text = info.title
+        if betweenDays > 0 {
+            lblRemainDayText.text = "\(betweenDays)일 후 교체 필요"
+        } else {
+            lblRemainDayText.text = "교체일이 지났습니다. 당장 교체해야 합니다!"
+        }
+        
+        
+        // 마지막 교체일 또는 신규 등록일에 따라 레이블 구분 (교체, 설치? 등록?)
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY년 MM월 dd일 만료"
+        dateFormatter.dateFormat = "YYYY년 MM월 dd일 교체됨"
         lblExpirationDate.text = dateFormatter.string(from: info.startDate)
         
         thumbnailView.image = info.thumnail
@@ -116,10 +114,11 @@ class DiffuserListCell: UITableViewCell {
 
 // MVVM 1: 뷰 모델 클래스 생성
 class DiffuserViewModel {
+    
     var diffuserInfoList: [DiffuserInfo] = [
-        DiffuserInfo(title: "제 2회의실 탁자에 있는 엘레강스 디퓨저", startDate: Date()),
-        DiffuserInfo(title: "제 2회의실 TV 밑 선반에 있는 체리시 향의 디퓨저", startDate: Date()),
-        DiffuserInfo(title: "로비 위에 있는 섬유향 디퓨저", startDate: Date()),
+        DiffuserInfo(title: "제 2회의실 탁자에 있는 엘레강스 디퓨저", startDate: Date(timeIntervalSince1970: 1625065200)),
+        DiffuserInfo(title: "제 2회의실 TV 밑 선반에 있는 체리시 향의 디퓨저", startDate: Date(timeIntervalSince1970: 1623733399)),
+        DiffuserInfo(title: "로비 위에 있는 섬유향 디퓨저", startDate: Date(timeIntervalSince1970: 1626066199)),
         DiffuserInfo(title: "복사기 옆에 있는 르네상스 디퓨저", startDate: Date()),
     ]
     

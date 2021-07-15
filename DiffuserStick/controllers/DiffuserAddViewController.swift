@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Photos
 
 protocol AddDelegate {
     func sendDiffuser(_ controller: DiffuserAddViewController, diffuser: DiffuserInfo)
@@ -14,7 +15,6 @@ protocol AddDelegate {
 class DiffuserAddViewController: UIViewController {
     
     var delegate: AddDelegate?
-    var image: UIImage?
 
     @IBOutlet weak var inputTitle: UITextField!
     @IBOutlet weak var datepickerStartDate: UIDatePicker!
@@ -28,6 +28,11 @@ class DiffuserAddViewController: UIViewController {
         
         // 사진: 이미지 피커에 딜리게이트 생성
         imagePickerController.delegate = self
+        
+        // 사진, 카메라 권한 (최초 요청)
+        PHPhotoLibrary.requestAuthorization { status in
+            print(status)
+        }
     }
     
     @IBAction func btnClose(_ sender: Any) {
@@ -39,7 +44,7 @@ class DiffuserAddViewController: UIViewController {
         if delegate != nil {
             delegate?.sendDiffuser(self, diffuser: diffuser)
         }
-        let saveResult = saveImage(image: image!, fileName: diffuser.title)
+        let saveResult = saveImage(image: imgPhoto.image!, fileName: diffuser.title)
         print(saveResult)
         dismiss(animated: true, completion: nil)
     }
@@ -48,17 +53,57 @@ class DiffuserAddViewController: UIViewController {
     @IBAction func btnTakePhoto(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             self.imagePickerController.sourceType = .camera
-            self.present(self.imagePickerController, animated: true, completion: nil)
+            
+            switch PHPhotoLibrary.authorizationStatus() {
+            case .notDetermined:
+                simpleAlert(self, message: "notDetermined")
+                UIApplication.shared.open(URL(string: "UIApplication.openSettingsURLString")!)
+            case .restricted:
+                simpleAlert(self, message: "restricted")
+            case .denied:
+                simpleAlert(self, message: "denied")
+            case .authorized:
+                self.present(self.imagePickerController, animated: true, completion: nil)
+            case .limited:
+                simpleAlert(self, message: "limited")
+            @unknown default:
+                simpleAlert(self, message: "unknown")
+            }
         } else {
             print("카메라 사용이 불가능합니다.")
             simpleAlert(self, message: "카메라 사용이 불가능합니다.")
         }
+        
+        /**
+         switch PHPhotoLibrary.authorizationStatus() {
+            .notDetermined - User has not yet made a choice with regards to this application
+            .restricted - This application is not authorized to access photo data. The user cannot change this application’s status, possibly due to active restrictions
+            .denied - User has explicitly denied this application access to photos data.
+            .authorized - User has authorized this application to access photos data.
+
+         }
+         */
     }
     
     // 사진: 라이브러리 켜기
     @IBAction func btnLoadPhoto(_ sender: Any) {
         self.imagePickerController.sourceType = .photoLibrary
-        self.present(self.imagePickerController, animated: true, completion: nil)
+        
+        switch PHPhotoLibrary.authorizationStatus() {
+        case .notDetermined:
+            simpleAlert(self, message: "notDetermined")
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+        case .restricted:
+            simpleAlert(self, message: "restricted")
+        case .denied:
+            simpleAlert(self, message: "denied")
+        case .authorized:
+            self.present(self.imagePickerController, animated: true, completion: nil)
+        case .limited:
+            simpleAlert(self, message: "limited")
+        @unknown default:
+            simpleAlert(self, message: "unknown")
+        }
     }
     
     /*
@@ -79,7 +124,6 @@ extension DiffuserAddViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             imgPhoto.image = image
-            self.image = image
         }
         dismiss(animated: true, completion: nil)
     }
