@@ -52,7 +52,7 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        print(UserDefaults.standard.string(forKey: "config-font") ?? "")
     }
     
     
