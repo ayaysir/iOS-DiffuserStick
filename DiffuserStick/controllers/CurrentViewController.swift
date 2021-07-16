@@ -43,6 +43,10 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         print(getDocumentsDirectory().absoluteString.replacingOccurrences(of: "file://", with: ""))
+        
+        // 나중에 삭제
+        saveToCoreData("James")
+        saveToCoreData("John")
 
         // Do any additional setup after loading the view.
         do {
@@ -54,6 +58,7 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         print(UserDefaults.standard.string(forKey: "config-font") ?? "")
+        readFromCoreData()
     }
     
     
