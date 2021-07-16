@@ -26,7 +26,7 @@ class DiffuserDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         lblTitle.text = selectedDiffuser?.title
-        imgPhoto.image = selectedDiffuser?.photo
+        imgPhoto.image = getImage(fileName: selectedDiffuser!.id)
         lblLastChangedDate.text = formatLastChanged(date: selectedDiffuser!.startDate)
         
         // 마지막 교체일과 오늘 날짜와의 차이

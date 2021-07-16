@@ -25,6 +25,8 @@
 		44FDCFCC269FEC9700A7A7FD /* AlertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCFCB269FEC9700A7A7FD /* AlertUtil.swift */; };
 		44FDCFCE269FEF7F00A7A7FD /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCFCD269FEF7F00A7A7FD /* FileUtil.swift */; };
 		44FDCFD026A070BB00A7A7FD /* CalendarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCFCF26A070BB00A7A7FD /* CalendarExtension.swift */; };
+		44FDCFD226A1419100A7A7FD /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCFD126A1419000A7A7FD /* UIExtension.swift */; };
+		44FDCFD426A1468200A7A7FD /* CommonFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCFD326A1468200A7A7FD /* CommonFuncs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		44FDCFCB269FEC9700A7A7FD /* AlertUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUtil.swift; sourceTree = "<group>"; };
 		44FDCFCD269FEF7F00A7A7FD /* FileUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtil.swift; sourceTree = "<group>"; };
 		44FDCFCF26A070BB00A7A7FD /* CalendarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtension.swift; sourceTree = "<group>"; };
+		44FDCFD126A1419000A7A7FD /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
+		44FDCFD326A1468200A7A7FD /* CommonFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonFuncs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,7 @@
 				44FDCFBD269E96DA00A7A7FD /* DiffuserDetailViewController.swift */,
 				44FDCFC4269F1C3B00A7A7FD /* DiffuserAddViewController.swift */,
 				44FDCFC8269FCEF900A7A7FD /* SettingViewController.swift */,
+				44FDCFD326A1468200A7A7FD /* CommonFuncs.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 				44FDCFCB269FEC9700A7A7FD /* AlertUtil.swift */,
 				44FDCFCD269FEF7F00A7A7FD /* FileUtil.swift */,
 				44FDCFCF26A070BB00A7A7FD /* CalendarExtension.swift */,
+				44FDCFD126A1419000A7A7FD /* UIExtension.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -210,6 +216,7 @@
 				44FDCFC9269FCEF900A7A7FD /* SettingViewController.swift in Sources */,
 				4456C9BB269D4E8400A29B77 /* DiffuserStick.xcdatamodeld in Sources */,
 				44FDCFC5269F1C3B00A7A7FD /* DiffuserAddViewController.swift in Sources */,
+				44FDCFD426A1468200A7A7FD /* CommonFuncs.swift in Sources */,
 				44FDCFCC269FEC9700A7A7FD /* AlertUtil.swift in Sources */,
 				4456C9B5269D4E8400A29B77 /* MainViewController.swift in Sources */,
 				44FDCFBE269E96DA00A7A7FD /* DiffuserDetailViewController.swift in Sources */,
@@ -219,6 +226,7 @@
 				4456C9CA269D534200A29B77 /* CurrentViewController.swift in Sources */,
 				44FDCFCE269FEF7F00A7A7FD /* FileUtil.swift in Sources */,
 				4456C9B3269D4E8400A29B77 /* SceneDelegate.swift in Sources */,
+				44FDCFD226A1419100A7A7FD /* UIExtension.swift in Sources */,
 				44FDCFC2269EA8B300A7A7FD /* ParsePlist.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

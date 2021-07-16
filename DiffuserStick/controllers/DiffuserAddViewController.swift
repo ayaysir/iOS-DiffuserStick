@@ -31,7 +31,7 @@ class DiffuserAddViewController: UIViewController {
         
         // 사진, 카메라 권한 (최초 요청)
         PHPhotoLibrary.requestAuthorization { status in
-            print(status)
+            return
         }
     }
     
@@ -40,11 +40,11 @@ class DiffuserAddViewController: UIViewController {
     }
     
     @IBAction func btnSave(_ sender: Any) {
-        let diffuser = DiffuserInfo(title: inputTitle.text!, startDate: datepickerStartDate.date)
+        let diffuser = DiffuserInfo(title: inputTitle.text!, startDate: datepickerStartDate.date, comments: "ee", usersDays: 15)
         if delegate != nil {
             delegate?.sendDiffuser(self, diffuser: diffuser)
         }
-        let saveResult = saveImage(image: imgPhoto.image!, fileName: diffuser.title)
+        let saveResult = saveImage(image: imgPhoto.image!, fileName: diffuser.id)
         print(saveResult)
         dismiss(animated: true, completion: nil)
     }
@@ -128,4 +128,11 @@ extension DiffuserAddViewController: UIImagePickerControllerDelegate, UINavigati
         dismiss(animated: true, completion: nil)
     }
     
+}
+
+extension DiffuserAddViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

@@ -42,6 +42,7 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(getDocumentsDirectory().absoluteString.replacingOccurrences(of: "file://", with: ""))
 
         // Do any additional setup after loading the view.
         do {
@@ -75,8 +76,6 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // AddDelegate
     func sendDiffuser(_ controller: DiffuserAddViewController, diffuser: DiffuserInfo) {
-        print("a")
-        print("넘어온거", diffuser)
         viewModel.addDiffuserInfo(diffuser: diffuser)
         tblList.reloadData()
     }
@@ -99,7 +98,7 @@ class DiffuserListCell: UITableViewCell {
         if betweenDays > 0 {
             lblRemainDayText.text = "\(betweenDays)일 후 교체 필요"
         } else {
-            lblRemainDayText.text = "교체일이 지났습니다. 당장 교체해야 합니다!"
+            lblRemainDayText.text = "즉시 교체 필요!"
         }
         
         
@@ -108,7 +107,8 @@ class DiffuserListCell: UITableViewCell {
         dateFormatter.dateFormat = "YYYY년 MM월 dd일 교체됨"
         lblExpirationDate.text = dateFormatter.string(from: info.startDate)
         
-        thumbnailView.image = info.thumnail
+        thumbnailView.image = getImage(fileName: info.id)
+        
     }
 }
 
@@ -116,10 +116,10 @@ class DiffuserListCell: UITableViewCell {
 class DiffuserViewModel {
     
     var diffuserInfoList: [DiffuserInfo] = [
-        DiffuserInfo(title: "제 2회의실 탁자에 있는 엘레강스 디퓨저", startDate: Date(timeIntervalSince1970: 1625065200)),
-        DiffuserInfo(title: "제 2회의실 TV 밑 선반에 있는 체리시 향의 디퓨저", startDate: Date(timeIntervalSince1970: 1623733399)),
-        DiffuserInfo(title: "로비 위에 있는 섬유향 디퓨저", startDate: Date(timeIntervalSince1970: 1626066199)),
-        DiffuserInfo(title: "복사기 옆에 있는 르네상스 디퓨저", startDate: Date()),
+        DiffuserInfo(title: "제 2회의실 탁자에 있는 엘레강스 디퓨저", startDate: Date(timeIntervalSince1970: 1625065200), comments: "", usersDays: 30),
+        DiffuserInfo(title: "제 2회의실 TV 밑 선반에 있는 체리시 향의 디퓨저", startDate: Date(timeIntervalSince1970: 1623733399), comments: "", usersDays: 30),
+        DiffuserInfo(title: "로비 위에 있는 섬유향 디퓨저", startDate: Date(timeIntervalSince1970: 1626066199), comments: "", usersDays: 30),
+        DiffuserInfo(title: "복사기 옆에 있는 르네상스 디퓨저", startDate: Date(), comments: "", usersDays: 30),
     ]
     
     var numOfDiffuserInfoList: Int {

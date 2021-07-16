@@ -7,42 +7,50 @@
 
 import UIKit
 
-
+func refreshDefaultDaysOfConfig(_ num: Int) {
+    UserDefaults.standard.setValue(num, forKey: "config-defaultDays")
+}
 
 class SettingViewController: UIViewController {
 
     @IBOutlet weak var lblFontExample: UILabel!
     @IBOutlet weak var pkvAvailableFontList: UIPickerView!
+    @IBOutlet weak var stepperDaysOutlet: UIStepper!
+    @IBOutlet weak var lblDays: UILabel!
     
     // 폰트 리스트의 이름들 저장 배열
     var availableFontList = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        lblDays.text = String(Int(stepperDaysOutlet.value))
+        
+        // 일수 세팅
+        let currentDays = UserDefaults.standard.integer(forKey: "config-defaultDays")
+        if currentDays >= 15 {
+            stepperDaysOutlet.value = Double(currentDays)
+        } else {
+            stepperDaysOutlet.value = 30.0
+        }
+        lblDays.text = String(currentDays)
+        
+        // userdefault 맨 처음 값은?
+        // integer: 0, string: nil
+        print(UserDefaults.standard.integer(forKey: "not-exist"))
+        
 
         // 시스템의 모든 폰트 불러오기
         for family in UIFont.familyNames {
-            print("\(family)")
             availableFontList.append(family)
-            
-            for name in UIFont.fontNames(forFamilyName: family) {
-                print("\t\(name)")
-            }
         }
-        // Do any additional setup after loading the view.
+    }
+    
+    @IBAction func stepperDays(_ sender: Any) {
+        lblDays.text = String(Int(stepperDaysOutlet.value))
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
 
 extension SettingViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -72,4 +80,12 @@ extension SettingViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         return pickerLabel
     }
     
+}
+
+extension SettingViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowedCharacters = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
+        return allowedCharacters.isSuperset(of: characterSet)
+    }
 }

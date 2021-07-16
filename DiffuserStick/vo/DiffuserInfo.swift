@@ -11,14 +11,15 @@ struct DiffuserInfo {
     let id: String
     let title: String
     let startDate: Date
-    let thumnail: UIImage?
-    let photo: UIImage?
     
-    init(title: String, startDate: Date) {
+    let comments: String
+    let usersDays: Int
+    
+    init(title: String, startDate: Date, comments: String, usersDays: Int) {
         self.title = title
         self.startDate = startDate
-        self.id = "1"
-        self.thumnail = #imageLiteral(resourceName: "diffuser")
-        self.photo = #imageLiteral(resourceName: "diffuser")
+        self.id = UUID().uuidString
+        self.usersDays = usersDays
+        self.comments = comments
     }
 }
