@@ -9,7 +9,7 @@ import UIKit
 import Photos
 
 protocol AddDelegate {
-    func sendDiffuser(_ controller: DiffuserAddViewController, diffuser: DiffuserInfo)
+    func sendDiffuser(_ controller: DiffuserAddViewController, diffuser: DiffuserVO)
 }
 
 class DiffuserAddViewController: UIViewController {
@@ -19,6 +19,7 @@ class DiffuserAddViewController: UIViewController {
     @IBOutlet weak var inputTitle: UITextField!
     @IBOutlet weak var datepickerStartDate: UIDatePicker!
     @IBOutlet weak var imgPhoto: UIImageView!
+    @IBOutlet weak var textComments: UITextView!
     
     // 사진: 이미지 피커 컨트롤러 생성
     let imagePickerController = UIImagePickerController()
@@ -40,13 +41,21 @@ class DiffuserAddViewController: UIViewController {
     }
     
     @IBAction func btnSave(_ sender: Any) {
-        let diffuser = DiffuserInfo(title: inputTitle.text!, startDate: datepickerStartDate.date, comments: "ee", usersDays: 15)
+        var diffuser = DiffuserVO(title: inputTitle.text!, startDate: datepickerStartDate.date, comments: textComments.text, usersDays: 15, photoName: "", id: UUID())
+        let photoName = diffuser.title.convertToValidFileName() + "___" + diffuser.id.uuidString
+        diffuser.photoName = photoName
+        let savePhotoResult = saveImage(image: imgPhoto.image!, fileName: photoName)
+        let saveCDResult = saveToCoreData(diffuserVO: diffuser)
         if delegate != nil {
             delegate?.sendDiffuser(self, diffuser: diffuser)
         }
-        let saveResult = saveImage(image: imgPhoto.image!, fileName: diffuser.id)
-        print(saveResult)
-        dismiss(animated: true, completion: nil)
+        if savePhotoResult && saveCDResult{
+            simpleAlert(self, message: "저장되었습니다.", title: "저장") { action in
+                self.dismiss(animated: true, completion: nil)
+            }
+        } else {
+            simpleAlert(self, message: "저장이 되지 않았습니다. 다시 시도해주세요.")
+        }
     }
     
     // 사진: 카메라 켜기 - 시뮬레이터에서는 카메라 사용이 불가능하므로 에러가 발생.

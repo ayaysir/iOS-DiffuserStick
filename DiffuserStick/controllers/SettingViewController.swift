@@ -46,7 +46,9 @@ class SettingViewController: UIViewController {
     }
     
     @IBAction func stepperDays(_ sender: Any) {
-        lblDays.text = String(Int(stepperDaysOutlet.value))
+        let days = Int(stepperDaysOutlet.value)
+        lblDays.text = String(days)
+        UserDefaults.standard.setValue(days, forKey: "config-defaultDays")
     }
     
 

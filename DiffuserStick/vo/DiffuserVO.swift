@@ -7,19 +7,20 @@
 
 import UIKit
 
-struct DiffuserInfo {
-    let id: String
+struct DiffuserVO {
+    let id: UUID
     let title: String
     let startDate: Date
-    
     let comments: String
     let usersDays: Int
+    var photoName: String
     
-    init(title: String, startDate: Date, comments: String, usersDays: Int) {
+    init(title: String, startDate: Date, comments: String, usersDays: Int, photoName: String, id: UUID) {
         self.title = title
         self.startDate = startDate
-        self.id = UUID().uuidString
+        self.id = id
         self.usersDays = usersDays
         self.comments = comments
+        self.photoName = photoName
     }
 }

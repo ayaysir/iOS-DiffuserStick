@@ -9,7 +9,7 @@ import UIKit
 
 class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddDelegate {
     
-    var currentSelectedDiffuser: DiffuserInfo? = nil
+    var currentSelectedDiffuser: DiffuserVO? = nil
     
     @IBOutlet weak var tblList: UITableView!
     
@@ -38,15 +38,18 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
         currentSelectedDiffuser = viewModel.getDiffuserInfo(at: indexPath.row)
         performSegue(withIdentifier: "detailView", sender: nil)
     }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         print(getDocumentsDirectory().absoluteString.replacingOccurrences(of: "file://", with: ""))
         
-        // 나중에 삭제
-        saveToCoreData("James")
-        saveToCoreData("John")
+        // Core Data를 view model에 fetch
+        do {
+            viewModel.diffuserInfoList = try readFromCoreData()!
+        } catch {
+            print(error)
+        }
+        
 
         // Do any additional setup after loading the view.
         do {
@@ -58,7 +61,12 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         print(UserDefaults.standard.string(forKey: "config-font") ?? "")
-        readFromCoreData()
+        do {
+            let list = try readFromCoreData()
+            print(list!)
+        } catch {
+            print(error)
+        }
     }
     
     
@@ -80,7 +88,7 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     // AddDelegate
-    func sendDiffuser(_ controller: DiffuserAddViewController, diffuser: DiffuserInfo) {
+    func sendDiffuser(_ controller: DiffuserAddViewController, diffuser: DiffuserVO) {
         viewModel.addDiffuserInfo(diffuser: diffuser)
         tblList.reloadData()
     }
@@ -94,7 +102,7 @@ class DiffuserListCell: UITableViewCell {
     @IBOutlet weak var thumbnailView: UIImageView!
     
     // 커스텀 셀의 데이터 업데이트
-    func update(info: DiffuserInfo) {
+    func update(info: DiffuserVO) {
         // 마지막 교체일과 오늘 날짜와의 차이
         let calendar = Calendar(identifier: .gregorian)
         let betweenDays = 15 - calendar.numberOfDaysBetween(info.startDate, and: Date())
@@ -112,7 +120,7 @@ class DiffuserListCell: UITableViewCell {
         dateFormatter.dateFormat = "YYYY년 MM월 dd일 교체됨"
         lblExpirationDate.text = dateFormatter.string(from: info.startDate)
         
-        thumbnailView.image = getImage(fileName: info.id)
+        thumbnailView.image = getImage(fileName: info.photoName)
         
     }
 }
@@ -120,22 +128,22 @@ class DiffuserListCell: UITableViewCell {
 // MVVM 1: 뷰 모델 클래스 생성
 class DiffuserViewModel {
     
-    var diffuserInfoList: [DiffuserInfo] = [
-        DiffuserInfo(title: "제 2회의실 탁자에 있는 엘레강스 디퓨저", startDate: Date(timeIntervalSince1970: 1625065200), comments: "", usersDays: 30),
-        DiffuserInfo(title: "제 2회의실 TV 밑 선반에 있는 체리시 향의 디퓨저", startDate: Date(timeIntervalSince1970: 1623733399), comments: "", usersDays: 30),
-        DiffuserInfo(title: "로비 위에 있는 섬유향 디퓨저", startDate: Date(timeIntervalSince1970: 1626066199), comments: "", usersDays: 30),
-        DiffuserInfo(title: "복사기 옆에 있는 르네상스 디퓨저", startDate: Date(), comments: "", usersDays: 30),
+    var diffuserInfoList: [DiffuserVO] = [
+        DiffuserVO(title: "제 2회의실 탁자에 있는 엘레강스 디퓨저", startDate: Date(timeIntervalSince1970: 1625065200), comments: "", usersDays: 30, photoName: "", id: UUID()),
+        DiffuserVO(title: "제 2회의실 TV 밑 선반에 있는 체리시 향의 디퓨저", startDate: Date(timeIntervalSince1970: 1623733399), comments: "", usersDays: 30, photoName: "", id: UUID()),
+        DiffuserVO(title: "로비 위에 있는 섬유향 디퓨저", startDate: Date(timeIntervalSince1970: 1626066199), comments: "", usersDays: 30, photoName: "", id: UUID()),
+        DiffuserVO(title: "복사기 옆에 있는 르네상스 디퓨저", startDate: Date(), comments: "", usersDays: 30, photoName: "", id: UUID()),
     ]
     
     var numOfDiffuserInfoList: Int {
         return diffuserInfoList.count
     }
     
-    func getDiffuserInfo(at index: Int) -> DiffuserInfo {
+    func getDiffuserInfo(at index: Int) -> DiffuserVO {
         return diffuserInfoList[index]
     }
     
-    func addDiffuserInfo(diffuser: DiffuserInfo) {
+    func addDiffuserInfo(diffuser: DiffuserVO) {
         diffuserInfoList.insert(diffuser, at: 0)
     }
     

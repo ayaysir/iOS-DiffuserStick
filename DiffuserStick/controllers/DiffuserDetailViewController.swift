@@ -20,14 +20,16 @@ class DiffuserDetailViewController: UIViewController {
     @IBOutlet weak var lblLastChangedDate: UILabel!
     @IBOutlet weak var imgPhoto: UIImageView!
     @IBOutlet weak var lblRemainDays: UILabel!
+    @IBOutlet weak var textComments: UITextView!
     
-    var selectedDiffuser: DiffuserInfo?
+    var selectedDiffuser: DiffuserVO?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         lblTitle.text = selectedDiffuser?.title
-        imgPhoto.image = getImage(fileName: selectedDiffuser!.id)
+        imgPhoto.image = getImage(fileName: selectedDiffuser!.photoName)
         lblLastChangedDate.text = formatLastChanged(date: selectedDiffuser!.startDate)
+        textComments.text = selectedDiffuser!.comments
         
         // 마지막 교체일과 오늘 날짜와의 차이
         let calendar = Calendar(identifier: .gregorian)

@@ -121,7 +121,7 @@
         <scene sceneID="UmM-c8-vH4">
             <objects>
                 <viewController id="VkP-0k-GXU" customClass="SettingViewController" customModule="DiffuserStick" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="9Tg-Jt-uwy">
+                    <view key="view" contentMode="scaleToFill" id="9Tg-Jt-uwy" customClass="SettingViewControoler">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -331,6 +331,7 @@
                         <outlet property="datepickerStartDate" destination="2vt-z3-9B9" id="rXp-BW-MLM"/>
                         <outlet property="imgPhoto" destination="yrX-EQ-6VV" id="Scg-2g-mVd"/>
                         <outlet property="inputTitle" destination="xaC-hI-xfv" id="cd1-20-FJL"/>
+                        <outlet property="textComments" destination="h5D-5s-9uP" id="4gO-rA-cB4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oeo-fr-wBl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -412,6 +413,7 @@
                         <outlet property="lblLastChangedDate" destination="Uum-8B-mKz" id="YNI-Mr-twt"/>
                         <outlet property="lblRemainDays" destination="DhH-W1-d8c" id="bJ9-MY-5lm"/>
                         <outlet property="lblTitle" destination="VzY-fe-BSA" id="jba-eo-1RH"/>
+                        <outlet property="textComments" destination="nkS-cr-38U" id="J1W-dJ-z6d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8kU-hP-4Uz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

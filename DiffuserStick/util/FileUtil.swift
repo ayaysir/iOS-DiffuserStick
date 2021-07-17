@@ -75,3 +75,12 @@ extension Data {
         return ext
     }
 }
+
+extension String {
+    func convertToValidFileName() -> String {
+        let invalidFileNameChrRegex = "[^a-zA-Z0-9ㄱ-힣 ]"
+        let fullRange = startIndex ..< endIndex
+        let validName = replacingOccurrences(of: invalidFileNameChrRegex, with: "-", options: .regularExpression, range: fullRange)
+        return validName
+    }
+}
