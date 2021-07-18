@@ -45,7 +45,7 @@ func readCoreData() throws -> [DiffuserVO]? {
     
     // 2
     let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Diffuser")
-    let sort = NSSortDescriptor(key: "title", ascending: false)
+    let sort = NSSortDescriptor(key: "startDate", ascending: false)
     fetchRequest.sortDescriptors = [sort]
     
     do {

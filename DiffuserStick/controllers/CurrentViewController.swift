@@ -114,6 +114,9 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func btnAdd(_ sender: Any) {
         performSegue(withIdentifier: "addView", sender: nil)
     }
+    @IBAction func btnSort(_ sender: Any) {
+        performSegue(withIdentifier: "layoutTest", sender: nil)
+    }
     
     // AddDelegate
     func sendDiffuser(_ controller: DiffuserAddViewController, diffuser: DiffuserVO) {
