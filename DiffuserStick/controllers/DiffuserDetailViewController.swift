@@ -14,10 +14,22 @@ func formatLastChanged(date: Date) -> String {
     return formatter.string(from: date)
 }
 
+func formatFutureChange(date: Date, addDay: Int) -> String {
+    var dateComponent = DateComponents()
+    dateComponent.day = addDay
+    
+    let futureDate = Calendar.current.date(byAdding: dateComponent, to: date)
+    let formatter = DateFormatter()
+    formatter.dateFormat = "다음 디퓨저 교체일은 YYYY년 M월 dd일 입니다."
+    return formatter.string(from: futureDate!)
+    
+}
+
 class DiffuserDetailViewController: UIViewController {
     
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblLastChangedDate: UILabel!
+    @IBOutlet weak var lblFutureChangeDate: UILabel!
     @IBOutlet weak var imgPhoto: UIImageView!
     @IBOutlet weak var lblRemainDays: UILabel!
     @IBOutlet weak var textComments: UITextView!
@@ -29,11 +41,12 @@ class DiffuserDetailViewController: UIViewController {
         lblTitle.text = selectedDiffuser?.title
         imgPhoto.image = getImage(fileName: selectedDiffuser!.photoName)
         lblLastChangedDate.text = formatLastChanged(date: selectedDiffuser!.startDate)
+        lblFutureChangeDate.text = formatFutureChange(date: selectedDiffuser!.startDate, addDay: selectedDiffuser!.usersDays)
         textComments.text = selectedDiffuser!.comments
         
         // 마지막 교체일과 오늘 날짜와의 차이
         let calendar = Calendar(identifier: .gregorian)
-        let betweenDays = 15 - calendar.numberOfDaysBetween(selectedDiffuser!.startDate, and: Date())
+        let betweenDays = selectedDiffuser!.usersDays - calendar.numberOfDaysBetween(selectedDiffuser!.startDate, and: Date())
         
         if betweenDays > 0 {
             lblRemainDays.text = "\(betweenDays)일 후 교체 필요"

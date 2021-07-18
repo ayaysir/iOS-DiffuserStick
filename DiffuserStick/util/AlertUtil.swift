@@ -21,5 +21,13 @@ func simpleAlert(_ controller: UIViewController, message: String, title: String,
     controller.present(alertController, animated: true, completion: nil)
 }
 
+func simpleDestructiveYesAndNo(_ controller: UIViewController, message: String, title: String, yesHandler: ((UIAlertAction) -> Void)?) {
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    let alertActionNo = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
+    let alertActionYes = UIAlertAction(title: "예", style: .destructive, handler: yesHandler)
+    alertController.addAction(alertActionNo)
+    alertController.addAction(alertActionYes)
+    controller.present(alertController, animated: true, completion: nil)
+}
 
 

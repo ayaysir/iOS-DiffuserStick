@@ -38,6 +38,34 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
         currentSelectedDiffuser = viewModel.getDiffuserInfo(at: indexPath.row)
         performSegue(withIdentifier: "detailView", sender: nil)
     }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let archiveAction = UITableViewRowAction(style: .normal, title: "Archive") { _, index in
+            print("archavie")
+        }
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "DTE") { _, index in
+            simpleDestructiveYesAndNo(self, message: "정말 삭제하시겠습니까?", title: "삭제") { action in
+                let deleteResult = deleteCoreData(id: self.viewModel.diffuserInfoList[indexPath.row].id)
+                if deleteResult {
+                    self.viewModel.diffuserInfoList.remove(at: (indexPath as NSIndexPath).row)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            }
+        }
+        return [deleteAction, archiveAction]
+    }
+    
+//    // 왼쪽 슬라이드 삭제 버튼
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//
+//
+//        } else if editingStyle == .insert {
+//            print("e)dsa")
+//        }
+//    }
+    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +73,7 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // Core Data를 view model에 fetch
         do {
-            viewModel.diffuserInfoList = try readFromCoreData()!
+            viewModel.diffuserInfoList = try readCoreData()!
         } catch {
             print(error)
         }
@@ -62,7 +90,7 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewWillAppear(_ animated: Bool) {
         print(UserDefaults.standard.string(forKey: "config-font") ?? "")
         do {
-            let list = try readFromCoreData()
+            let list = try readCoreData()
             print(list!)
         } catch {
             print(error)
@@ -105,7 +133,7 @@ class DiffuserListCell: UITableViewCell {
     func update(info: DiffuserVO) {
         // 마지막 교체일과 오늘 날짜와의 차이
         let calendar = Calendar(identifier: .gregorian)
-        let betweenDays = 15 - calendar.numberOfDaysBetween(info.startDate, and: Date())
+        let betweenDays = info.usersDays - calendar.numberOfDaysBetween(info.startDate, and: Date())
         
         lblTitle.text = info.title
         if betweenDays > 0 {

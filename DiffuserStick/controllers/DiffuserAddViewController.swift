@@ -20,6 +20,10 @@ class DiffuserAddViewController: UIViewController {
     @IBOutlet weak var datepickerStartDate: UIDatePicker!
     @IBOutlet weak var imgPhoto: UIImageView!
     @IBOutlet weak var textComments: UITextView!
+    @IBOutlet weak var lblDays: UILabel!
+    @IBOutlet weak var stepperOutlet: UIStepper!
+    
+    var userDays: Int = UserDefaults.standard.integer(forKey: "config-defaultDays")
     
     // 사진: 이미지 피커 컨트롤러 생성
     let imagePickerController = UIImagePickerController()
@@ -34,6 +38,14 @@ class DiffuserAddViewController: UIViewController {
         PHPhotoLibrary.requestAuthorization { status in
             return
         }
+        
+        // 기본 일수
+        if userDays < 15 {
+            userDays = 15
+        }
+        lblDays.text = String(userDays)
+        stepperOutlet.value = Double(userDays)
+            
     }
     
     @IBAction func btnClose(_ sender: Any) {
@@ -41,11 +53,12 @@ class DiffuserAddViewController: UIViewController {
     }
     
     @IBAction func btnSave(_ sender: Any) {
-        var diffuser = DiffuserVO(title: inputTitle.text!, startDate: datepickerStartDate.date, comments: textComments.text, usersDays: 15, photoName: "", id: UUID())
-        let photoName = diffuser.title.convertToValidFileName() + "___" + diffuser.id.uuidString
-        diffuser.photoName = photoName
+        let uuid = UUID()
+        let photoName = inputTitle.text!.convertToValidFileName() + "___" + uuid.uuidString
+        let diffuser = DiffuserVO(title: inputTitle.text!, startDate: datepickerStartDate.date, comments: textComments.text, usersDays: userDays, photoName: photoName, id: UUID())
         let savePhotoResult = saveImage(image: imgPhoto.image!, fileName: photoName)
-        let saveCDResult = saveToCoreData(diffuserVO: diffuser)
+        let saveCDResult = saveCoreData(diffuserVO: diffuser)
+        
         if delegate != nil {
             delegate?.sendDiffuser(self, diffuser: diffuser)
         }
@@ -115,15 +128,10 @@ class DiffuserAddViewController: UIViewController {
         }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func stepperDaysAction(_ sender: Any) {
+        userDays = Int(stepperOutlet.value)
+        lblDays.text = String(userDays)
     }
-    */
 
 }
 

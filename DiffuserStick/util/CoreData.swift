@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 // 데이터를 저장하는 시점에 사용
-func saveToCoreData(diffuserVO diffuser: DiffuserVO) -> Bool {
+func saveCoreData(diffuserVO diffuser: DiffuserVO) -> Bool {
     
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
     let managedContext = appDelegate.persistentContainer.viewContext
@@ -37,7 +37,7 @@ func saveToCoreData(diffuserVO diffuser: DiffuserVO) -> Bool {
 }
 
 // 주로 viewWillAppear 에서 사용
-func readFromCoreData() throws -> [DiffuserVO]? {
+func readCoreData() throws -> [DiffuserVO]? {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
     
     // 1
@@ -45,6 +45,8 @@ func readFromCoreData() throws -> [DiffuserVO]? {
     
     // 2
     let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Diffuser")
+    let sort = NSSortDescriptor(key: "title", ascending: false)
+    fetchRequest.sortDescriptors = [sort]
     
     do {
         let resultCDArray = try managedContext.fetch(fetchRequest)
@@ -66,44 +68,46 @@ func readFromCoreData() throws -> [DiffuserVO]? {
 }
 
 
+func updateCoreData(id: UUID) throws {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+    
+    // 1
+    let managedContext = appDelegate.persistentContainer.viewContext
+    
+    // 2
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Diffuser")
+    fetchRequest.predicate = NSPredicate(format: "id = %@", id.uuidString)
+    
+    do {
+        let result = try managedContext.fetch(fetchRequest)
+        let objectToUpdate = result[0] as! NSManagedObject
+        print("objectToUpdate: \(objectToUpdate)")
+        print("oTU title: \(objectToUpdate.value(forKey: "title")!)")
+        
+    } catch let error as NSError {
+        print("Could not update. \(error), \(error.userInfo)")
+        throw error
+    }
+}
 
-//// 데이터를 저장하는 시점에 사용
-//func saveDiffuserToCoreData(diffuserInfo: DiffuserInfo) {
-//
-//    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-//    let managedContext = appDelegate.persistentContainer.viewContext
-//    let entity = NSEntityDescription.entity(forEntityName: "Diffuser", in: managedContext)!
-//    let diffuser = NSManagedObject(entity: entity, insertInto: managedContext) as? Diffuser
-//
-//    // 3
-//    diffuser?.comments = diffuserInfo.comments
-//
-//
-//
-//    // 4
-//    do {
-//        try managedContext.save()
-//        print(person)
-//    } catch let error as NSError {
-//        print("Could not save. \(error), \(error.userInfo)")
-//    }
-//
-//}
-//
-//// 주로 viewWillAppear 에서 사용
-//func readDiffusersFromCoreData() {
-//    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-//
-//    // 1
-//    let managedContext = appDelegate.persistentContainer.viewContext
-//
-//    // 2
-//    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Person")
-//
-//    do {
-//        let result = try managedContext.fetch(fetchRequest)
-//        print("array: \(result)")
-//    } catch let error as NSError {
-//        print("Could not save. \(error), \(error.userInfo)")
-//    }
-//}
+func deleteCoreData(id: UUID) -> Bool {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
+    
+    // 1
+    let managedContext = appDelegate.persistentContainer.viewContext
+    
+    // 2
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Diffuser")
+    fetchRequest.predicate = NSPredicate(format: "id = %@", id.uuidString)
+    
+    do {
+        let result = try managedContext.fetch(fetchRequest)
+        let objectToDelete = result[0] as! NSManagedObject
+        managedContext.delete(objectToDelete)
+        try managedContext.save()
+        return true
+    } catch let error as NSError {
+        print("Could not update. \(error), \(error.userInfo)")
+        return false
+    }
+}
