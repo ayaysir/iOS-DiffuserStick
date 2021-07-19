@@ -41,13 +41,16 @@ func saveImage(image: UIImage, fileName: String) -> Bool {
     }
 }
 
-func getImage(fileName: String) -> UIImage? {
-    // 이미지 표시
+func getImageUrl(fileName: String) -> URL? {
     guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else {
-        return #imageLiteral(resourceName: "diffuser")
+        return nil
     }
     
-    let imageUrl = URL(fileURLWithPath: directory.absoluteString).appendingPathComponent(fileName + ".jpg")
+    return URL(fileURLWithPath: directory.absoluteString).appendingPathComponent(fileName + ".jpg")
+}
+
+func getImage(fileName: String) -> UIImage? {
+    let imageUrl = getImageUrl(fileName: fileName)!
     let fileManager = FileManager.default
     if fileManager.fileExists(atPath: imageUrl.path) {
         return UIImage(contentsOfFile: imageUrl.path)

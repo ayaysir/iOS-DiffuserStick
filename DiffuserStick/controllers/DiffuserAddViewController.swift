@@ -21,6 +21,9 @@ class DiffuserAddViewController: UIViewController {
     var modifyDelegate: ModifyDelegate?
     var mode: String = "add"
     var selectedDiffuser: DiffuserVO?
+    
+    // Local push
+    let userNotiCenter = UNUserNotificationCenter.current()
 
     @IBOutlet weak var inputTitle: UITextField!
     @IBOutlet weak var datepickerStartDate: UIDatePicker!
@@ -82,6 +85,7 @@ class DiffuserAddViewController: UIViewController {
             }
             if savePhotoResult && saveCDResult{
                 simpleAlert(self, message: "저장되었습니다.", title: "저장") { action in
+                    self.addPushNoti(diffuser: diffuser)
                     self.dismiss(animated: true, completion: nil)
                 }
             } else {
@@ -104,6 +108,7 @@ class DiffuserAddViewController: UIViewController {
             
             if savePhotoResult && updateCDResult {
                 simpleAlert(self, message: "업데이트 되었습니다.", title: "업데이트") { action in
+                    self.addPushNoti(diffuser: self.selectedDiffuser!)
                     self.dismiss(animated: true, completion: nil)
                 }
             } else {
@@ -174,6 +179,50 @@ class DiffuserAddViewController: UIViewController {
     @IBAction func stepperDaysAction(_ sender: Any) {
         userDays = Int(stepperOutlet.value)
         lblDays.text = String(userDays)
+    }
+    
+    // 공통 : 알림(푸시) 설정
+    // 알림 전송
+    func addPushNoti(diffuser: DiffuserVO) {
+        userNotiCenter.removePendingNotificationRequests(withIdentifiers: [diffuser.id.uuidString])
+        let notiContent = UNMutableNotificationContent()
+        notiContent.title = diffuser.title
+        notiContent.body = "'\(diffuser.title)' 디퓨저를 교체해야 합니다."
+        notiContent.userInfo = ["targetScene": "change"] // 푸시 받을때 오는 데이터
+        notiContent.categoryIdentifier = "image-message"
+        
+        // 이미지 집어넣기
+//        do {
+//            let image = URL(fileURLWithPath: Bundle)
+//        } catch <#pattern#> {
+//            <#statements#>
+//        }
+        // 알림이 trigger되는 시간 설정
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10.0, repeats: false)
+        
+        // Configure the recurring date.
+        var dateComponents = DateComponents()
+        dateComponents.day = userDays
+        let alarmDate = Calendar.current.date(byAdding: dateComponents, to: diffuser.startDate)
+        var alarmDateComponents = Calendar.current.dateComponents(in: .current, from: alarmDate!)
+        alarmDateComponents.hour = 15
+        alarmDateComponents.minute = 10
+        alarmDateComponents.second = 0
+        print(alarmDateComponents as Any)
+
+        // Create the trigger as a repeating event.
+        let trigger = UNCalendarNotificationTrigger(
+            dateMatching: alarmDateComponents, repeats: true)
+
+        let request = UNNotificationRequest(
+            identifier: diffuser.id.uuidString,
+            content: notiContent,
+            trigger: trigger
+        )
+
+        userNotiCenter.add(request) { (error) in
+            print(#function, error as Any)
+        }
     }
 
 }

@@ -12,6 +12,9 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     var currentSelectedDiffuser: DiffuserVO? = nil
     var currentArrayIndex: Int = 0
     
+    // Local push
+    let userNotiCenter = UNUserNotificationCenter.current()
+    
     @IBOutlet weak var tblList: UITableView!
     
     // MVVM 2: view Model 클래스의 인스턴스 생성
@@ -41,10 +44,10 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let archiveAction = UITableViewRowAction(style: .normal, title: "Archive") { _, index in
-            print("archavie")
-        }
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "DTE") { _, index in
+//        let archiveAction = UITableViewRowAction(style: .normal, title: "Archive") { _, index in
+//            print("archavie")
+//        }
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "삭제") { _, index in
             simpleDestructiveYesAndNo(self, message: "정말 삭제하시겠습니까?", title: "삭제") { action in
                 let deleteResult = deleteCoreData(id: self.viewModel.diffuserInfoList[indexPath.row].id)
                 if deleteResult {
@@ -53,7 +56,7 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
             }
         }
-        return [deleteAction, archiveAction]
+        return [deleteAction]
     }
     
 //    // 왼쪽 슬라이드 삭제 버튼
@@ -79,6 +82,8 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
             print(error)
         }
         
+        requestAuthNoti()
+        
 
         // Do any additional setup after loading the view.
 //        do {
@@ -89,12 +94,7 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print(UserDefaults.standard.string(forKey: "config-font") ?? "")
-        do {
-            let list = try readCoreData()
-        } catch {
-            print(error)
-        }
+        
     }
     
     
@@ -124,6 +124,19 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
         viewModel.addDiffuserInfo(diffuser: diffuser)
         tblList.reloadData()
     }
+    
+    //  Local push
+    // 사용자에게 알림 권한 요청
+    func requestAuthNoti() {
+        let notiAuthOptions = UNAuthorizationOptions(arrayLiteral: [.alert, .badge, .sound])
+        userNotiCenter.requestAuthorization(options: notiAuthOptions) { (success, error) in
+            if let error = error {
+                print(#function, error)
+            }
+        }
+    }
+
+
 
 }
 
