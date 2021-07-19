@@ -11,10 +11,16 @@ import Photos
 protocol AddDelegate {
     func sendDiffuser(_ controller: DiffuserAddViewController, diffuser: DiffuserVO)
 }
+protocol ModifyDelegate {
+    func sendDiffuser(_ controller: DiffuserAddViewController, diffuser: DiffuserVO)
+}
 
 class DiffuserAddViewController: UIViewController {
     
     var delegate: AddDelegate?
+    var modifyDelegate: ModifyDelegate?
+    var mode: String = "add"
+    var selectedDiffuser: DiffuserVO?
 
     @IBOutlet weak var inputTitle: UITextField!
     @IBOutlet weak var datepickerStartDate: UIDatePicker!
@@ -40,12 +46,23 @@ class DiffuserAddViewController: UIViewController {
         }
         
         // 기본 일수
-        if userDays < 15 {
-            userDays = 15
+        if mode == "add" {
+            if userDays < 15 {
+                userDays = 15
+            }
+            lblDays.text = String(userDays)
+            stepperOutlet.value = Double(userDays)
+        } else if mode == "modify" {
+            // modify 모드일 경우 컴포넌트에 기존 값을 표시해야 함
+            inputTitle.text = selectedDiffuser?.title
+            datepickerStartDate.date = selectedDiffuser!.startDate
+            imgPhoto.image = getImage(fileName: selectedDiffuser!.photoName)
+            textComments.text = selectedDiffuser?.comments
+            lblDays.text = String(selectedDiffuser!.usersDays)
+            stepperOutlet.value = Double(selectedDiffuser!.usersDays)
         }
-        lblDays.text = String(userDays)
-        stepperOutlet.value = Double(userDays)
-            
+        
+        print("mode: \(mode)")
     }
     
     @IBAction func btnClose(_ sender: Any) {
@@ -53,22 +70,48 @@ class DiffuserAddViewController: UIViewController {
     }
     
     @IBAction func btnSave(_ sender: Any) {
-        let uuid = UUID()
-        let photoName = inputTitle.text!.convertToValidFileName() + "___" + uuid.uuidString
-        let diffuser = DiffuserVO(title: inputTitle.text!, startDate: datepickerStartDate.date, comments: textComments.text, usersDays: userDays, photoName: photoName, id: UUID())
-        let savePhotoResult = saveImage(image: imgPhoto.image!, fileName: photoName)
-        let saveCDResult = saveCoreData(diffuserVO: diffuser)
-        
-        if delegate != nil {
-            delegate?.sendDiffuser(self, diffuser: diffuser)
-        }
-        if savePhotoResult && saveCDResult{
-            simpleAlert(self, message: "저장되었습니다.", title: "저장") { action in
-                self.dismiss(animated: true, completion: nil)
+        if mode == "add" {
+            let uuid = UUID()
+            let photoName = inputTitle.text!.convertToValidFileName() + "___" + uuid.uuidString
+            let diffuser = DiffuserVO(title: inputTitle.text!, startDate: datepickerStartDate.date, comments: textComments.text, usersDays: userDays, photoName: photoName, id: UUID(), createDate: Date(), isFinished: false)
+            let savePhotoResult = saveImage(image: imgPhoto.image!, fileName: photoName)
+            let saveCDResult = saveCoreData(diffuserVO: diffuser)
+            
+            if delegate != nil {
+                delegate?.sendDiffuser(self, diffuser: diffuser)
             }
-        } else {
-            simpleAlert(self, message: "저장이 되지 않았습니다. 다시 시도해주세요.")
+            if savePhotoResult && saveCDResult{
+                simpleAlert(self, message: "저장되었습니다.", title: "저장") { action in
+                    self.dismiss(animated: true, completion: nil)
+                }
+            } else {
+                simpleAlert(self, message: "저장이 되지 않았습니다. 다시 시도해주세요.")
+            }
+        } else if mode == "modify" {
+            let uuid = selectedDiffuser!.id
+            selectedDiffuser?.title = inputTitle.text!
+            selectedDiffuser?.startDate = datepickerStartDate.date
+            selectedDiffuser?.comments = textComments.text
+            selectedDiffuser?.usersDays = userDays
+            selectedDiffuser?.photoName = inputTitle.text!.convertToValidFileName() + "___" + uuid.uuidString
+            
+            if modifyDelegate != nil {
+                modifyDelegate?.sendDiffuser(self, diffuser: selectedDiffuser!)
+            }
+            
+            let savePhotoResult = saveImage(image: imgPhoto.image!, fileName: selectedDiffuser!.photoName)
+            let updateCDResult = updateCoreData(id: uuid, diffuserVO: selectedDiffuser!)
+            
+            if savePhotoResult && updateCDResult {
+                simpleAlert(self, message: "업데이트 되었습니다.", title: "업데이트") { action in
+                    self.dismiss(animated: true, completion: nil)
+                }
+            } else {
+                simpleAlert(self, message: "업데이트가 되지 않았습니다. 다시 시도해주세요.")
+            }
+            
         }
+        
     }
     
     // 사진: 카메라 켜기 - 시뮬레이터에서는 카메라 사용이 불가능하므로 에러가 발생.

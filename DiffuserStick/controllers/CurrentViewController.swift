@@ -10,6 +10,7 @@ import UIKit
 class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddDelegate {
     
     var currentSelectedDiffuser: DiffuserVO? = nil
+    var currentArrayIndex: Int = 0
     
     @IBOutlet weak var tblList: UITableView!
     
@@ -34,8 +35,8 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
         currentSelectedDiffuser = viewModel.getDiffuserInfo(at: indexPath.row)
+        currentArrayIndex = indexPath.row
         performSegue(withIdentifier: "detailView", sender: nil)
     }
     
@@ -80,18 +81,17 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
         
 
         // Do any additional setup after loading the view.
-        do {
-            try print(parsePlistExample())
-        } catch {
-            print(error)
-        }
+//        do {
+//            try print(parsePlistExample())
+//        } catch {
+//            print(error)
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         print(UserDefaults.standard.string(forKey: "config-font") ?? "")
         do {
             let list = try readCoreData()
-            print(list!)
         } catch {
             print(error)
         }
@@ -100,10 +100,11 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        print(segue.destination)
         if segue.identifier == "detailView" {
             guard let detailViewController = segue.destination as? DiffuserDetailViewController else { return }
             detailViewController.selectedDiffuser = currentSelectedDiffuser
+            detailViewController.currentArrayIndex = currentArrayIndex
+            detailViewController.delegate = self
         } else if segue.identifier == "addView" {
             // 디퓨저 추가(add)
             guard let addViewController = segue.destination as? DiffuserAddViewController else { return }
@@ -160,10 +161,10 @@ class DiffuserListCell: UITableViewCell {
 class DiffuserViewModel {
     
     var diffuserInfoList: [DiffuserVO] = [
-        DiffuserVO(title: "제 2회의실 탁자에 있는 엘레강스 디퓨저", startDate: Date(timeIntervalSince1970: 1625065200), comments: "", usersDays: 30, photoName: "", id: UUID()),
-        DiffuserVO(title: "제 2회의실 TV 밑 선반에 있는 체리시 향의 디퓨저", startDate: Date(timeIntervalSince1970: 1623733399), comments: "", usersDays: 30, photoName: "", id: UUID()),
-        DiffuserVO(title: "로비 위에 있는 섬유향 디퓨저", startDate: Date(timeIntervalSince1970: 1626066199), comments: "", usersDays: 30, photoName: "", id: UUID()),
-        DiffuserVO(title: "복사기 옆에 있는 르네상스 디퓨저", startDate: Date(), comments: "", usersDays: 30, photoName: "", id: UUID()),
+        DiffuserVO(title: "제 2회의실 탁자에 있는 엘레강스 디퓨저", startDate: Date(timeIntervalSince1970: 1625065200), comments: "", usersDays: 30, photoName: "", id: UUID(), createDate: Date(), isFinished: false),
+        DiffuserVO(title: "제 2회의실 TV 밑 선반에 있는 체리시 향의 디퓨저", startDate: Date(timeIntervalSince1970: 1623733399), comments: "", usersDays: 30, photoName: "", id: UUID(), createDate: Date(), isFinished: false),
+        DiffuserVO(title: "로비 위에 있는 섬유향 디퓨저", startDate: Date(timeIntervalSince1970: 1626066199), comments: "", usersDays: 30, photoName: "", id: UUID(), createDate: Date(), isFinished: false),
+        DiffuserVO(title: "복사기 옆에 있는 르네상스 디퓨저", startDate: Date(), comments: "", usersDays: 30, photoName: "", id: UUID(), createDate: Date(), isFinished: false),
     ]
     
     var numOfDiffuserInfoList: Int {
@@ -183,4 +184,14 @@ class DiffuserViewModel {
         print(diffuserInfoList)
     }
     
+}
+
+extension CurrentViewController: DetailViewDelegate {
+    func replaceModifiedDiffuser(_ controller: DiffuserDetailViewController, diffuser: DiffuserVO, isModified: Bool, index: Int) {
+        if isModified {
+            viewModel.diffuserInfoList[index] = diffuser
+            tblList.reloadData()
+            print("d여기 실해?")
+        }
+    }
 }

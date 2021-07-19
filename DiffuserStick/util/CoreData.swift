@@ -17,15 +17,15 @@ func saveCoreData(diffuserVO diffuser: DiffuserVO) -> Bool {
     let entity = NSEntityDescription.entity(forEntityName: "Diffuser", in: managedContext)!
     let diffuserCD = NSManagedObject(entity: entity, insertInto: managedContext)
     
-    // 3
     diffuserCD.setValue(diffuser.comments, forKey: "comments")
     diffuserCD.setValue(diffuser.id, forKey: "id")
     diffuserCD.setValue(diffuser.photoName, forKey: "photoName")
     diffuserCD.setValue(diffuser.startDate, forKey: "startDate")
     diffuserCD.setValue(diffuser.title, forKey: "title")
     diffuserCD.setValue(diffuser.usersDays, forKey: "usersDays")
+    diffuserCD.setValue(diffuser.createDate, forKey: "createDate")
+    diffuserCD.setValue(diffuser.isFinished, forKey: "isFinished")
     
-    // 4
     do {
         try managedContext.save()
         return true
@@ -57,7 +57,9 @@ func readCoreData() throws -> [DiffuserVO]? {
             let comments: String = cdObject.value(forKey: "comments") as! String
             let usersDays: Int = cdObject.value(forKey: "usersDays") as! Int
             let photoName: String = cdObject.value(forKey: "photoName") as! String
-            return DiffuserVO(title: title, startDate: startDate, comments: comments, usersDays: usersDays, photoName: photoName, id: id)
+            let createDate = cdObject.value(forKey: "createDate") ?? Date()
+            let isFinished = cdObject.value(forKey: "isFinished") ?? false
+            return DiffuserVO(title: title, startDate: startDate, comments: comments, usersDays: usersDays, photoName: photoName, id: id, createDate: createDate as! Date, isFinished: isFinished as! Bool)
         }
         
         return voArray
@@ -68,8 +70,8 @@ func readCoreData() throws -> [DiffuserVO]? {
 }
 
 
-func updateCoreData(id: UUID) throws {
-    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+func updateCoreData(id: UUID, diffuserVO diffuser: DiffuserVO) -> Bool {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
     
     // 1
     let managedContext = appDelegate.persistentContainer.viewContext
@@ -80,13 +82,21 @@ func updateCoreData(id: UUID) throws {
     
     do {
         let result = try managedContext.fetch(fetchRequest)
-        let objectToUpdate = result[0] as! NSManagedObject
-        print("objectToUpdate: \(objectToUpdate)")
-        print("oTU title: \(objectToUpdate.value(forKey: "title")!)")
+        let diffuserCD = result[0] as! NSManagedObject
         
+        diffuserCD.setValue(diffuser.comments, forKey: "comments")
+        diffuserCD.setValue(diffuser.photoName, forKey: "photoName")
+        diffuserCD.setValue(diffuser.startDate, forKey: "startDate")
+        diffuserCD.setValue(diffuser.title, forKey: "title")
+        diffuserCD.setValue(diffuser.usersDays, forKey: "usersDays")
+        diffuserCD.setValue(diffuser.createDate, forKey: "createDate")
+        diffuserCD.setValue(diffuser.isFinished, forKey: "isFinished")
+        
+        try managedContext.save()
+        return true
     } catch let error as NSError {
         print("Could not update. \(error), \(error.userInfo)")
-        throw error
+        return false
     }
 }
 

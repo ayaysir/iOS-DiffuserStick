@@ -25,6 +25,10 @@ func formatFutureChange(date: Date, addDay: Int) -> String {
     
 }
 
+protocol DetailViewDelegate {
+    func replaceModifiedDiffuser(_ controller: DiffuserDetailViewController, diffuser: DiffuserVO, isModified: Bool, index: Int)
+}
+
 class DiffuserDetailViewController: UIViewController {
     
     @IBOutlet weak var lblTitle: UILabel!
@@ -35,9 +39,11 @@ class DiffuserDetailViewController: UIViewController {
     @IBOutlet weak var textComments: UITextView!
     
     var selectedDiffuser: DiffuserVO?
+    var currentArrayIndex: Int?
+    var delegate: DetailViewDelegate?
+    var isDiffuserModified: Bool = false
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
         lblTitle.text = selectedDiffuser?.title
         imgPhoto.image = getImage(fileName: selectedDiffuser!.photoName)
         lblLastChangedDate.text = formatLastChanged(date: selectedDiffuser!.startDate)
@@ -53,13 +59,26 @@ class DiffuserDetailViewController: UIViewController {
         } else {
             lblRemainDays.text = "교체일이 지났습니다. 당장 교체해야 합니다!"
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        delegate?.replaceModifiedDiffuser(self, diffuser: selectedDiffuser!, isModified: isDiffuserModified, index: currentArrayIndex!)
+    }
+    
     @IBAction func btnClose(_ sender: Any) {
+        
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func btnModify(_ sender: Any) {
+        performSegue(withIdentifier: "modifyView", sender: nil)
+    }
     /*
     // MARK: - Navigation
 
@@ -70,4 +89,23 @@ class DiffuserDetailViewController: UIViewController {
     }
     */
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "modifyView" {
+            guard let modifyViewController = segue.destination as? DiffuserAddViewController else { return }
+            modifyViewController.mode = "modify"
+            modifyViewController.selectedDiffuser = selectedDiffuser
+            modifyViewController.modifyDelegate = self
+        }
+    }
+}
+
+extension DiffuserDetailViewController: ModifyDelegate {
+    func sendDiffuser(_ controller: DiffuserAddViewController, diffuser: DiffuserVO) {
+        // 먼저 detail view의 내용을 갱신하고
+        selectedDiffuser = diffuser
+        // view model의 vo 도 교체한다.
+        isDiffuserModified = true
+        
+    }
 }
