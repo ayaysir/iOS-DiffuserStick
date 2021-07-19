@@ -164,8 +164,7 @@ class DiffuserListCell: UITableViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY년 MM월 dd일 교체됨"
         lblExpirationDate.text = dateFormatter.string(from: info.startDate)
-        
-        thumbnailView.image = getImage(fileName: info.photoName)
+        thumbnailView.image = getImage(fileNameWithExt: info.photoName)
         
     }
 }

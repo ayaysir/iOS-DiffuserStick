@@ -45,7 +45,7 @@ class DiffuserDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         lblTitle.text = selectedDiffuser?.title
-        imgPhoto.image = getImage(fileName: selectedDiffuser!.photoName)
+        imgPhoto.image = getImage(fileNameWithExt: selectedDiffuser!.photoName)
         lblLastChangedDate.text = formatLastChanged(date: selectedDiffuser!.startDate)
         lblFutureChangeDate.text = formatFutureChange(date: selectedDiffuser!.startDate, addDay: selectedDiffuser!.usersDays)
         textComments.text = selectedDiffuser!.comments

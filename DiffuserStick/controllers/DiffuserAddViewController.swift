@@ -59,7 +59,7 @@ class DiffuserAddViewController: UIViewController {
             // modify 모드일 경우 컴포넌트에 기존 값을 표시해야 함
             inputTitle.text = selectedDiffuser?.title
             datepickerStartDate.date = selectedDiffuser!.startDate
-            imgPhoto.image = getImage(fileName: selectedDiffuser!.photoName)
+            imgPhoto.image = getImage(fileNameWithExt: selectedDiffuser!.photoName)
             textComments.text = selectedDiffuser?.comments
             lblDays.text = String(selectedDiffuser!.usersDays)
             stepperOutlet.value = Double(selectedDiffuser!.usersDays)
@@ -75,15 +75,17 @@ class DiffuserAddViewController: UIViewController {
     @IBAction func btnSave(_ sender: Any) {
         if mode == "add" {
             let uuid = UUID()
-            let photoName = inputTitle.text!.convertToValidFileName() + "___" + uuid.uuidString
-            let diffuser = DiffuserVO(title: inputTitle.text!, startDate: datepickerStartDate.date, comments: textComments.text, usersDays: userDays, photoName: photoName, id: UUID(), createDate: Date(), isFinished: false)
-            let savePhotoResult = saveImage(image: imgPhoto.image!, fileName: photoName)
+            let photoNameWithoutExt = inputTitle.text!.convertToValidFileName() + "___" + uuid.uuidString
+            guard let savePhotoResult = saveImage(image: imgPhoto.image!, fileNameWithoutExt: photoNameWithoutExt) else { return }
+            
+            let diffuser = DiffuserVO(title: inputTitle.text!, startDate: datepickerStartDate.date, comments: textComments.text, usersDays: userDays, photoName: photoNameWithoutExt + "." + savePhotoResult, id: uuid, createDate: Date(), isFinished: false)
+            print(diffuser.photoName)
             let saveCDResult = saveCoreData(diffuserVO: diffuser)
             
             if delegate != nil {
                 delegate?.sendDiffuser(self, diffuser: diffuser)
             }
-            if savePhotoResult && saveCDResult{
+            if saveCDResult{
                 simpleAlert(self, message: "저장되었습니다.", title: "저장") { action in
                     self.addPushNoti(diffuser: diffuser)
                     self.dismiss(animated: true, completion: nil)
@@ -103,10 +105,10 @@ class DiffuserAddViewController: UIViewController {
                 modifyDelegate?.sendDiffuser(self, diffuser: selectedDiffuser!)
             }
             
-            let savePhotoResult = saveImage(image: imgPhoto.image!, fileName: selectedDiffuser!.photoName)
+            let savePhotoResult = saveImage(image: imgPhoto.image!, fileNameWithoutExt: selectedDiffuser!.photoName)
             let updateCDResult = updateCoreData(id: uuid, diffuserVO: selectedDiffuser!)
             
-            if savePhotoResult && updateCDResult {
+            if (savePhotoResult != nil) && updateCDResult {
                 simpleAlert(self, message: "업데이트 되었습니다.", title: "업데이트") { action in
                     self.addPushNoti(diffuser: self.selectedDiffuser!)
                     self.dismiss(animated: true, completion: nil)
@@ -187,32 +189,35 @@ class DiffuserAddViewController: UIViewController {
         userNotiCenter.removePendingNotificationRequests(withIdentifiers: [diffuser.id.uuidString])
         let notiContent = UNMutableNotificationContent()
         notiContent.title = diffuser.title
-        notiContent.body = "'\(diffuser.title)' 디퓨저를 교체해야 합니다."
-        notiContent.userInfo = ["targetScene": "change"] // 푸시 받을때 오는 데이터
+        notiContent.body = "'\(diffuser.title)' 디퓨저의 스틱을 교체해야 합니다."
+        notiContent.userInfo = ["targetScene": "change", "diffuserId": diffuser.id.uuidString] // 푸시 받을때 오는 데이터
         notiContent.categoryIdentifier = "image-message"
         
         // 이미지 집어넣기
-//        do {
-//            let image = URL(fileURLWithPath: Bundle)
-//        } catch <#pattern#> {
-//            <#statements#>
-//        }
-        // 알림이 trigger되는 시간 설정
-//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10.0, repeats: false)
+        do {
+            let imageThumbnail = makeImageThumbnail(image: imgPhoto.image!)!
+            let imageUrl = saveImageToTempDir(image: imageThumbnail, fileName: diffuser.photoName)
+            let attach = try UNNotificationAttachment(identifier: "", url: imageUrl!, options: nil)
+            notiContent.attachments.append(attach)
+        } catch {
+            print(error)
+        }
+         // 알림이 trigger되는 시간 설정
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10.0, repeats: false)
         
         // Configure the recurring date.
-        var dateComponents = DateComponents()
-        dateComponents.day = userDays
-        let alarmDate = Calendar.current.date(byAdding: dateComponents, to: diffuser.startDate)
-        var alarmDateComponents = Calendar.current.dateComponents(in: .current, from: alarmDate!)
-        alarmDateComponents.hour = 15
-        alarmDateComponents.minute = 10
-        alarmDateComponents.second = 0
-        print(alarmDateComponents as Any)
-
-        // Create the trigger as a repeating event.
-        let trigger = UNCalendarNotificationTrigger(
-            dateMatching: alarmDateComponents, repeats: true)
+//        var dateComponents = DateComponents()
+//        dateComponents.day = userDays
+//        let alarmDate = Calendar.current.date(byAdding: dateComponents, to: diffuser.startDate)
+//        var alarmDateComponents = Calendar.current.dateComponents(in: .current, from: alarmDate!)
+//        alarmDateComponents.hour = 15
+//        alarmDateComponents.minute = 10
+//        alarmDateComponents.second = 0
+//        print(alarmDateComponents as Any)
+//
+//        // Create the trigger as a repeating event.
+//        let trigger = UNCalendarNotificationTrigger(
+//            dateMatching: alarmDateComponents, repeats: true)
 
         let request = UNNotificationRequest(
             identifier: diffuser.id.uuidString,
