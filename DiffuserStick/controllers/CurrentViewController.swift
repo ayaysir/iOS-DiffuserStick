@@ -12,10 +12,14 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     var currentSelectedDiffuser: DiffuserVO? = nil
     var currentArrayIndex: Int = 0
     
+    var dropDownRowHeight: CGFloat = 50
+    
     // Local push
     let userNotiCenter = UNUserNotificationCenter.current()
     
+    @IBOutlet weak var naviBar: UINavigationBar!
     @IBOutlet weak var tblList: UITableView!
+    @IBOutlet weak var btnSortOutlet: UIBarButtonItem!
     
     // MVVM 2: view Model 클래스의 인스턴스 생성
     let viewModel = DiffuserViewModel()
@@ -31,7 +35,7 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? DiffuserListCell else {
             return UITableViewCell()
         }
-
+        
         let diffuserInfo = viewModel.getDiffuserInfo(at: indexPath.row)
         cell.update(info: diffuserInfo)
         return cell
@@ -44,9 +48,9 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-//        let archiveAction = UITableViewRowAction(style: .normal, title: "Archive") { _, index in
-//            print("archavie")
-//        }
+        //        let archiveAction = UITableViewRowAction(style: .normal, title: "Archive") { _, index in
+        //            print("archavie")
+        //        }
         let deleteAction = UITableViewRowAction(style: .destructive, title: "삭제") { _, index in
             simpleDestructiveYesAndNo(self, message: "정말 삭제하시겠습니까?", title: "삭제") { action in
                 let deleteResult = deleteCoreData(id: self.viewModel.diffuserInfoList[indexPath.row].id)
@@ -59,18 +63,17 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
         return [deleteAction]
     }
     
-//    // 왼쪽 슬라이드 삭제 버튼
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//
-//
-//        } else if editingStyle == .insert {
-//            print("e)dsa")
-//        }
-//    }
+    //    // 왼쪽 슬라이드 삭제 버튼
+    //    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    //        if editingStyle == .delete {
+    //
+    //
+    //        } else if editingStyle == .insert {
+    //            print("e)dsa")
+    //        }
+    //    }
     
-
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print(getDocumentsDirectory().absoluteString.replacingOccurrences(of: "file://", with: ""))
@@ -83,18 +86,21 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
         requestAuthNoti()
+        naviBar.delegate = self
         
-
-        // Do any additional setup after loading the view.
-//        do {
-//            try print(parsePlistExample())
-//        } catch {
-//            print(error)
-//        }
+//        tblList.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tableTouched)))
+    }
+    
+    @objc func tableTouched() {
+//         view.endEditing(true)
+          //textField.resignFirstResponder()  /* This line also worked fine for me */
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
     }
     
     
@@ -116,7 +122,27 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
         performSegue(withIdentifier: "addView", sender: nil)
     }
     @IBAction func btnSort(_ sender: Any) {
-        performSegue(withIdentifier: "layoutTest", sender: nil)
+//        performSegue(withIdentifier: "layoutTest", sender: nil)
+        print("sort")
+        // 임시
+        let alertController = UIAlertController(title: "정렬", message: "정렬 방식을 선택하세요.", preferredStyle: .alert)
+        let sortDefault = UIAlertAction(title: "교체일이 가까운 순서", style: .default) { action in
+            self.viewModel.sortByStartDateAsc()
+            self.tblList.reloadData()
+        }
+        let sortReverse = UIAlertAction(title: "교체일이 먼 순서", style: .default) { action in
+            self.viewModel.sortByStartDateDesc()
+            self.tblList.reloadData()
+        }
+        let sortRegister = UIAlertAction(title: "디퓨저를 등록한 최근 날짜 순서 (기본)", style: .default, handler: nil)
+        let sortRegisterReverse = UIAlertAction(title: "디퓨저를 등록한 먼 날짜 순서", style: .default, handler: nil)
+
+        alertController.addAction(sortDefault)
+        alertController.addAction(sortReverse)
+        alertController.addAction(sortRegister)
+        alertController.addAction(sortRegisterReverse)
+        self.present(alertController, animated: true, completion: nil)
+        
     }
     
     // AddDelegate
@@ -135,9 +161,9 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
     }
-
-
-
+    
+    
+    
 }
 
 class DiffuserListCell: UITableViewCell {
@@ -165,6 +191,8 @@ class DiffuserListCell: UITableViewCell {
         dateFormatter.dateFormat = "YYYY년 MM월 dd일 교체됨"
         lblExpirationDate.text = dateFormatter.string(from: info.startDate)
         thumbnailView.image = getImage(fileNameWithExt: info.photoName)
+        thumbnailView.layer.cornerRadius = 8
+        thumbnailView?.clipsToBounds = true
         
     }
 }
@@ -196,6 +224,22 @@ class DiffuserViewModel {
         print(diffuserInfoList)
     }
     
+    func sortByStartDateDesc() {
+        diffuserInfoList = diffuserInfoList.sorted { obj1, obj2 in
+            let remainDay1 = betweenDays(usersDays: obj1.usersDays, startDate: obj1.startDate)
+            let remainDay2 = betweenDays(usersDays: obj2.usersDays, startDate: obj2.startDate)
+            return remainDay1 > remainDay2
+        }
+    }
+    
+    func sortByStartDateAsc() {
+        diffuserInfoList = diffuserInfoList.sorted { obj1, obj2 in
+            let remainDay1 = betweenDays(usersDays: obj1.usersDays, startDate: obj1.startDate)
+            let remainDay2 = betweenDays(usersDays: obj2.usersDays, startDate: obj2.startDate)
+            return remainDay1 < remainDay2
+        }
+    }
+    
 }
 
 extension CurrentViewController: DetailViewDelegate {
@@ -203,7 +247,13 @@ extension CurrentViewController: DetailViewDelegate {
         if isModified {
             viewModel.diffuserInfoList[index] = diffuser
             tblList.reloadData()
-            print("d여기 실해?")
         }
+    }
+}
+
+// 노치 채우기
+extension CurrentViewController: UINavigationBarDelegate {
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
     }
 }

@@ -43,12 +43,9 @@ class DiffuserDetailViewController: UIViewController {
     var delegate: DetailViewDelegate?
     var isDiffuserModified: Bool = false
     
-    override func viewWillAppear(_ animated: Bool) {
-        lblTitle.text = selectedDiffuser?.title
-        imgPhoto.image = getImage(fileNameWithExt: selectedDiffuser!.photoName)
+    func displayDates() {
         lblLastChangedDate.text = formatLastChanged(date: selectedDiffuser!.startDate)
         lblFutureChangeDate.text = formatFutureChange(date: selectedDiffuser!.startDate, addDay: selectedDiffuser!.usersDays)
-        textComments.text = selectedDiffuser!.comments
         
         // 마지막 교체일과 오늘 날짜와의 차이
         let calendar = Calendar(identifier: .gregorian)
@@ -59,6 +56,16 @@ class DiffuserDetailViewController: UIViewController {
         } else {
             lblRemainDays.text = "교체일이 지났습니다. 당장 교체해야 합니다!"
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        lblTitle.text = selectedDiffuser?.title
+        imgPhoto.image = getImage(fileNameWithExt: selectedDiffuser!.photoName)
+        textComments.text = selectedDiffuser!.comments
+        displayDates()
+
+        
+        print(selectedDiffuser! as DiffuserVO)
     }
     
     override func viewDidLoad() {
@@ -78,6 +85,18 @@ class DiffuserDetailViewController: UIViewController {
     
     @IBAction func btnModify(_ sender: Any) {
         performSegue(withIdentifier: "modifyView", sender: nil)
+    }
+    
+    @IBAction func btnRefresh(_ sender: Any) {
+        let updateResult = updateCoreData(id: selectedDiffuser!.id, diffuserVO: selectedDiffuser!)
+        let newDate = Date()
+        if updateResult {
+            selectedDiffuser?.startDate = newDate
+            displayDates()
+            delegate?.replaceModifiedDiffuser(self, diffuser: selectedDiffuser!, isModified: true, index: currentArrayIndex!)
+            simpleAlert(self, message: "디퓨저 교체 날짜를 오늘로 새로고침하였습니다.", title: "교체되었습니다.", handler: nil)
+        }
+        
     }
     /*
     // MARK: - Navigation

@@ -15,6 +15,9 @@ extension Calendar {
         
         return numberOfDays.day!
     }
-    
-    
+}
+
+func betweenDays(usersDays: Int, startDate: Date) -> Int {
+    let calendar = Calendar(identifier: .gregorian)
+    return usersDays - calendar.numberOfDaysBetween(startDate, and: Date())
 }

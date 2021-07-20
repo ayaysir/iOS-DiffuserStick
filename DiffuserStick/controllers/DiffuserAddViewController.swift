@@ -22,6 +22,10 @@ class DiffuserAddViewController: UIViewController {
     var mode: String = "add"
     var selectedDiffuser: DiffuserVO?
     
+    var isKeyboardAppeared: Bool = false
+    var scrollViewY: CGFloat?
+    var activeField: String?
+    
     // Local push
     let userNotiCenter = UNUserNotificationCenter.current()
 
@@ -31,14 +35,27 @@ class DiffuserAddViewController: UIViewController {
     @IBOutlet weak var textComments: UITextView!
     @IBOutlet weak var lblDays: UILabel!
     @IBOutlet weak var stepperOutlet: UIStepper!
+    @IBOutlet weak var innerView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var userDays: Int = UserDefaults.standard.integer(forKey: "config-defaultDays")
     
     // 사진: 이미지 피커 컨트롤러 생성
     let imagePickerController = UIImagePickerController()
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("scrollveiw", scrollView.frame.origin)
+        scrollViewY = scrollView.frame.origin.y
         
         // 사진: 이미지 피커에 딜리게이트 생성
         imagePickerController.delegate = self
@@ -47,6 +64,15 @@ class DiffuserAddViewController: UIViewController {
         PHPhotoLibrary.requestAuthorization { status in
             return
         }
+        
+        // 키보드 DONE 버튼 추가
+        textComments.addDoneButton(title: "완료", target: self, selector: #selector(tapDone(sender:)))
+        
+        // 키보드 높이
+        // Will 대신 Did를 사용한 이유는 TextField의 Edit Begin 을 감지하기 위함
+        // https://stackoverflow.com/questions/65423793/
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         // 기본 일수
         if mode == "add" {
@@ -57,12 +83,15 @@ class DiffuserAddViewController: UIViewController {
             stepperOutlet.value = Double(userDays)
         } else if mode == "modify" {
             // modify 모드일 경우 컴포넌트에 기존 값을 표시해야 함
+            userDays = selectedDiffuser!.usersDays
+            lblDays.text = String(selectedDiffuser!.usersDays)
+            print("userDays: \(userDays)")
+            
+            stepperOutlet.value = Double(selectedDiffuser!.usersDays)
             inputTitle.text = selectedDiffuser?.title
             datepickerStartDate.date = selectedDiffuser!.startDate
             imgPhoto.image = getImage(fileNameWithExt: selectedDiffuser!.photoName)
             textComments.text = selectedDiffuser?.comments
-            lblDays.text = String(selectedDiffuser!.usersDays)
-            stepperOutlet.value = Double(selectedDiffuser!.usersDays)
         }
         
         print("mode: \(mode)")
@@ -99,13 +128,22 @@ class DiffuserAddViewController: UIViewController {
             selectedDiffuser?.startDate = datepickerStartDate.date
             selectedDiffuser?.comments = textComments.text
             selectedDiffuser?.usersDays = userDays
-            selectedDiffuser?.photoName = inputTitle.text!.convertToValidFileName() + "___" + uuid.uuidString
+            
+            // 유효성 검사: 일수
+            if userDays < 15 {
+                simpleAlert(self, message: "교체 일수는 15일 미만일 수가 없습니다.")
+                return
+            }
+            
+            let modifiedPhotoNameWithoutExt = inputTitle.text!.convertToValidFileName() + "___" + uuid.uuidString
+            let savePhotoResult = saveImage(image: imgPhoto.image!, fileNameWithoutExt: modifiedPhotoNameWithoutExt)
+            selectedDiffuser?.photoName = modifiedPhotoNameWithoutExt + "." + savePhotoResult!
+            
             
             if modifyDelegate != nil {
                 modifyDelegate?.sendDiffuser(self, diffuser: selectedDiffuser!)
             }
             
-            let savePhotoResult = saveImage(image: imgPhoto.image!, fileNameWithoutExt: selectedDiffuser!.photoName)
             let updateCDResult = updateCoreData(id: uuid, diffuserVO: selectedDiffuser!)
             
             if (savePhotoResult != nil) && updateCDResult {
@@ -121,26 +159,29 @@ class DiffuserAddViewController: UIViewController {
         
     }
     
+    func doTaskByPhotoAuthorization() {
+        switch PHPhotoLibrary.authorizationStatus() {
+        case .notDetermined:
+            simpleAlert(self, message: "notDetermined")
+            UIApplication.shared.open(URL(string: "UIApplication.openSettingsURLString")!)
+        case .restricted:
+            simpleAlert(self, message: "restricted")
+        case .denied:
+            simpleAlert(self, message: "denied")
+        case .authorized:
+            self.present(self.imagePickerController, animated: true, completion: nil)
+        case .limited:
+            simpleAlert(self, message: "limited")
+        @unknown default:
+            simpleAlert(self, message: "unknown")
+        }
+    }
+    
     // 사진: 카메라 켜기 - 시뮬레이터에서는 카메라 사용이 불가능하므로 에러가 발생.
     @IBAction func btnTakePhoto(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             self.imagePickerController.sourceType = .camera
-            
-            switch PHPhotoLibrary.authorizationStatus() {
-            case .notDetermined:
-                simpleAlert(self, message: "notDetermined")
-                UIApplication.shared.open(URL(string: "UIApplication.openSettingsURLString")!)
-            case .restricted:
-                simpleAlert(self, message: "restricted")
-            case .denied:
-                simpleAlert(self, message: "denied")
-            case .authorized:
-                self.present(self.imagePickerController, animated: true, completion: nil)
-            case .limited:
-                simpleAlert(self, message: "limited")
-            @unknown default:
-                simpleAlert(self, message: "unknown")
-            }
+            doTaskByPhotoAuthorization()
         } else {
             print("카메라 사용이 불가능합니다.")
             simpleAlert(self, message: "카메라 사용이 불가능합니다.")
@@ -160,22 +201,7 @@ class DiffuserAddViewController: UIViewController {
     // 사진: 라이브러리 켜기
     @IBAction func btnLoadPhoto(_ sender: Any) {
         self.imagePickerController.sourceType = .photoLibrary
-        
-        switch PHPhotoLibrary.authorizationStatus() {
-        case .notDetermined:
-            simpleAlert(self, message: "notDetermined")
-            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-        case .restricted:
-            simpleAlert(self, message: "restricted")
-        case .denied:
-            simpleAlert(self, message: "denied")
-        case .authorized:
-            self.present(self.imagePickerController, animated: true, completion: nil)
-        case .limited:
-            simpleAlert(self, message: "limited")
-        @unknown default:
-            simpleAlert(self, message: "unknown")
-        }
+        doTaskByPhotoAuthorization()
     }
     
     @IBAction func stepperDaysAction(_ sender: Any) {
@@ -183,6 +209,61 @@ class DiffuserAddViewController: UIViewController {
         lblDays.text = String(userDays)
     }
     
+    func addKeyboardNotifications(){
+        // 키보드가 나타날 때 앱에게 알리는 메서드 추가
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification , object: nil)
+        // 키보드가 사라질 때 앱에게 알리는 메서드 추가
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func removeKeyboardNotifications(){
+        // 키보드가 나타날 때 앱에게 알리는 메서드 제거
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification , object: nil)
+        // 키보드가 사라질 때 앱에게 알리는 메서드 제거
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+    }
+    
+    // 키보드가 나타났다는 알림을 받으면 실행할 메서드
+    @objc func keyboardWillShow(_ sender: NSNotification) {
+        if activeField == "title" {
+            isKeyboardAppeared = true
+            return
+        }
+        if isKeyboardAppeared == false {
+            let userInfo: NSDictionary = sender.userInfo! as NSDictionary
+            let keyboardFrame: NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            isKeyboardAppeared = true
+            self.view.frame.origin.y -= keyboardHeight
+            print("keyboardWillShow", self.view.frame.origin.y, self.scrollView.frame.origin.y)
+            
+        }
+        
+    }
+    // 키보드가 사라졌다는 알림을 받으면 실행할 메서드
+    @objc func keyboardWillHide(_ sender: NSNotification){
+        if activeField == "title" {
+            isKeyboardAppeared = false
+            return
+        }
+        if isKeyboardAppeared == true {
+            let userInfo: NSDictionary = sender.userInfo! as NSDictionary
+            let keyboardFrame: NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            self.view.frame.origin.y += keyboardHeight
+            self.scrollView.frame.origin.y = scrollViewY!
+            isKeyboardAppeared = false
+            print("keyboardWillHide", self.view.frame.origin.y, self.scrollView.frame.origin.y)
+        }
+    }
+
+    @objc func tapDone(sender: Any) {
+        self.view.endEditing(true)
+    }
+   
     // 공통 : 알림(푸시) 설정
     // 알림 전송
     func addPushNoti(diffuser: DiffuserVO) {
@@ -245,8 +326,20 @@ extension DiffuserAddViewController: UIImagePickerControllerDelegate, UINavigati
 }
 
 extension DiffuserAddViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeField = "title"
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+}
+
+extension DiffuserAddViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        activeField = "comment"
+    }
+    
 }
