@@ -15,6 +15,8 @@ protocol ModifyDelegate {
     func sendDiffuser(_ controller: DiffuserAddViewController, diffuser: DiffuserVO)
 }
 
+let TEXT_VIEW_PLACEHOLDER_MSG = "메모를 입력해주세요."
+
 class DiffuserAddViewController: UIViewController {
     
     var delegate: AddDelegate?
@@ -43,18 +45,9 @@ class DiffuserAddViewController: UIViewController {
     // 사진: 이미지 피커 컨트롤러 생성
     let imagePickerController = UIImagePickerController()
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("scrollveiw", scrollView.frame.origin)
         scrollViewY = scrollView.frame.origin.y
         
         // 사진: 이미지 피커에 딜리게이트 생성
@@ -66,6 +59,7 @@ class DiffuserAddViewController: UIViewController {
         }
         
         // 키보드 DONE 버튼 추가
+        inputTitle.addDoneButtonOnKeyboard()
         textComments.addDoneButton(title: "완료", target: self, selector: #selector(tapDone(sender:)))
         
         // 키보드 높이
@@ -81,6 +75,8 @@ class DiffuserAddViewController: UIViewController {
             }
             lblDays.text = String(userDays)
             stepperOutlet.value = Double(userDays)
+            textComments.text = TEXT_VIEW_PLACEHOLDER_MSG
+            textComments.textColor = UIColor.lightGray
         } else if mode == "modify" {
             // modify 모드일 경우 컴포넌트에 기존 값을 표시해야 함
             userDays = selectedDiffuser!.usersDays
@@ -91,7 +87,13 @@ class DiffuserAddViewController: UIViewController {
             inputTitle.text = selectedDiffuser?.title
             datepickerStartDate.date = selectedDiffuser!.startDate
             imgPhoto.image = getImage(fileNameWithExt: selectedDiffuser!.photoName)
-            textComments.text = selectedDiffuser?.comments
+            if textComments.text == "" {
+                textComments.text = TEXT_VIEW_PLACEHOLDER_MSG
+                textComments.textColor = UIColor.lightGray
+            } else {
+                textComments.text = selectedDiffuser?.comments
+            }
+        
         }
         
         print("mode: \(mode)")
@@ -340,6 +342,24 @@ extension DiffuserAddViewController: UITextFieldDelegate {
 extension DiffuserAddViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         activeField = "comment"
+        textViewSetup(textView)
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == "" {
+            textViewSetup(textView)
+        }
+    }
+    
+    func textViewSetup(_ textView: UITextView) {
+        
+        if textView.text == "" {
+            textView.text = TEXT_VIEW_PLACEHOLDER_MSG
+            textView.textColor = UIColor.lightGray
+        } else if textView.text == TEXT_VIEW_PLACEHOLDER_MSG {
+            textView.text = ""
+            textView.textColor = UIColor.black
+        }
     }
     
 }

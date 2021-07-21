@@ -122,9 +122,7 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
         performSegue(withIdentifier: "addView", sender: nil)
     }
     @IBAction func btnSort(_ sender: Any) {
-//        performSegue(withIdentifier: "layoutTest", sender: nil)
-        print("sort")
-        // 임시
+   
         let alertController = UIAlertController(title: "정렬", message: "정렬 방식을 선택하세요.", preferredStyle: .alert)
         let sortDefault = UIAlertAction(title: "교체일이 가까운 순서", style: .default) { action in
             self.viewModel.sortByStartDateAsc()
@@ -135,12 +133,11 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.tblList.reloadData()
         }
         let sortRegister = UIAlertAction(title: "디퓨저를 등록한 최근 날짜 순서 (기본)", style: .default, handler: nil)
-        let sortRegisterReverse = UIAlertAction(title: "디퓨저를 등록한 먼 날짜 순서", style: .default, handler: nil)
 
+        
+        alertController.addAction(sortRegister)
         alertController.addAction(sortDefault)
         alertController.addAction(sortReverse)
-        alertController.addAction(sortRegister)
-        alertController.addAction(sortRegisterReverse)
         self.present(alertController, animated: true, completion: nil)
         
     }
@@ -177,12 +174,16 @@ class DiffuserListCell: UITableViewCell {
         // 마지막 교체일과 오늘 날짜와의 차이
         let calendar = Calendar(identifier: .gregorian)
         let betweenDays = info.usersDays - calendar.numberOfDaysBetween(info.startDate, and: Date())
-        
         lblTitle.text = info.title
-        if betweenDays > 0 {
+        if betweenDays > 3 {
             lblRemainDayText.text = "\(betweenDays)일 후 교체 필요"
+            self.contentView.backgroundColor = nil
+        } else if betweenDays <= 3 && betweenDays > 0 {
+            lblRemainDayText.text = "\(betweenDays)일 후 교체 필요"
+            self.contentView.backgroundColor = #colorLiteral(red: 0.9773717523, green: 0.9611932635, blue: 0.7925902009, alpha: 1)
         } else {
             lblRemainDayText.text = "즉시 교체 필요!"
+            self.contentView.backgroundColor = #colorLiteral(red: 0.9926608205, green: 0.8840166926, blue: 0.8681346178, alpha: 1)
         }
         
         

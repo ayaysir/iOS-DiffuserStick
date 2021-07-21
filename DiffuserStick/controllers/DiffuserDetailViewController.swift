@@ -38,6 +38,11 @@ class DiffuserDetailViewController: UIViewController {
     @IBOutlet weak var lblRemainDays: UILabel!
     @IBOutlet weak var textComments: UITextView!
     
+    @IBOutlet weak var btnReplaceOutlet: UIButton!
+    @IBOutlet weak var btnArchiveOutlet: UIButton!
+    @IBOutlet weak var btnEditOutlet: UIButton!
+    @IBOutlet weak var btnDeleteOutlet: UIButton!
+    
     var selectedDiffuser: DiffuserVO?
     var currentArrayIndex: Int?
     var delegate: DetailViewDelegate?
@@ -63,15 +68,18 @@ class DiffuserDetailViewController: UIViewController {
         imgPhoto.image = getImage(fileNameWithExt: selectedDiffuser!.photoName)
         textComments.text = selectedDiffuser!.comments
         displayDates()
-
-        
-        print(selectedDiffuser! as DiffuserVO)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // 버튼 원형으로 만들기
+        let buttons = [btnEditOutlet, btnDeleteOutlet, btnReplaceOutlet, btnArchiveOutlet]
+        for button in buttons {
+            button!.frame = CGRect(x: 160, y: 100, width: 50, height: 50)
+                button!.layer.cornerRadius = 0.5 * button!.bounds.size.width
+                button!.clipsToBounds = true
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
