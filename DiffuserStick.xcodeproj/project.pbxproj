@@ -18,6 +18,8 @@
 		4456C9CA269D534200A29B77 /* CurrentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9C9269D534200A29B77 /* CurrentViewController.swift */; };
 		447A45D8269DC0A0009C4B47 /* DiffuserVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */; };
 		44E868FD26A80A59008B2D62 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 44E868FC26A80A3A008B2D62 /* fontawesome-webfont.ttf */; };
+		44E8690226A9423F008B2D62 /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 44E8690126A9423F008B2D62 /* help.html */; };
+		44E8690426A948C2008B2D62 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E8690326A948C2008B2D62 /* ArchiveViewController.swift */; };
 		44FDCFBE269E96DA00A7A7FD /* DiffuserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCFBD269E96DA00A7A7FD /* DiffuserDetailViewController.swift */; };
 		44FDCFC0269EA7F300A7A7FD /* testprops.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44FDCFBF269EA7F300A7A7FD /* testprops.plist */; };
 		44FDCFC2269EA8B300A7A7FD /* ParsePlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCFC1269EA8B300A7A7FD /* ParsePlist.swift */; };
@@ -44,6 +46,8 @@
 		4456C9C9269D534200A29B77 /* CurrentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentViewController.swift; sourceTree = "<group>"; };
 		447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuserVO.swift; sourceTree = "<group>"; };
 		44E868FC26A80A3A008B2D62 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
+		44E8690126A9423F008B2D62 /* help.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
+		44E8690326A948C2008B2D62 /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
 		44FDCFBD269E96DA00A7A7FD /* DiffuserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuserDetailViewController.swift; sourceTree = "<group>"; };
 		44FDCFBF269EA7F300A7A7FD /* testprops.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = testprops.plist; sourceTree = "<group>"; };
 		44FDCFC1269EA8B300A7A7FD /* ParsePlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsePlist.swift; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 		4456C9AF269D4E8400A29B77 /* DiffuserStick */ = {
 			isa = PBXGroup;
 			children = (
+				44E8690026A94222008B2D62 /* website */,
 				44FDCFCA269FEC8100A7A7FD /* util */,
 				44FDCFC7269FCBF800A7A7FD /* lab */,
 				44FDCFC6269FCBD800A7A7FD /* vo */,
@@ -102,6 +107,14 @@
 			path = DiffuserStick;
 			sourceTree = "<group>";
 		};
+		44E8690026A94222008B2D62 /* website */ = {
+			isa = PBXGroup;
+			children = (
+				44E8690126A9423F008B2D62 /* help.html */,
+			);
+			path = website;
+			sourceTree = "<group>";
+		};
 		44FDCFC3269F1C1900A7A7FD /* controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +124,7 @@
 				44FDCFBD269E96DA00A7A7FD /* DiffuserDetailViewController.swift */,
 				44FDCFC4269F1C3B00A7A7FD /* DiffuserAddViewController.swift */,
 				44FDCFC8269FCEF900A7A7FD /* SettingViewController.swift */,
+				44E8690326A948C2008B2D62 /* ArchiveViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -206,6 +220,7 @@
 				44E868FD26A80A59008B2D62 /* fontawesome-webfont.ttf in Resources */,
 				4456C9BD269D4E8500A29B77 /* Assets.xcassets in Resources */,
 				4456C9B8269D4E8400A29B77 /* Main.storyboard in Resources */,
+				44E8690226A9423F008B2D62 /* help.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +233,7 @@
 			files = (
 				447A45D8269DC0A0009C4B47 /* DiffuserVO.swift in Sources */,
 				44FDCFC9269FCEF900A7A7FD /* SettingViewController.swift in Sources */,
+				44E8690426A948C2008B2D62 /* ArchiveViewController.swift in Sources */,
 				4456C9BB269D4E8400A29B77 /* DiffuserStick.xcdatamodeld in Sources */,
 				44FDCFD826A1BFC200A7A7FD /* CoreData.swift in Sources */,
 				44FDCFC5269F1C3B00A7A7FD /* DiffuserAddViewController.swift in Sources */,

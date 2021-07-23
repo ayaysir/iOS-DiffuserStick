@@ -7,12 +7,17 @@
 
 import UIKit
 
+enum CurrentSort {
+    case orderByCreateDateDesc
+    case orderByRemainDayAsc
+    case orderByRemainDayDesc
+}
+
 class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddDelegate {
     
     var currentSelectedDiffuser: DiffuserVO? = nil
     var currentArrayIndex: Int = 0
-    
-    var dropDownRowHeight: CGFloat = 50
+    var currentSort: CurrentSort = .orderByCreateDateDesc
     
     // Local push
     let userNotiCenter = UNUserNotificationCenter.current()
@@ -124,15 +129,28 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func btnSort(_ sender: Any) {
    
         let alertController = UIAlertController(title: "정렬", message: "정렬 방식을 선택하세요.", preferredStyle: .alert)
+        let sortRegister = UIAlertAction(title: "디퓨저를 등록한 최근 날짜 순서 (기본)", style: .default) { action in
+            if self.currentSort == .orderByCreateDateDesc { return }
+            self.viewModel.sortByCreateDateDesc()
+            self.tblList.reloadData()
+            self.tblList.setContentOffset(.zero, animated: true)
+            self.currentSort = .orderByCreateDateDesc
+        }
         let sortDefault = UIAlertAction(title: "교체일이 가까운 순서", style: .default) { action in
+            if self.currentSort == .orderByRemainDayAsc { return }
             self.viewModel.sortByStartDateAsc()
             self.tblList.reloadData()
+            self.tblList.setContentOffset(.zero, animated: true)
+            self.currentSort = .orderByRemainDayAsc
         }
         let sortReverse = UIAlertAction(title: "교체일이 먼 순서", style: .default) { action in
+            if self.currentSort == .orderByRemainDayDesc { return }
             self.viewModel.sortByStartDateDesc()
             self.tblList.reloadData()
+            self.tblList.setContentOffset(.zero, animated: true)
+            self.currentSort = .orderByRemainDayDesc
         }
-        let sortRegister = UIAlertAction(title: "디퓨저를 등록한 최근 날짜 순서 (기본)", style: .default, handler: nil)
+        
 
         
         alertController.addAction(sortRegister)
@@ -241,15 +259,40 @@ class DiffuserViewModel {
         }
     }
     
+    func sortByCreateDateDesc() {
+        diffuserInfoList = diffuserInfoList.sorted { obj1, obj2 in
+            let createDay1 = obj1.createDate
+            let createDay2 = obj2.createDate
+            return createDay1 > createDay2
+        }
+    }
+    
 }
 
 extension CurrentViewController: DetailViewDelegate {
+    func deleteFromList(_ controller: DiffuserDetailViewController, diffuser: DiffuserVO, index: Int) {
+        self.viewModel.diffuserInfoList.remove(at: index)
+        tblList.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            simpleAlert(self, message: "삭제 완료되었습니다.", title: "삭제 완료", handler: nil)
+        }
+    }
+    
+    func sendArchive(_ controller: DiffuserDetailViewController, diffuser: DiffuserVO, isModified: Bool, index: Int) {
+        if isModified {
+            print("sendarchive", index)
+            viewModel.diffuserInfoList.remove(at: index)
+            tblList.reloadData()
+        }
+    }
+    
     func replaceModifiedDiffuser(_ controller: DiffuserDetailViewController, diffuser: DiffuserVO, isModified: Bool, index: Int) {
         if isModified {
             viewModel.diffuserInfoList[index] = diffuser
             tblList.reloadData()
         }
     }
+    
 }
 
 // 노치 채우기

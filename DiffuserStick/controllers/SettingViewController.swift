@@ -7,15 +7,17 @@
 
 import UIKit
 import MessageUI
+import WebKit
 
 func refreshDefaultDaysOfConfig(_ num: Int) {
     UserDefaults.standard.setValue(num, forKey: "config-defaultDays")
 }
 
-class SettingViewController: UIViewController {
+class SettingViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     
     @IBOutlet weak var stepperDaysOutlet: UIStepper!
     @IBOutlet weak var lblDays: UILabel!
+    @IBOutlet weak var webView: WKWebView!
     
     // 폰트 리스트의 이름들 저장 배열
     var availableFontList = [String]()
@@ -37,6 +39,15 @@ class SettingViewController: UIViewController {
             refreshDefaultDaysOfConfig(30)
         }
         lblDays.text = String(currentDays)
+        
+        // 웹 파일 로딩
+        webView.uiDelegate = self
+        webView.navigationDelegate = self
+
+        let url = Bundle.main.url(forResource: "help", withExtension: "html")!
+        webView.loadFileURL(url, allowingReadAccessTo: url)
+        let request = URLRequest(url: url)
+        webView.load(request)
     }
     
     @IBAction func stepperDays(_ sender: Any) {
@@ -51,12 +62,12 @@ extension SettingViewController: MFMailComposeViewControllerDelegate {
     @IBAction func launchEmail(sender: AnyObject) {
         
         guard MFMailComposeViewController.canSendMail() else {
-            print("Mail services are not available")
+            simpleAlert(self, message: "사용자의 메일 계정이 설정되어 있지 않습니다.", title: "메일 전송 불가", handler: nil)
             return
         }
         
-        let emailTitle = "Feedback"
-        let messageBody = "Feature request or bug report?"
+        let emailTitle = "디퓨저 스틱 피드백"
+        let messageBody = "'디퓨저 스틱'에 대한 질문 또는 피드백이 있으신가요?"
         let toRecipents = ["friend@stackoverflow.com"]
         let mc: MFMailComposeViewController = MFMailComposeViewController()
         mc.mailComposeDelegate = self
