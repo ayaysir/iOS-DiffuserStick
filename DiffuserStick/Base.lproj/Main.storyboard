@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Current View Controller-->
+        <!--리스트-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="CurrentViewController" customModule="DiffuserStick" customModuleProvider="target" sceneMemberID="viewController">
@@ -24,6 +24,7 @@
                                 <items>
                                     <navigationItem title="DiffuserStick" id="rTV-cf-clH">
                                         <barButtonItem key="leftBarButtonItem" title="Item" image="text.alignleft" catalog="system" id="M8K-dN-n8m">
+                                            <color key="tintColor" systemColor="systemIndigoColor"/>
                                             <connections>
                                                 <action selector="btnSort:" destination="BYZ-38-t0r" id="Y72-5C-uc5"/>
                                             </connections>
@@ -38,14 +39,14 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="180" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LYj-nr-qPM">
-                                <rect key="frame" x="0.0" y="88" width="419" height="782"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="180" id="DqT-To-XUX" customClass="DiffuserListCell" customModule="DiffuserStick" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="419" height="180"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DqT-To-XUX" id="1ha-rl-cPh">
-                                            <rect key="frame" x="0.0" y="0.0" width="419" height="180"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g6p-2a-b9m">
@@ -56,19 +57,19 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제 2회의실 탁자에 있는 엘레강스 디퓨저" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1X-Kq-CBa">
-                                                    <rect key="frame" x="163" y="36" width="239" height="53"/>
+                                                    <rect key="frame" x="163" y="36" width="234" height="53"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021년 7월 7일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCY-yY-Ikm">
-                                                    <rect key="frame" x="163" y="123" width="239" height="20"/>
+                                                    <rect key="frame" x="163" y="123" width="234" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="systemGray2Color"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15일 후 교체 필요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEj-m5-otr">
-                                                    <rect key="frame" x="163" y="97" width="239" height="27"/>
+                                                    <rect key="frame" x="163" y="97" width="234" height="27"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="27" id="EmM-Np-Bru"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="239" id="bda-Cg-Frb"/>
@@ -113,14 +114,14 @@
                         <constraints>
                             <constraint firstItem="Bev-iL-gmq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="9gy-Xt-LJ6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Bev-iL-gmq" secondAttribute="trailing" id="CFZ-kn-Cbv"/>
-                            <constraint firstItem="LYj-nr-qPM" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="57" id="HbF-fc-gAe"/>
-                            <constraint firstItem="LYj-nr-qPM" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="5" id="Lw4-wo-fnV"/>
+                            <constraint firstItem="LYj-nr-qPM" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="HbF-fc-gAe"/>
+                            <constraint firstItem="LYj-nr-qPM" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Lw4-wo-fnV"/>
                             <constraint firstItem="LYj-nr-qPM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NcO-v1-HC1"/>
                             <constraint firstItem="Bev-iL-gmq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="PSE-L3-eqW"/>
                             <constraint firstItem="LYj-nr-qPM" firstAttribute="top" secondItem="Bev-iL-gmq" secondAttribute="bottom" id="sDH-it-ax7"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" selectedImage="List" systemItem="mostViewed" id="1jD-HH-I5w"/>
+                    <tabBarItem key="tabBarItem" title="리스트" image="aromatic" id="1jD-HH-I5w"/>
                     <connections>
                         <outlet property="btnSortOutlet" destination="M8K-dN-n8m" id="J6w-gk-HtW"/>
                         <outlet property="naviBar" destination="Bev-iL-gmq" id="BC1-mv-x9Y"/>
@@ -133,15 +134,16 @@
             </objects>
             <point key="canvasLocation" x="928.98550724637687" y="93.75"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="5k7-VB-MO8">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="6j6-i5-T2l" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="6j6-i5-T2l" customClass="MainTabBarController" customModule="DiffuserStick" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WZB-6g-S0m">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" systemColor="systemIndigoColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="ims-Gn-Slk"/>
@@ -252,7 +254,7 @@
             </objects>
             <point key="canvasLocation" x="-943.125" y="903.75"/>
         </scene>
-        <!--Item-->
+        <!--보관함-->
         <scene sceneID="fYM-cJ-9io">
             <objects>
                 <viewController id="jlf-fb-7yg" customClass="ArchiveViewController" customModule="DiffuserStick" customModuleProvider="target" sceneMemberID="viewController">
@@ -286,19 +288,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="diffuser" translatesAutoresizingMaskIntoConstraints="NO" id="Q5a-jV-9es">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="diffuser" translatesAutoresizingMaskIntoConstraints="NO" id="Q5a-jV-9es">
                                                     <rect key="frame" x="0.0" y="-3" width="178" height="178"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="178" id="bdd-eO-r2h"/>
-                                                        <constraint firstAttribute="height" constant="178" id="fwB-Ca-3VI"/>
-                                                    </constraints>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="LJf-z7-F4V" firstAttribute="leading" secondItem="b50-Kr-DCo" secondAttribute="leading" id="Cyy-eL-evJ"/>
-                                                <constraint firstItem="LJf-z7-F4V" firstAttribute="leading" secondItem="Q5a-jV-9es" secondAttribute="leading" id="HIM-g6-ytc"/>
-                                                <constraint firstItem="LJf-z7-F4V" firstAttribute="top" secondItem="Q5a-jV-9es" secondAttribute="bottom" constant="8" symbolic="YES" id="KTE-4M-UOA"/>
-                                                <constraint firstItem="LJf-z7-F4V" firstAttribute="trailing" secondItem="Q5a-jV-9es" secondAttribute="trailing" id="KVU-oX-My1"/>
                                                 <constraint firstItem="LJf-z7-F4V" firstAttribute="bottom" secondItem="b50-Kr-DCo" secondAttribute="bottomMargin" id="TdR-rE-qRw"/>
                                                 <constraint firstAttribute="trailing" secondItem="LJf-z7-F4V" secondAttribute="trailing" id="WbC-l6-nW1"/>
                                             </constraints>
@@ -325,7 +321,7 @@
                             <constraint firstItem="Pf4-gg-M7Q" firstAttribute="leading" secondItem="lgP-qA-D2j" secondAttribute="leading" constant="20" id="q5M-Xv-pTS"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="UOo-WQ-FlI"/>
+                    <tabBarItem key="tabBarItem" title="보관함" image="shippingbox.fill" catalog="system" id="UOo-WQ-FlI"/>
                     <connections>
                         <outlet property="collectionView" destination="Pf4-gg-M7Q" id="7G1-Xs-XFO"/>
                         <segue destination="kqs-M2-Fj3" kind="show" identifier="archiveDetailView" id="BAf-tz-0ve"/>
@@ -344,10 +340,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kun-S5-UEx">
-                                <rect key="frame" x="0.0" y="44" width="414" height="748"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kf0-M0-523" userLabel="innerView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="748"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="840"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목: 디퓨저 이름, 위치 등" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blQ-B1-De8">
                                                 <rect key="frame" x="20" y="20" width="374" height="28"/>
@@ -463,6 +459,20 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IvU-ce-Yb8">
+                                                <rect key="frame" x="322" y="758" width="50" height="50"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="32s-S6-6mY"/>
+                                                    <constraint firstAttribute="height" constant="50" id="DAO-Sd-agd"/>
+                                                </constraints>
+                                                <state key="normal" title="저장">
+                                                    <color key="titleColor" systemColor="systemGreenColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnSave:" destination="VgC-oY-3JU" eventType="touchUpInside" id="G4O-mT-5lN"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -471,6 +481,7 @@
                                             <constraint firstItem="8Gb-g7-SFL" firstAttribute="leading" secondItem="qc9-uS-5xO" secondAttribute="leading" id="4cV-ni-bvi"/>
                                             <constraint firstItem="OaE-5w-rlS" firstAttribute="trailing" secondItem="Cdb-Xf-3aC" secondAttribute="trailing" id="7U1-kN-KgP"/>
                                             <constraint firstItem="fyb-ta-Cmg" firstAttribute="leading" secondItem="pvh-aX-Jan" secondAttribute="trailing" constant="6" id="Ct2-0m-qYL"/>
+                                            <constraint firstAttribute="bottom" secondItem="IvU-ce-Yb8" secondAttribute="bottom" constant="32" id="DBb-6n-BZd"/>
                                             <constraint firstItem="2jw-Ht-siP" firstAttribute="trailing" secondItem="OaE-5w-rlS" secondAttribute="trailing" id="HSm-je-ZeV"/>
                                             <constraint firstItem="pvh-aX-Jan" firstAttribute="leading" secondItem="2jw-Ht-siP" secondAttribute="leading" constant="-3" id="Hvp-Qz-ZRr"/>
                                             <constraint firstItem="AHa-xh-ygB" firstAttribute="centerY" secondItem="blQ-B1-De8" secondAttribute="centerY" id="ISl-fH-rSl"/>
@@ -499,7 +510,7 @@
                                             <constraint firstItem="OaE-5w-rlS" firstAttribute="leading" secondItem="Cdb-Xf-3aC" secondAttribute="leading" id="idp-Yt-Ki8"/>
                                             <constraint firstItem="2jw-Ht-siP" firstAttribute="leading" secondItem="OaE-5w-rlS" secondAttribute="leading" id="jMv-hL-GT5"/>
                                             <constraint firstItem="Cdb-Xf-3aC" firstAttribute="leading" secondItem="blQ-B1-De8" secondAttribute="leading" id="jSr-g0-Gwt"/>
-                                            <constraint firstAttribute="height" constant="748" id="jUK-Cm-ccm"/>
+                                            <constraint firstAttribute="height" constant="840" id="jUK-Cm-ccm"/>
                                             <constraint firstItem="8Gb-g7-SFL" firstAttribute="top" secondItem="j0W-1Y-DSQ" secondAttribute="top" id="jhE-Ti-o3C"/>
                                             <constraint firstItem="p6e-7a-SlM" firstAttribute="top" secondItem="qc9-uS-5xO" secondAttribute="bottom" constant="32" id="lyv-c9-mnz"/>
                                             <constraint firstItem="6nX-5r-6Wy" firstAttribute="trailing" secondItem="0bF-0J-dFh" secondAttribute="trailing" id="sED-so-Fcv"/>
@@ -507,6 +518,7 @@
                                             <constraint firstItem="blQ-B1-De8" firstAttribute="leading" secondItem="Kf0-M0-523" secondAttribute="leading" constant="20" id="tGq-dF-jj1"/>
                                             <constraint firstItem="0bF-0J-dFh" firstAttribute="trailing" secondItem="DXV-EX-gUJ" secondAttribute="trailing" id="wEc-6F-JRr"/>
                                             <constraint firstAttribute="trailing" secondItem="AHa-xh-ygB" secondAttribute="trailing" constant="20" symbolic="YES" id="wkD-5q-zVL"/>
+                                            <constraint firstAttribute="trailing" secondItem="IvU-ce-Yb8" secondAttribute="trailing" constant="42" id="yZ5-bW-ogF"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -520,28 +532,12 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="EUb-01-6v9"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="WfW-Yr-9o2"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IvU-ce-Yb8">
-                                <rect key="frame" x="312" y="812" width="50" height="50"/>
-                                <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="32s-S6-6mY"/>
-                                    <constraint firstAttribute="height" constant="50" id="DAO-Sd-agd"/>
-                                </constraints>
-                                <state key="normal" title="저장">
-                                    <color key="titleColor" systemColor="systemGreenColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnSave:" destination="VgC-oY-3JU" eventType="touchUpInside" id="G4O-mT-5lN"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QTx-lM-eE4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Kun-S5-UEx" firstAttribute="top" secondItem="QTx-lM-eE4" secondAttribute="top" id="0wu-KJ-OME"/>
-                            <constraint firstItem="QTx-lM-eE4" firstAttribute="bottom" secondItem="Kun-S5-UEx" secondAttribute="bottom" constant="70" id="BtC-Oh-HEa"/>
-                            <constraint firstItem="QTx-lM-eE4" firstAttribute="trailing" secondItem="IvU-ce-Yb8" secondAttribute="trailing" constant="52" id="aSg-8h-5tp"/>
-                            <constraint firstItem="IvU-ce-Yb8" firstAttribute="bottom" secondItem="QTx-lM-eE4" secondAttribute="bottom" id="c6O-Dl-Gnz"/>
+                            <constraint firstItem="QTx-lM-eE4" firstAttribute="bottom" secondItem="Kun-S5-UEx" secondAttribute="bottom" id="BtC-Oh-HEa"/>
                             <constraint firstItem="Kun-S5-UEx" firstAttribute="trailing" secondItem="QTx-lM-eE4" secondAttribute="trailing" id="qFR-AP-DAR"/>
                             <constraint firstItem="Kun-S5-UEx" firstAttribute="leading" secondItem="QTx-lM-eE4" secondAttribute="leading" id="zc3-SL-fiZ"/>
                         </constraints>
@@ -765,14 +761,15 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="21M-zC-7Dn"/>
-        <segue reference="Dsr-pZ-DL4"/>
+        <segue reference="I8W-jf-xGj"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="List" width="128" height="128"/>
+        <image name="aromatic" width="25" height="25"/>
         <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="diffuser" width="900" height="572"/>
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="photo.fill" catalog="system" width="128" height="93"/>
+        <image name="shippingbox.fill" catalog="system" width="128" height="124"/>
         <image name="text.alignleft" catalog="system" width="128" height="100"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">

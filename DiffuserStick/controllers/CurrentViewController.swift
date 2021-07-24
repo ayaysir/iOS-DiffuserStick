@@ -96,7 +96,7 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         requestAuthNoti()
         naviBar.delegate = self
-        self.setupBannerView()
+        setupBannerView()
         
 //        tblList.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tableTouched)))
     }
@@ -285,9 +285,9 @@ extension CurrentViewController: DetailViewDelegate {
     
     func sendArchive(_ controller: DiffuserDetailViewController, diffuser: DiffuserVO, isModified: Bool, index: Int) {
         if isModified {
-            print("sendarchive", index)
             viewModel.diffuserInfoList.remove(at: index)
             tblList.reloadData()
+            SendToArchive.sharedInstance.isNeedReloadCDData = true
         }
     }
     
@@ -307,8 +307,15 @@ extension CurrentViewController: UINavigationBarDelegate {
     }
 }
 
-// 애드몹 셋업
-extension CurrentViewController {
+// ============ 애드몹 셋업 ============
+extension CurrentViewController: GADBannerViewDelegate {
+    // 본 클래스에 다음 선언 추가
+    // // AdMob
+    // private var bannerView: GADBannerView!
+    
+    // viewDidLoad()에 다음 추가
+    // setupBannerView()
+    
     private func setupBannerView() {
         let adSize = GADAdSizeFromCGSize(CGSize(width: self.view.frame.width, height: 50))
         bannerView = GADBannerView(adSize: adSize)
@@ -323,29 +330,27 @@ extension CurrentViewController {
         bannerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(bannerView)
         view.addConstraints( [NSLayoutConstraint(item: bannerView, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0), NSLayoutConstraint(item: bannerView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0) ])
+        // tblList의 align bottom to 를 50만큼 올린다.
     }
-
-}
-
-extension CurrentViewController: GADBannerViewDelegate {
+    
+    // GADBannerViewDelegate
     func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("GAD: banner received.")
+        print("GAD: \(#function)")
     }
     
     func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
-        print("GAD: receive failed.")
+        print("GAD: \(#function)")
     }
     
     func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
-        print("GAD: bannerWillPresentScreen")
+        print("GAD: \(#function)")
     }
     
     func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
-        print("GAD: bannerViewWillDismissScreen")
+        print("GAD: \(#function)")
     }
     
     func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
-        print("GAD: bannerViewDidDismissScreen")
+        print("GAD: \(#function)")
     }
-    
 }

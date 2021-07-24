@@ -14,7 +14,6 @@
 		4456C9BB269D4E8400A29B77 /* DiffuserStick.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9B9269D4E8400A29B77 /* DiffuserStick.xcdatamodeld */; };
 		4456C9BD269D4E8500A29B77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4456C9BC269D4E8500A29B77 /* Assets.xcassets */; };
 		4456C9C0269D4E8500A29B77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4456C9BE269D4E8500A29B77 /* LaunchScreen.storyboard */; };
-		4456C9C8269D50B500A29B77 /* PreviousListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9C7269D50B500A29B77 /* PreviousListController.swift */; };
 		4456C9CA269D534200A29B77 /* CurrentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9C9269D534200A29B77 /* CurrentViewController.swift */; };
 		447A45D8269DC0A0009C4B47 /* DiffuserVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */; };
 		44E868FD26A80A59008B2D62 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 44E868FC26A80A3A008B2D62 /* fontawesome-webfont.ttf */; };
@@ -45,7 +44,6 @@
 		4456C9BC269D4E8500A29B77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4456C9BF269D4E8500A29B77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4456C9C1269D4E8500A29B77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4456C9C7269D50B500A29B77 /* PreviousListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousListController.swift; sourceTree = "<group>"; };
 		4456C9C9269D534200A29B77 /* CurrentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentViewController.swift; sourceTree = "<group>"; };
 		447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuserVO.swift; sourceTree = "<group>"; };
 		44E868FC26A80A3A008B2D62 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
@@ -125,7 +123,6 @@
 		44FDCFC3269F1C1900A7A7FD /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4456C9C7269D50B500A29B77 /* PreviousListController.swift */,
 				4456C9C9269D534200A29B77 /* CurrentViewController.swift */,
 				4456C9B4269D4E8400A29B77 /* MainViewController.swift */,
 				44FDCFBD269E96DA00A7A7FD /* DiffuserDetailViewController.swift */,
@@ -308,7 +305,6 @@
 				44FDCFCC269FEC9700A7A7FD /* AlertUtil.swift in Sources */,
 				4456C9B5269D4E8400A29B77 /* MainViewController.swift in Sources */,
 				44FDCFBE269E96DA00A7A7FD /* DiffuserDetailViewController.swift in Sources */,
-				4456C9C8269D50B500A29B77 /* PreviousListController.swift in Sources */,
 				4456C9B1269D4E8400A29B77 /* AppDelegate.swift in Sources */,
 				44FDCFD026A070BB00A7A7FD /* CalendarExtension.swift in Sources */,
 				4456C9CA269D534200A29B77 /* CurrentViewController.swift in Sources */,

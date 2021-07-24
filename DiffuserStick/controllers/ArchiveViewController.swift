@@ -6,8 +6,18 @@
 //
 
 import UIKit
+import GoogleMobileAds
+
+class SendToArchive {
+    static let sharedInstance = SendToArchive()
+    // List 탭에서 보관함으로 넘어온 경우 새로고침 필요
+    var isNeedReloadCDData = false
+}
 
 class ArchiveViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    // AdMob
+    private var bannerView: GADBannerView!
     
     let archiveViewModel = DiffuserViewModel()
     
@@ -24,10 +34,21 @@ class ArchiveViewController: UIViewController, UICollectionViewDataSource, UICol
         } catch {
             print(error)
         }
+        
+        setupBannerView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        collectionView.reloadData()
+        print("SAC: ", SendToArchive.sharedInstance.isNeedReloadCDData)
+        if SendToArchive.sharedInstance.isNeedReloadCDData {
+            do {
+                archiveViewModel.diffuserInfoList = try readCoreData(isArchive: true)!
+                collectionView.reloadData()
+                SendToArchive.sharedInstance.isNeedReloadCDData = false
+            } catch {
+                print(error)
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -103,4 +124,52 @@ extension ArchiveViewController: ArchiveDetailViewDelegate {
     }
     
     
+}
+
+
+// ============ 애드몹 셋업 ============
+extension ArchiveViewController: GADBannerViewDelegate {
+    // 본 클래스에 다음 선언 추가
+    // // AdMob
+    // private var bannerView: GADBannerView!
+    
+    // viewDidLoad()에 다음 추가
+    // setupBannerView()
+    
+    private func setupBannerView() {
+        let adSize = GADAdSizeFromCGSize(CGSize(width: self.view.frame.width, height: 50))
+        bannerView = GADBannerView(adSize: adSize)
+//        bannerView.backgroundColor = UIColor(named: "notissuWhite1000s")!
+        addBannerViewToView(bannerView)
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" // test
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
+    }
+    private func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints( [NSLayoutConstraint(item: bannerView, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0), NSLayoutConstraint(item: bannerView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0) ])
+    }
+    
+    // GADBannerViewDelegate
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("GAD: \(#function)")
+    }
+    
+    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+        print("GAD: \(#function)")
+    }
+    
+    func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
+        print("GAD: \(#function)")
+    }
+    
+    func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
+        print("GAD: \(#function)")
+    }
+    
+    func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
+        print("GAD: \(#function)")
+    }
 }

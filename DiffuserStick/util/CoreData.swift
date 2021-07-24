@@ -99,7 +99,11 @@ func updateCoreData(id: UUID, diffuserVO diffuser: DiffuserVO) -> Bool {
         diffuserCD.setValue(diffuser.isFinished, forKey: "isFinished")
         
         try managedContext.save()
-        addPushNoti(diffuser: diffuser)
+        if !diffuser.isFinished {
+            addPushNoti(diffuser: diffuser)
+        } else {
+            removePushNoti(id: diffuser.id)
+        }
         return true
     } catch let error as NSError {
         print("Could not update. \(error), \(error.userInfo)")
