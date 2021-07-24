@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 enum CurrentSort {
     case orderByCreateDateDesc
@@ -21,6 +22,9 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // Local push
     let userNotiCenter = UNUserNotificationCenter.current()
+    
+    // AdMob
+    private var bannerView: GADBannerView!
     
     @IBOutlet weak var naviBar: UINavigationBar!
     @IBOutlet weak var tblList: UITableView!
@@ -92,6 +96,7 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         requestAuthNoti()
         naviBar.delegate = self
+        self.setupBannerView()
         
 //        tblList.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tableTouched)))
     }
@@ -300,4 +305,47 @@ extension CurrentViewController: UINavigationBarDelegate {
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
     }
+}
+
+// 애드몹 셋업
+extension CurrentViewController {
+    private func setupBannerView() {
+        let adSize = GADAdSizeFromCGSize(CGSize(width: self.view.frame.width, height: 50))
+        bannerView = GADBannerView(adSize: adSize)
+//        bannerView.backgroundColor = UIColor(named: "notissuWhite1000s")!
+        addBannerViewToView(bannerView)
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" // test
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
+    }
+    private func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints( [NSLayoutConstraint(item: bannerView, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0), NSLayoutConstraint(item: bannerView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0) ])
+    }
+
+}
+
+extension CurrentViewController: GADBannerViewDelegate {
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("GAD: banner received.")
+    }
+    
+    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+        print("GAD: receive failed.")
+    }
+    
+    func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
+        print("GAD: bannerWillPresentScreen")
+    }
+    
+    func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
+        print("GAD: bannerViewWillDismissScreen")
+    }
+    
+    func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
+        print("GAD: bannerViewDidDismissScreen")
+    }
+    
 }
