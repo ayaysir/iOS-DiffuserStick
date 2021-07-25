@@ -19,6 +19,7 @@ class SettingViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     @IBOutlet weak var stepperDaysOutlet: UIStepper!
     @IBOutlet weak var lblDays: UILabel!
     @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var constraintBottom: NSLayoutConstraint!
     
     // AdMob
     private var bannerView: GADBannerView!
@@ -123,6 +124,7 @@ extension SettingViewController: GADBannerViewDelegate {
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
+        constraintBottom.constant = 50
     }
     private func addBannerViewToView(_ bannerView: GADBannerView) {
         bannerView.translatesAutoresizingMaskIntoConstraints = false

@@ -22,6 +22,7 @@ class ArchiveViewController: UIViewController, UICollectionViewDataSource, UICol
     let archiveViewModel = DiffuserViewModel()
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var constraintBottom: NSLayoutConstraint!
     
     var currentSelectedDiffuser: DiffuserVO? = nil
     var currentArrayIndex: Int = 0
@@ -145,6 +146,7 @@ extension ArchiveViewController: GADBannerViewDelegate {
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
+        constraintBottom.constant = 50
     }
     private func addBannerViewToView(_ bannerView: GADBannerView) {
         bannerView.translatesAutoresizingMaskIntoConstraints = false

@@ -124,6 +124,7 @@
                     <tabBarItem key="tabBarItem" title="리스트" image="aromatic" id="1jD-HH-I5w"/>
                     <connections>
                         <outlet property="btnSortOutlet" destination="M8K-dN-n8m" id="J6w-gk-HtW"/>
+                        <outlet property="constraintBottom" destination="HbF-fc-gAe" id="vJa-Lg-NLx"/>
                         <outlet property="naviBar" destination="Bev-iL-gmq" id="BC1-mv-x9Y"/>
                         <outlet property="tblList" destination="LYj-nr-qPM" id="uVB-Tk-mjX"/>
                         <segue destination="kqs-M2-Fj3" kind="show" identifier="detailView" id="21M-zC-7Dn"/>
@@ -245,6 +246,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="설정 및 더보기" image="info.circle.fill" catalog="system" id="kvm-Qt-cOa"/>
                     <connections>
+                        <outlet property="constraintBottom" destination="Xre-Rs-tjW" id="cEd-2I-akY"/>
                         <outlet property="lblDays" destination="tMm-US-nM8" id="GHB-o5-lKe"/>
                         <outlet property="stepperDaysOutlet" destination="uQ9-je-q9P" id="Fby-2z-D3d"/>
                         <outlet property="webView" destination="9Qz-Dw-Loy" id="UI7-Tt-JG4"/>
@@ -324,6 +326,7 @@
                     <tabBarItem key="tabBarItem" title="보관함" image="shippingbox.fill" catalog="system" id="UOo-WQ-FlI"/>
                     <connections>
                         <outlet property="collectionView" destination="Pf4-gg-M7Q" id="7G1-Xs-XFO"/>
+                        <outlet property="constraintBottom" destination="fUX-Cl-u82" id="dGc-Wz-5aa"/>
                         <segue destination="kqs-M2-Fj3" kind="show" identifier="archiveDetailView" id="BAf-tz-0ve"/>
                     </connections>
                 </viewController>
@@ -697,19 +700,27 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="svE-x9-veP">
+                                                <rect key="frame" x="0.0" y="548" width="374" height="55"/>
+                                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="nkS-cr-38U" secondAttribute="trailing" id="2xr-bA-dHn"/>
                                             <constraint firstItem="VzY-fe-BSA" firstAttribute="top" secondItem="TCi-DV-XpN" secondAttribute="top" constant="35" id="70x-zD-tKD"/>
+                                            <constraint firstAttribute="trailing" secondItem="svE-x9-veP" secondAttribute="trailing" id="7zA-sC-Yg1"/>
                                             <constraint firstAttribute="trailing" secondItem="bOB-Mt-TF5" secondAttribute="trailing" id="AEV-B2-BmS"/>
                                             <constraint firstItem="Amx-N3-Wyb" firstAttribute="top" secondItem="TCi-DV-XpN" secondAttribute="top" constant="8" id="BhJ-w1-5wm"/>
+                                            <constraint firstItem="svE-x9-veP" firstAttribute="leading" secondItem="TCi-DV-XpN" secondAttribute="leading" id="FIh-qK-z3a"/>
                                             <constraint firstItem="3Xa-3i-3wg" firstAttribute="top" secondItem="bOB-Mt-TF5" secondAttribute="bottom" constant="23.5" id="Kty-m7-jIz"/>
                                             <constraint firstAttribute="trailing" secondItem="Amx-N3-Wyb" secondAttribute="trailing" id="Pri-aQ-dZg"/>
                                             <constraint firstAttribute="bottom" secondItem="3Xa-3i-3wg" secondAttribute="bottom" constant="34" id="STS-ZV-wVQ"/>
+                                            <constraint firstItem="svE-x9-veP" firstAttribute="top" secondItem="nkS-cr-38U" secondAttribute="bottom" constant="16" id="U3i-nq-0Rc"/>
                                             <constraint firstAttribute="height" constant="788" id="UeN-Jl-nMy"/>
                                             <constraint firstItem="nkS-cr-38U" firstAttribute="top" secondItem="2L8-zv-0gw" secondAttribute="bottom" constant="12" id="XYk-wy-27b"/>
                                             <constraint firstItem="bOB-Mt-TF5" firstAttribute="leading" secondItem="TCi-DV-XpN" secondAttribute="leading" id="ad2-Pt-e2K"/>
+                                            <constraint firstItem="bOB-Mt-TF5" firstAttribute="top" secondItem="svE-x9-veP" secondAttribute="bottom" constant="16" id="f8M-LL-kmy"/>
                                             <constraint firstAttribute="trailing" secondItem="3Xa-3i-3wg" secondAttribute="trailing" constant="8" id="iUO-SY-ItO"/>
                                             <constraint firstItem="2L8-zv-0gw" firstAttribute="leading" secondItem="TCi-DV-XpN" secondAttribute="leading" id="jxk-Sh-3sv"/>
                                             <constraint firstAttribute="trailing" secondItem="2L8-zv-0gw" secondAttribute="trailing" id="p5U-nT-zP6"/>
@@ -746,6 +757,7 @@
                         <outlet property="btnEditOutlet" destination="KV0-M4-eDQ" id="rQU-re-0FL"/>
                         <outlet property="btnReplaceOutlet" destination="mRq-LL-hv0" id="i2Y-Ud-Sof"/>
                         <outlet property="imgPhoto" destination="2L8-zv-0gw" id="ezC-6R-lIA"/>
+                        <outlet property="innerAdView" destination="svE-x9-veP" id="I0D-lF-YOO"/>
                         <outlet property="lblFutureChangeDate" destination="d9h-On-skP" id="uU1-HA-pnq"/>
                         <outlet property="lblLastChangedDate" destination="Uum-8B-mKz" id="YNI-Mr-twt"/>
                         <outlet property="lblRemainDays" destination="DhH-W1-d8c" id="bJ9-MY-5lm"/>
@@ -761,7 +773,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="21M-zC-7Dn"/>
-        <segue reference="I8W-jf-xGj"/>
+        <segue reference="Dsr-pZ-DL4"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="aromatic" width="25" height="25"/>
@@ -792,6 +804,9 @@
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 func formatLastChanged(date: Date) -> String {
     
@@ -52,6 +53,10 @@ class DiffuserDetailViewController: UIViewController {
     @IBOutlet weak var btnReplaceOutlet: UIButton!
     @IBOutlet weak var btnArchiveOutlet: UIButton!
     @IBOutlet weak var btnEditOutlet: UIButton!
+    
+    @IBOutlet weak var innerAdView: UIView!
+    var bannerView: GADBannerView!
+    
     
     var selectedDiffuser: DiffuserVO?
     var currentArrayIndex: Int?
@@ -101,6 +106,9 @@ class DiffuserDetailViewController: UIViewController {
             lblRemainDays.isHidden = true
             lblLastChangedDate.isHidden = true
         }
+        
+        setupAd()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -199,5 +207,33 @@ extension DiffuserDetailViewController: ModifyDelegate {
         // view model의 vo 도 교체한다.
         isDiffuserModified = true
         
+    }
+}
+
+extension DiffuserDetailViewController: GADBannerViewDelegate {
+    // innerAdView 아웃렛
+    func setupAd() {
+        // 광고
+        innerAdView.backgroundColor = nil
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        addBannerViewToView(bannerView)
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+          bannerView.rootViewController = self
+        bannerView.delegate = self
+        bannerView.load(GADRequest())
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        innerAdView.addSubview(bannerView)
+        innerAdView.addConstraints(
+          [NSLayoutConstraint(item: bannerView,
+                              attribute: .centerX,
+                              relatedBy: .equal,
+                              toItem: innerAdView,
+                              attribute: .centerX,
+                              multiplier: 1,
+                              constant: 0)
+          ])
     }
 }

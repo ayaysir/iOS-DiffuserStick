@@ -16,6 +16,7 @@ enum CurrentSort {
 
 class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddDelegate {
     
+    @IBOutlet weak var constraintBottom: NSLayoutConstraint!
     var currentSelectedDiffuser: DiffuserVO? = nil
     var currentArrayIndex: Int = 0
     var currentSort: CurrentSort = .orderByCreateDateDesc
@@ -325,12 +326,13 @@ extension CurrentViewController: GADBannerViewDelegate {
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
+        // tblList의 align bottom to 를 50만큼 올린다.
+        constraintBottom.constant = -50
     }
     private func addBannerViewToView(_ bannerView: GADBannerView) {
         bannerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(bannerView)
         view.addConstraints( [NSLayoutConstraint(item: bannerView, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0), NSLayoutConstraint(item: bannerView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0) ])
-        // tblList의 align bottom to 를 50만큼 올린다.
     }
     
     // GADBannerViewDelegate
