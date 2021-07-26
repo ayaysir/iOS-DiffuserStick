@@ -107,7 +107,9 @@ class DiffuserDetailViewController: UIViewController {
             lblLastChangedDate.isHidden = true
         }
         
-        setupAd()
+        if Bundle.main.object(forInfoDictionaryKey: "ShowAd") as! Bool {
+            setupAd()
+        }
         
     }
     

@@ -36,7 +36,9 @@ class ArchiveViewController: UIViewController, UICollectionViewDataSource, UICol
             print(error)
         }
         
-        setupBannerView()
+        if Bundle.main.object(forInfoDictionaryKey: "ShowAd") as! Bool {
+            setupBannerView()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -31,7 +31,9 @@ class SettingViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupBannerView()
+        if Bundle.main.object(forInfoDictionaryKey: "ShowAd") as! Bool {
+            setupBannerView()
+        }
         
         lblDays.text = String(Int(stepperDaysOutlet.value))
         // 일수 세팅

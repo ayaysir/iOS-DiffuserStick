@@ -38,6 +38,8 @@ class DiffuserAddViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var btnSaveOutlet: UIButton!
     
+    
+    
     var userDays: Int = UserDefaults.standard.integer(forKey: "config-defaultDays")
     
     // 사진: 이미지 피커 컨트롤러 생성
@@ -97,6 +99,9 @@ class DiffuserAddViewController: UIViewController {
             }
         
         }
+        
+        // 이미지 터치 추가
+        
         
         print("mode: \(mode)")
     }
@@ -218,6 +223,17 @@ class DiffuserAddViewController: UIViewController {
         lblDays.text = String(userDays)
     }
     
+    @IBAction func btnThumb1(_ sender: Any) {
+        imgPhoto.image = #imageLiteral(resourceName: "diffuser")
+    }
+    @IBAction func btnThumb2(_ sender: Any) {
+        imgPhoto.image = #imageLiteral(resourceName: "diffuser2")
+    }
+    @IBAction func btnThumb3(_ sender: Any) {
+        imgPhoto.image = #imageLiteral(resourceName: "diffuser3")
+    }
+    
+    
     func addKeyboardNotifications(){
         // 키보드가 나타날 때 앱에게 알리는 메서드 추가
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification , object: nil)
@@ -272,6 +288,7 @@ class DiffuserAddViewController: UIViewController {
     @objc func tapDone(sender: Any) {
         self.view.endEditing(true)
     }
+    
    
 
 }

@@ -157,22 +157,24 @@ func addPushNoti(diffuser: DiffuserVO) {
         print(error)
     }
     
-     // 알림이 trigger되는 시간 설정 - Test
-    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10.0, repeats: false)
-    
-    // Configure the recurring date.
-//        var dateComponents = DateComponents()
-//        dateComponents.day = userDays
-//        let alarmDate = Calendar.current.date(byAdding: dateComponents, to: diffuser.startDate)
-//        var alarmDateComponents = Calendar.current.dateComponents(in: .current, from: alarmDate!)
-//        alarmDateComponents.hour = 15
-//        alarmDateComponents.minute = 10
-//        alarmDateComponents.second = 0
-//        print(alarmDateComponents as Any)
-//
-//        // Create the trigger as a repeating event.
-//        let trigger = UNCalendarNotificationTrigger(
-//            dateMatching: alarmDateComponents, repeats: true)
+    var trigger: UNNotificationTrigger
+    if Bundle.main.object(forInfoDictionaryKey: "TestMode") as! Bool {
+         // 알림이 trigger되는 시간 설정 - Test
+        trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10.0, repeats: false)
+    } else {
+        // Configure the recurring date.
+        var dateComponents = DateComponents()
+        dateComponents.day = diffuser.usersDays
+        let alarmDate = Calendar.current.date(byAdding: dateComponents, to: diffuser.startDate)
+        var alarmDateComponents = Calendar.current.dateComponents(in: .current, from: alarmDate!)
+        alarmDateComponents.hour = 15
+        alarmDateComponents.minute = 10
+        alarmDateComponents.second = 0
+        print("NSNoti reserved date: ", alarmDateComponents as Any)
+
+        // Create the trigger as a repeating event.
+        trigger = UNCalendarNotificationTrigger(dateMatching: alarmDateComponents, repeats: true)
+    }
 
     let request = UNNotificationRequest(
         identifier: diffuser.id.uuidString,

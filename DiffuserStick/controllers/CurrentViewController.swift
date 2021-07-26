@@ -97,7 +97,10 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         requestAuthNoti()
         naviBar.delegate = self
-        setupBannerView()
+        
+        if Bundle.main.object(forInfoDictionaryKey: "ShowAd") as! Bool {
+            setupBannerView()
+        }
         
 //        tblList.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tableTouched)))
     }
@@ -108,7 +111,6 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
