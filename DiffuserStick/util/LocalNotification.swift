@@ -47,7 +47,7 @@ func addPushNoti(diffuser: DiffuserVO) {
         
     } else {
         // Configure the recurring date.
-        let addedDate = Date().addingTimeInterval(dayToSecond(diffuser.usersDays))
+        let addedDate = diffuser.startDate.addingTimeInterval(dayToSecond(diffuser.usersDays))
         var alarmDateComponents = Calendar.current.dateComponents([.second, .month, .day, .hour, .minute, .year], from: addedDate)
         alarmDateComponents.hour = 15
         alarmDateComponents.minute = 30
