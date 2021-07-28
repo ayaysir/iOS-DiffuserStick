@@ -144,7 +144,7 @@ extension ArchiveViewController: GADBannerViewDelegate {
         bannerView = GADBannerView(adSize: adSize)
 //        bannerView.backgroundColor = UIColor(named: "notissuWhite1000s")!
         addBannerViewToView(bannerView)
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" // test
+        bannerView.adUnitID = Bundle.main.object(forInfoDictionaryKey: "GADArchive") as? String
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self

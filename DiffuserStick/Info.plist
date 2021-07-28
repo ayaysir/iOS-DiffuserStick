@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>ShowAd</key>
-	<true/>
-	<key>TestMode</key>
-	<false/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -23,9 +19,17 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>GADApplicationIdentifier</key>
-	<string>ca-app-pub-3940256099942544~1458002511</string>
+	<string>ca-app-pub-6364767349592629~6920999245</string>
+	<key>GADArchive</key>
+	<string>ca-app-pub-6364767349592629/1265433602</string>
+	<key>GADDetail</key>
+	<string>ca-app-pub-6364767349592629/5204678614</string>
+	<key>GADHome</key>
+	<string>ca-app-pub-6364767349592629/2650312249</string>
+	<key>GADSetting</key>
+	<string>ca-app-pub-6364767349592629/8467946834</string>
 	<key>LSApplicationCategoryType</key>
-	<string></string>
+	<string>public.app-category.lifestyle</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
@@ -183,6 +187,10 @@
 			<string>3qcr597p9d.skadnetwork</string>
 		</dict>
 	</array>
+	<key>ShowAd</key>
+	<false/>
+	<key>TestMode</key>
+	<false/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>fontawesome-webfont.ttf</string>

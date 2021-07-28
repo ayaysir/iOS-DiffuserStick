@@ -322,9 +322,10 @@ extension CurrentViewController: GADBannerViewDelegate {
     private func setupBannerView() {
         let adSize = GADAdSizeFromCGSize(CGSize(width: self.view.frame.width, height: 50))
         bannerView = GADBannerView(adSize: adSize)
-//        bannerView.backgroundColor = UIColor(named: "notissuWhite1000s")!
         addBannerViewToView(bannerView)
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" // test
+        // bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" // test
+        bannerView.adUnitID = Bundle.main.object(forInfoDictionaryKey: "GADHome") as? String
+        print("adUnitID: ", bannerView.adUnitID!)
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
@@ -343,7 +344,7 @@ extension CurrentViewController: GADBannerViewDelegate {
     }
     
     func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
-        print("GAD: \(#function)")
+        print("GAD: \(#function)", error)
     }
     
     func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {

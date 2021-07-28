@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		444EEE0B26B167EF00454428 /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444EEE0A26B167EF00454428 /* LocalNotification.swift */; };
 		4456C9B1269D4E8400A29B77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9B0269D4E8400A29B77 /* AppDelegate.swift */; };
 		4456C9B3269D4E8400A29B77 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9B2269D4E8400A29B77 /* SceneDelegate.swift */; };
 		4456C9B5269D4E8400A29B77 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9B4269D4E8400A29B77 /* MainViewController.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		2E7F8D062E27F83FDAED5264 /* Pods-DiffuserStick.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiffuserStick.release.xcconfig"; path = "Target Support Files/Pods-DiffuserStick/Pods-DiffuserStick.release.xcconfig"; sourceTree = "<group>"; };
 		2FA35A9B35CF6614E1D187C0 /* Pods-DiffuserStick.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiffuserStick.debug.xcconfig"; path = "Target Support Files/Pods-DiffuserStick/Pods-DiffuserStick.debug.xcconfig"; sourceTree = "<group>"; };
+		444EEE0A26B167EF00454428 /* LocalNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotification.swift; sourceTree = "<group>"; };
 		4456C9AD269D4E8400A29B77 /* DiffuserStick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiffuserStick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4456C9B0269D4E8400A29B77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4456C9B2269D4E8400A29B77 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				44FDCFCF26A070BB00A7A7FD /* CalendarExtension.swift */,
 				44FDCFD126A1419000A7A7FD /* UIExtension.swift */,
 				44FDCFD726A1BFC200A7A7FD /* CoreData.swift */,
+				444EEE0A26B167EF00454428 /* LocalNotification.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				4456C9B3269D4E8400A29B77 /* SceneDelegate.swift in Sources */,
 				44FDCFD226A1419100A7A7FD /* UIExtension.swift in Sources */,
 				44FDCFC2269EA8B300A7A7FD /* ParsePlist.swift in Sources */,
+				444EEE0B26B167EF00454428 /* LocalNotification.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,7 +472,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bgsmm.DiffuserStick;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yoonbumtae.DiffuserStick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "iPhone XR";
 				SWIFT_VERSION = 5.0;
@@ -491,7 +495,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bgsmm.DiffuserStick;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yoonbumtae.DiffuserStick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "iPhone XR";
 				SWIFT_VERSION = 5.0;

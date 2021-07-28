@@ -89,7 +89,16 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert, .badge, .sound])
+        // Here we actually handle the notification
+        print("Notification received with identifier \(notification.request.identifier)")
+        // So we call the completionHandler telling that the notification should display a banner and play the notification sound - this will happen while the app is in foreground
+        if #available(iOS 14.0, *) {
+            completionHandler([.banner, .sound, .alert, .badge])
+        } else {
+            // Fallback on earlier versions
+            completionHandler([.alert, .badge, .sound])
+        }
+        
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -102,4 +111,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
         completionHandler()
     }
+    
+
 }

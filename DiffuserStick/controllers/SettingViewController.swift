@@ -55,6 +55,8 @@ class SettingViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         webView.loadFileURL(url, allowingReadAccessTo: url)
         let request = URLRequest(url: url)
         webView.load(request)
+        
+        
     }
     
     @IBAction func stepperDays(_ sender: Any) {
@@ -75,7 +77,7 @@ extension SettingViewController: MFMailComposeViewControllerDelegate {
         
         let emailTitle = "디퓨저 스틱 피드백"
         let messageBody = "'디퓨저 스틱'에 대한 질문 또는 피드백이 있으신가요?"
-        let toRecipents = ["friend@stackoverflow.com"]
+        let toRecipents = ["yoonbumtae@gmail.com"]
         let mc: MFMailComposeViewController = MFMailComposeViewController()
         mc.mailComposeDelegate = self
         mc.setSubject(emailTitle)
@@ -122,7 +124,7 @@ extension SettingViewController: GADBannerViewDelegate {
         bannerView = GADBannerView(adSize: adSize)
 //        bannerView.backgroundColor = UIColor(named: "notissuWhite1000s")!
         addBannerViewToView(bannerView)
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" // test
+        bannerView.adUnitID = Bundle.main.object(forInfoDictionaryKey: "GADSetting") as? String
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
@@ -153,5 +155,20 @@ extension SettingViewController: GADBannerViewDelegate {
     
     func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
         print("GAD: \(#function)")
+    }
+}
+
+extension SettingViewController {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        
+        if let url = navigationAction.request.url {
+            let appUrl = Bundle.main.resourceURL!
+            let targetUrl = appUrl.appendingPathComponent("help.html")
+            if targetUrl == url {
+                decisionHandler(.allow)
+            } else {
+                decisionHandler(.cancel)
+            }
+        }
     }
 }
