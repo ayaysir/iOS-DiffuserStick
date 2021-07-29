@@ -75,7 +75,7 @@ class DiffuserAddViewController: UIViewController {
         // 기본 일수
         if mode == "add" {
             if userDays < 15 {
-                userDays = 15
+                userDays = 30
             }
             lblDays.text = String(userDays)
             stepperOutlet.value = Double(userDays)
@@ -173,20 +173,57 @@ class DiffuserAddViewController: UIViewController {
         
     }
     
+    private func openSetting(action: UIAlertAction) -> Void {
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+            return
+        }
+
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                print("Settings opened: \(success)") // Prints true
+            })
+        }
+    }
+    
     func doTaskByPhotoAuthorization() {
         switch PHPhotoLibrary.authorizationStatus() {
         case .notDetermined:
-            simpleAlert(self, message: "notDetermined")
-            UIApplication.shared.open(URL(string: "UIApplication.openSettingsURLString")!)
+            print("photo auth >>> not determined")
+            simpleDestructiveYesAndNo(self, message: "사진 권한 설정을 변경하시겠습니까?", title: "권한 정보 없음", yesHandler: openSetting)
         case .restricted:
-            simpleAlert(self, message: "restricted")
+            print("photo auth >>> restricted")
+            simpleAlert(self, message: "시스템에 의해 거부되었습니다.")
         case .denied:
-            simpleAlert(self, message: "denied")
+            print("photo auth >>> denied")
+            simpleDestructiveYesAndNo(self, message: "사진 기능 권한이 거부되어 사용할 수 없습니다. 사진 권한 설정을 변경하시겠습니까?", title: "권한 거부됨", yesHandler: openSetting(action:))
         case .authorized:
+            print("photo auth >>> authorized")
             self.present(self.imagePickerController, animated: true, completion: nil)
         case .limited:
-            simpleAlert(self, message: "limited")
+            print("photo auth >>> limited")
+            self.present(self.imagePickerController, animated: true, completion: nil)
         @unknown default:
+            print("photo auth >>> unknown")
+            simpleAlert(self, message: "unknown")
+        }
+    }
+    
+    func doTaskByCameraAuthorization() {
+        switch AVCaptureDevice.authorizationStatus(for: AVMediaType.video) {
+        case .notDetermined:
+            print("camera auth >>> not determined")
+            simpleDestructiveYesAndNo(self, message: "카메라 권한 설정을 변경하시겠습니까?", title: "권한 정보 없음", yesHandler: openSetting)
+        case .restricted:
+            print("camera auth >>> restricted")
+            simpleAlert(self, message: "시스템에 의해 거부되었습니다.")
+        case .denied:
+            print("camera auth >>> denied")
+            simpleDestructiveYesAndNo(self, message: "카메라 기능 권한이 거부되어 사용할 수 없습니다. 카메라 권한 설정을 변경하시겠습니까?", title: "권한 거부됨", yesHandler: openSetting(action:))
+        case .authorized:
+            print("camera auth >>> authorized")
+            self.present(self.imagePickerController, animated: true, completion: nil)
+        @unknown default:
+            print("camera auth >>> unknown")
             simpleAlert(self, message: "unknown")
         }
     }
@@ -195,7 +232,7 @@ class DiffuserAddViewController: UIViewController {
     @IBAction func btnTakePhoto(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             self.imagePickerController.sourceType = .camera
-            doTaskByPhotoAuthorization()
+            doTaskByCameraAuthorization()
         } else {
             print("카메라 사용이 불가능합니다.")
             simpleAlert(self, message: "카메라 사용이 불가능합니다.")

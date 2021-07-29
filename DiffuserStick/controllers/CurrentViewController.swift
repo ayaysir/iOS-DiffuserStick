@@ -7,6 +7,8 @@
 
 import UIKit
 import GoogleMobileAds
+import AppTrackingTransparency
+import AdSupport
 
 enum CurrentSort {
     case orderByCreateDateDesc
@@ -99,7 +101,12 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
         naviBar.delegate = self
         
         if Bundle.main.object(forInfoDictionaryKey: "ShowAd") as! Bool {
-            setupBannerView()
+            if #available(iOS 14, *) {
+                ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
+                    // Tracking authorization completed. Start loading ads here
+                })
+            }
+            self.setupBannerView()
         }
         
 //        tblList.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tableTouched)))
@@ -321,13 +328,14 @@ extension CurrentViewController: GADBannerViewDelegate {
     
     private func setupBannerView() {
         let adSize = GADAdSizeFromCGSize(CGSize(width: self.view.frame.width, height: 50))
-        bannerView = GADBannerView(adSize: adSize)
+        self.bannerView = GADBannerView(adSize: adSize)
         addBannerViewToView(bannerView)
         // bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" // test
         bannerView.adUnitID = Bundle.main.object(forInfoDictionaryKey: "GADHome") as? String
         print("adUnitID: ", bannerView.adUnitID!)
         bannerView.rootViewController = self
-        bannerView.load(GADRequest())
+        let request = GADRequest()
+        bannerView.load(request)
         bannerView.delegate = self
         // tblList의 align bottom to 를 50만큼 올린다.
         constraintBottom.constant = -50

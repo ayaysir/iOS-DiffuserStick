@@ -753,17 +753,15 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="svE-x9-veP">
-                                                <rect key="frame" x="0.0" y="548" width="374" height="55"/>
+                                                <rect key="frame" x="-20" y="548" width="414" height="55"/>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="nkS-cr-38U" secondAttribute="trailing" id="2xr-bA-dHn"/>
                                             <constraint firstItem="VzY-fe-BSA" firstAttribute="top" secondItem="TCi-DV-XpN" secondAttribute="top" constant="35" id="70x-zD-tKD"/>
-                                            <constraint firstAttribute="trailing" secondItem="svE-x9-veP" secondAttribute="trailing" id="7zA-sC-Yg1"/>
                                             <constraint firstAttribute="trailing" secondItem="bOB-Mt-TF5" secondAttribute="trailing" id="AEV-B2-BmS"/>
                                             <constraint firstItem="Amx-N3-Wyb" firstAttribute="top" secondItem="TCi-DV-XpN" secondAttribute="top" constant="8" id="BhJ-w1-5wm"/>
-                                            <constraint firstItem="svE-x9-veP" firstAttribute="leading" secondItem="TCi-DV-XpN" secondAttribute="leading" id="FIh-qK-z3a"/>
                                             <constraint firstItem="3Xa-3i-3wg" firstAttribute="top" secondItem="bOB-Mt-TF5" secondAttribute="bottom" constant="23.5" id="Kty-m7-jIz"/>
                                             <constraint firstAttribute="trailing" secondItem="Amx-N3-Wyb" secondAttribute="trailing" id="Pri-aQ-dZg"/>
                                             <constraint firstAttribute="bottom" secondItem="3Xa-3i-3wg" secondAttribute="bottom" constant="34" id="STS-ZV-wVQ"/>
@@ -797,6 +795,8 @@
                         <constraints>
                             <constraint firstItem="giY-tQ-Lfb" firstAttribute="trailing" secondItem="LmQ-7u-oyO" secondAttribute="trailing" constant="20" id="G3c-Mo-ivt"/>
                             <constraint firstItem="LmQ-7u-oyO" firstAttribute="top" secondItem="giY-tQ-Lfb" secondAttribute="top" constant="20" id="MgX-Tc-lsW"/>
+                            <constraint firstItem="svE-x9-veP" firstAttribute="leading" secondItem="giY-tQ-Lfb" secondAttribute="leading" id="PBa-yP-tN5"/>
+                            <constraint firstItem="giY-tQ-Lfb" firstAttribute="trailing" secondItem="svE-x9-veP" secondAttribute="trailing" id="QcG-ag-Mry"/>
                             <constraint firstItem="LmQ-7u-oyO" firstAttribute="leading" secondItem="giY-tQ-Lfb" secondAttribute="leading" constant="20" id="ShE-EO-B0I"/>
                             <constraint firstItem="giY-tQ-Lfb" firstAttribute="bottom" secondItem="LmQ-7u-oyO" secondAttribute="bottom" id="sjV-C1-ORe"/>
                         </constraints>
@@ -824,7 +824,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="BAf-tz-0ve"/>
-        <segue reference="I8W-jf-xGj"/>
+        <segue reference="Dsr-pZ-DL4"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="aromatic" width="25" height="25"/>
