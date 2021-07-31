@@ -109,12 +109,31 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.setupBannerView()
         }
         
-//        tblList.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tableTouched)))
+        NotificationCenter.default.addObserver(self, selector: #selector(appClosed), name: UIApplication.willResignActiveNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(appOpened), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
-    @objc func tableTouched() {
-//         view.endEditing(true)
-          //textField.resignFirstResponder()  /* This line also worked fine for me */
+    @objc func appClosed() {
+        print("===== app closed =====")
+        UserDefaults.standard.setValue(Date(), forKey: "last-closed-date")
+    }
+    
+    @objc func appOpened() {
+        print("===== app opened =====")
+        let lastClosedDate = UserDefaults.standard.object(forKey: "last-closed-date") as? Date
+        if lastClosedDate != nil {
+            let lastClosedDateComponent = lastClosedDate!.toYMDDateComponent()
+            let now = Date()
+            let nowComponent = now.toYMDDateComponent()
+            print("is same day?", lastClosedDateComponent == nowComponent)
+            if lastClosedDateComponent != nowComponent {
+                print("Reload the tblList in case the application does not terminate.")
+                tblList.reloadData()
+            }
+        } else {
+            print("last-closed-date is nil")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

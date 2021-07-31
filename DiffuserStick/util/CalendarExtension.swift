@@ -17,6 +17,12 @@ extension Calendar {
     }
 }
 
+extension Date {
+    func toYMDDateComponent() -> DateComponents {
+        return Calendar.current.dateComponents([.year, .month, .day], from: self)
+    }
+}
+
 func betweenDays(usersDays: Int, startDate: Date) -> Int {
     let calendar = Calendar(identifier: .gregorian)
     return usersDays - calendar.numberOfDaysBetween(startDate, and: Date())
@@ -25,3 +31,5 @@ func betweenDays(usersDays: Int, startDate: Date) -> Int {
 func dayToSecond(_ day: Int) -> TimeInterval {
     return TimeInterval(day) * 86400
 }
+
+
