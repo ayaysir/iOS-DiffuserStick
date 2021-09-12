@@ -181,6 +181,18 @@ class DiffuserDetailViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func btnActShare(_ sender: UIButton) {
+        var shareList = [AnyObject]()
+        shareList.append(imgPhoto.image!)
+//        print(selectedDiffuser?.photoName)
+        shareList.append("나의 디퓨저: \(lblTitle.text ?? "") - DiffuserStick App에서 보냄" as NSString)
+        let activityVC = UIActivityViewController(activityItems: shareList, applicationActivities: nil)
+        activityVC.excludedActivityTypes = [.postToTwitter, .postToWeibo, .postToVimeo, .postToFlickr, .postToFacebook, .postToTencentWeibo]
+        activityVC.popoverPresentationController?.sourceView = self.view
+        self.present(activityVC, animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

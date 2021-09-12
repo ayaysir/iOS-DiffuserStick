@@ -121,19 +121,7 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @objc func appOpened() {
         print("===== app opened =====")
-        let lastClosedDate = UserDefaults.standard.object(forKey: "last-closed-date") as? Date
-        if lastClosedDate != nil {
-            let lastClosedDateComponent = lastClosedDate!.toYMDDateComponent()
-            let now = Date()
-            let nowComponent = now.toYMDDateComponent()
-            print("is same day?", lastClosedDateComponent == nowComponent)
-            if lastClosedDateComponent != nowComponent {
-                print("Reload the tblList in case the application does not terminate.")
-                tblList.reloadData()
-            }
-        } else {
-            print("last-closed-date is nil")
-        }
+        tblList.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -221,6 +209,9 @@ class DiffuserListCell: UITableViewCell {
     @IBOutlet weak var lblExpirationDate: UILabel!
     @IBOutlet weak var thumbnailView: UIImageView!
     
+    // 리프레시 테스트 전용 (배포판에선 안보여야 함)
+    @IBOutlet weak var lblRefreshTest: UILabel!
+    
     // 커스텀 셀의 데이터 업데이트
     func update(info: DiffuserVO) {
         // 마지막 교체일과 오늘 날짜와의 차이
@@ -246,6 +237,10 @@ class DiffuserListCell: UITableViewCell {
         thumbnailView.image = getImage(fileNameWithExt: info.photoName)
         thumbnailView.layer.cornerRadius = 8
         thumbnailView?.clipsToBounds = true
+        
+        // 리프레시 테스트 전용 (배포판에선 안보여야 함)
+        let numRange = 1...100
+        lblRefreshTest.text = String(Int.random(in: numRange))
         
     }
 }

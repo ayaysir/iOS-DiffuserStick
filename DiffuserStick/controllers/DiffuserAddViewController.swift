@@ -54,8 +54,21 @@ class DiffuserAddViewController: UIViewController {
         imagePickerController.delegate = self
         
         // 사진, 카메라 권한 (최초 요청)
+        
+        if #available(iOS 14, *) {
+            
+        }
+        
         PHPhotoLibrary.requestAuthorization { status in
             return
+        }
+        
+        AVCaptureDevice.requestAccess(for: .video) { granted in
+            if granted {
+                
+            } else {
+                
+            }
         }
         
         // 키보드 DONE 버튼 추가

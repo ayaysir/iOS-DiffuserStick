@@ -78,6 +78,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Refresh Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yId-61-a6h">
+                                                    <rect key="frame" x="302" y="148" width="95" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="QEj-m5-otr" firstAttribute="trailing" secondItem="E1X-Kq-CBa" secondAttribute="trailing" id="31A-av-dX6"/>
@@ -97,6 +104,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="lblExpirationDate" destination="DCY-yY-Ikm" id="BmL-yA-CAy"/>
+                                            <outlet property="lblRefreshTest" destination="yId-61-a6h" id="QjQ-Ow-ERY"/>
                                             <outlet property="lblRemainDayText" destination="QEj-m5-otr" id="nyb-zr-6Sk"/>
                                             <outlet property="lblTitle" destination="E1X-Kq-CBa" id="CfU-JY-M1Y"/>
                                             <outlet property="thumbnailView" destination="g6p-2a-b9m" id="2rI-CO-jKz"/>
@@ -313,6 +321,23 @@
                                             <outlet property="imgView" destination="Q5a-jV-9es" id="AaC-eB-FLn"/>
                                             <outlet property="nameLabel" destination="LJf-z7-F4V" id="H7C-CY-hfS"/>
                                         </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="HnF-HX-xVl">
+                                        <rect key="frame" x="188" y="2.5" width="178" height="228"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="9vV-SX-FyX">
+                                            <rect key="frame" x="0.0" y="0.0" width="178" height="228"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="아직 보관목록이 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h41-7x-QpR">
+                                                    <rect key="frame" x="8" y="8" width="176" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </collectionViewCellContentView>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -755,6 +780,16 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="svE-x9-veP">
                                                 <rect key="frame" x="-20" y="548" width="414" height="55"/>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NuO-Mm-Peh">
+                                                <rect key="frame" x="345" y="108" width="29" height="33"/>
+                                                <color key="tintColor" systemColor="systemIndigoColor"/>
+                                                <state key="normal" image="square.and.arrow.up.fill" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="26"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnActShare:" destination="kqs-M2-Fj3" eventType="touchUpInside" id="Sba-5y-doz"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -762,6 +797,7 @@
                                             <constraint firstItem="VzY-fe-BSA" firstAttribute="top" secondItem="TCi-DV-XpN" secondAttribute="top" constant="35" id="70x-zD-tKD"/>
                                             <constraint firstAttribute="trailing" secondItem="bOB-Mt-TF5" secondAttribute="trailing" id="AEV-B2-BmS"/>
                                             <constraint firstItem="Amx-N3-Wyb" firstAttribute="top" secondItem="TCi-DV-XpN" secondAttribute="top" constant="8" id="BhJ-w1-5wm"/>
+                                            <constraint firstItem="NuO-Mm-Peh" firstAttribute="trailing" secondItem="Amx-N3-Wyb" secondAttribute="trailing" id="DO1-Jg-r85"/>
                                             <constraint firstItem="3Xa-3i-3wg" firstAttribute="top" secondItem="bOB-Mt-TF5" secondAttribute="bottom" constant="23.5" id="Kty-m7-jIz"/>
                                             <constraint firstAttribute="trailing" secondItem="Amx-N3-Wyb" secondAttribute="trailing" id="Pri-aQ-dZg"/>
                                             <constraint firstAttribute="bottom" secondItem="3Xa-3i-3wg" secondAttribute="bottom" constant="34" id="STS-ZV-wVQ"/>
@@ -769,6 +805,7 @@
                                             <constraint firstAttribute="height" constant="788" id="UeN-Jl-nMy"/>
                                             <constraint firstItem="nkS-cr-38U" firstAttribute="top" secondItem="2L8-zv-0gw" secondAttribute="bottom" constant="12" id="XYk-wy-27b"/>
                                             <constraint firstItem="bOB-Mt-TF5" firstAttribute="leading" secondItem="TCi-DV-XpN" secondAttribute="leading" id="ad2-Pt-e2K"/>
+                                            <constraint firstItem="NuO-Mm-Peh" firstAttribute="top" secondItem="Amx-N3-Wyb" secondAttribute="bottom" constant="70" id="cFD-sR-eEC"/>
                                             <constraint firstItem="bOB-Mt-TF5" firstAttribute="top" secondItem="svE-x9-veP" secondAttribute="bottom" constant="16" id="f8M-LL-kmy"/>
                                             <constraint firstAttribute="trailing" secondItem="3Xa-3i-3wg" secondAttribute="trailing" constant="8" id="iUO-SY-ItO"/>
                                             <constraint firstItem="2L8-zv-0gw" firstAttribute="leading" secondItem="TCi-DV-XpN" secondAttribute="leading" id="jxk-Sh-3sv"/>
@@ -835,6 +872,7 @@
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="photo.fill" catalog="system" width="128" height="93"/>
         <image name="shippingbox.fill" catalog="system" width="128" height="124"/>
+        <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
         <image name="text.alignleft" catalog="system" width="128" height="100"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">

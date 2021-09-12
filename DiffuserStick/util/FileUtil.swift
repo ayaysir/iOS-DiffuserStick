@@ -23,7 +23,8 @@ func getDocumentsDirectory() -> URL {
 }
 
 func saveImage(image: UIImage, fileNameWithoutExt: String) -> String? {
-    guard let data = image.jpegData(compressionQuality: 1) ?? image.pngData() else {
+
+    guard let data = image.jpegData(compressionQuality: 0.95) else {
         return nil
     }
     
@@ -110,6 +111,35 @@ func makeImageThumbnail(image: UIImage) -> UIImage? {
     return thumbnail
 }
 
+enum ImageFormat {
+    case gif, jpg, png, webp, unknown
+}
+
+extension String {
+    func contains(_ string: String) -> Bool {
+        return range(of: string, options: [.literal, .caseInsensitive, .diacriticInsensitive]) != nil
+    }
+    
+    // Checks if every element in `strings` is contained.
+    func contains(_ strings: [String]) -> Bool {
+        guard strings.count > 0 else {
+            return false
+        }
+        var allContained = true
+        for string in strings {
+            allContained = allContained && contains(string)
+        }
+        return allContained
+    }
+    
+    func convertToValidFileName() -> String {
+        let invalidFileNameChrRegex = "[^a-zA-Z0-9ㄱ-힣 ]"
+        let fullRange = startIndex ..< endIndex
+        let validName = replacingOccurrences(of: invalidFileNameChrRegex, with: "-", options: .regularExpression, range: fullRange)
+        return validName
+    }
+}
+
 extension Data {
     var format: String {
         let array = [UInt8](self)
@@ -128,13 +158,43 @@ extension Data {
         }
         return ext
     }
+    
+    func imageFormat() -> ImageFormat {
+            if let string = String(data: self, encoding: .isoLatin1) {
+                let prefix = String(string.prefix(30))
+                if
+                   prefix.contains("ÿØÿÛ") ||
+                   prefix.contains(["ÿØÿà", "JFIF"]) ||
+                   prefix.contains(["ÿØÿá", "Exif"])
+                {
+                    return .jpg
+                } else if prefix.contains("PNG") {
+                    return .png
+                } else if
+                   prefix.contains("GIF87a") ||
+                   prefix.contains("GIF89a")
+                {
+                    return .gif
+                } else if prefix.contains(["RIFF", "WEBP"]) {
+                    return .webp
+                } else {
+                    print ("prefix \(prefix) is unknown")
+                    return .unknown
+                }
+        }
+        return .unknown
+    }
 }
 
-extension String {
-    func convertToValidFileName() -> String {
-        let invalidFileNameChrRegex = "[^a-zA-Z0-9ㄱ-힣 ]"
-        let fullRange = startIndex ..< endIndex
-        let validName = replacingOccurrences(of: invalidFileNameChrRegex, with: "-", options: .regularExpression, range: fullRange)
-        return validName
+extension UIImage {
+    func toData (options: NSDictionary, type: CFString) -> Data? {
+        guard let cgImage = cgImage else { return nil }
+        return autoreleasepool { () -> Data? in
+            let data = NSMutableData()
+            guard let imageDestination = CGImageDestinationCreateWithData(data as CFMutableData, type, 1, nil) else { return nil }
+            CGImageDestinationAddImage(imageDestination, cgImage, options)
+            CGImageDestinationFinalize(imageDestination)
+            return data as Data
+        }
     }
 }
