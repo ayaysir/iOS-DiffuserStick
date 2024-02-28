@@ -11,12 +11,12 @@
 		4456C9B1269D4E8400A29B77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9B0269D4E8400A29B77 /* AppDelegate.swift */; };
 		4456C9B3269D4E8400A29B77 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9B2269D4E8400A29B77 /* SceneDelegate.swift */; };
 		4456C9B5269D4E8400A29B77 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9B4269D4E8400A29B77 /* MainViewController.swift */; };
-		4456C9B8269D4E8400A29B77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4456C9B6269D4E8400A29B77 /* Main.storyboard */; };
 		4456C9BB269D4E8400A29B77 /* DiffuserStick.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9B9269D4E8400A29B77 /* DiffuserStick.xcdatamodeld */; };
 		4456C9BD269D4E8500A29B77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4456C9BC269D4E8500A29B77 /* Assets.xcassets */; };
-		4456C9C0269D4E8500A29B77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4456C9BE269D4E8500A29B77 /* LaunchScreen.storyboard */; };
 		4456C9CA269D534200A29B77 /* CurrentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9C9269D534200A29B77 /* CurrentViewController.swift */; };
 		447A45D8269DC0A0009C4B47 /* DiffuserVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */; };
+		448784A62B8F6EB70073B2DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448784A82B8F6EB70073B2DE /* Main.storyboard */; };
+		448784A92B8F6EC30073B2DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448784AB2B8F6EC30073B2DE /* LaunchScreen.storyboard */; };
 		44BB07762B8F665500F57C4B /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BB07752B8F665500F57C4B /* IAPHelper.swift */; };
 		44BD7D072B8F639E00818570 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 44BD7D062B8F639E00818570 /* GoogleMobileAds */; };
 		44E868FD26A80A59008B2D62 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 44E868FC26A80A3A008B2D62 /* fontawesome-webfont.ttf */; };
@@ -39,15 +39,15 @@
 		4456C9B0269D4E8400A29B77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4456C9B2269D4E8400A29B77 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4456C9B4269D4E8400A29B77 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		4456C9B7269D4E8400A29B77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4456C9BA269D4E8400A29B77 /* DiffuserStick.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiffuserStick.xcdatamodel; sourceTree = "<group>"; };
 		4456C9BC269D4E8500A29B77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4456C9BF269D4E8500A29B77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4456C9C1269D4E8500A29B77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4456C9C9269D534200A29B77 /* CurrentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentViewController.swift; sourceTree = "<group>"; };
 		447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuserVO.swift; sourceTree = "<group>"; };
+		448784A72B8F6EB70073B2DE /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ko; path = ko.lproj/Main.storyboard; sourceTree = "<group>"; };
+		448784AA2B8F6EC30073B2DE /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ko; path = ko.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		44B8B2252B8F6DD000FFD0E0 /* DiffuserStick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiffuserStick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44BB07752B8F665500F57C4B /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
-		44BD7D082B8F645B00818570 /* DiffuserStick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiffuserStick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44E868FC26A80A3A008B2D62 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		44E8690126A9423F008B2D62 /* help.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
 		44E8690326A948C2008B2D62 /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				4456C9AF269D4E8400A29B77 /* DiffuserStick */,
-				44BD7D082B8F645B00818570 /* DiffuserStick.app */,
+				44B8B2252B8F6DD000FFD0E0 /* DiffuserStick.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,9 +94,9 @@
 				44FDCFC3269F1C1900A7A7FD /* ViewController */,
 				4456C9B0269D4E8400A29B77 /* AppDelegate.swift */,
 				4456C9B2269D4E8400A29B77 /* SceneDelegate.swift */,
-				4456C9B6269D4E8400A29B77 /* Main.storyboard */,
+				448784AB2B8F6EC30073B2DE /* LaunchScreen.storyboard */,
+				448784A82B8F6EB70073B2DE /* Main.storyboard */,
 				4456C9BC269D4E8500A29B77 /* Assets.xcassets */,
-				4456C9BE269D4E8500A29B77 /* LaunchScreen.storyboard */,
 				4456C9C1269D4E8500A29B77 /* Info.plist */,
 				4456C9B9269D4E8400A29B77 /* DiffuserStick.xcdatamodeld */,
 				44E868FC26A80A3A008B2D62 /* fontawesome-webfont.ttf */,
@@ -183,7 +183,7 @@
 				44BD7D062B8F639E00818570 /* GoogleMobileAds */,
 			);
 			productName = DiffuserStick;
-			productReference = 44BD7D082B8F645B00818570 /* DiffuserStick.app */;
+			productReference = 44B8B2252B8F6DD000FFD0E0 /* DiffuserStick.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -202,11 +202,10 @@
 			};
 			buildConfigurationList = 4456C9A8269D4E8400A29B77 /* Build configuration list for PBXProject "DiffuserStick" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
-				Base,
+				ko,
 			);
 			mainGroup = 4456C9A4269D4E8400A29B77;
 			packageReferences = (
@@ -226,11 +225,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4456C9C0269D4E8500A29B77 /* LaunchScreen.storyboard in Resources */,
 				44FDCFC0269EA7F300A7A7FD /* testprops.plist in Resources */,
+				448784A62B8F6EB70073B2DE /* Main.storyboard in Resources */,
 				44E868FD26A80A59008B2D62 /* fontawesome-webfont.ttf in Resources */,
+				448784A92B8F6EC30073B2DE /* LaunchScreen.storyboard in Resources */,
 				4456C9BD269D4E8500A29B77 /* Assets.xcassets in Resources */,
-				4456C9B8269D4E8400A29B77 /* Main.storyboard in Resources */,
 				44E8690226A9423F008B2D62 /* help.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,18 +265,18 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4456C9B6269D4E8400A29B77 /* Main.storyboard */ = {
+		448784A82B8F6EB70073B2DE /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				4456C9B7269D4E8400A29B77 /* Base */,
+				448784A72B8F6EB70073B2DE /* ko */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		4456C9BE269D4E8500A29B77 /* LaunchScreen.storyboard */ = {
+		448784AB2B8F6EC30073B2DE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				4456C9BF269D4E8500A29B77 /* Base */,
+				448784AA2B8F6EC30073B2DE /* ko */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -289,6 +288,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -350,6 +350,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
