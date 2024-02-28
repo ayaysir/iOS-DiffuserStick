@@ -185,7 +185,7 @@ class DiffuserDetailViewController: UIViewController {
     @IBAction func btnActShare(_ sender: UIButton) {
         var shareList = [AnyObject]()
         shareList.append(imgPhoto.image!)
-//        print(selectedDiffuser?.photoName)
+        // print(selectedDiffuser?.photoName)
         shareList.append("나의 디퓨저: \(lblTitle.text ?? "") - DiffuserStick App에서 보냄" as NSString)
         let activityVC = UIActivityViewController(activityItems: shareList, applicationActivities: nil)
         activityVC.excludedActivityTypes = [.postToTwitter, .postToWeibo, .postToVimeo, .postToFlickr, .postToFacebook, .postToTencentWeibo]
@@ -229,7 +229,7 @@ extension DiffuserDetailViewController: GADBannerViewDelegate {
     func setupAd() {
         // 광고
         innerAdView.backgroundColor = nil
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView = GADBannerView(adSize: GADAdSizeBanner)
         addBannerViewToView(bannerView)
         bannerView.adUnitID = Bundle.main.object(forInfoDictionaryKey: "GADDetail") as? String
           bannerView.rootViewController = self

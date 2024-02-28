@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,7 @@
 		4456C9C0269D4E8500A29B77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4456C9BE269D4E8500A29B77 /* LaunchScreen.storyboard */; };
 		4456C9CA269D534200A29B77 /* CurrentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9C9269D534200A29B77 /* CurrentViewController.swift */; };
 		447A45D8269DC0A0009C4B47 /* DiffuserVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */; };
+		44BD7D072B8F639E00818570 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 44BD7D062B8F639E00818570 /* GoogleMobileAds */; };
 		44E868FD26A80A59008B2D62 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 44E868FC26A80A3A008B2D62 /* fontawesome-webfont.ttf */; };
 		44E8690226A9423F008B2D62 /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 44E8690126A9423F008B2D62 /* help.html */; };
 		44E8690426A948C2008B2D62 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E8690326A948C2008B2D62 /* ArchiveViewController.swift */; };
@@ -30,14 +31,10 @@
 		44FDCFD026A070BB00A7A7FD /* CalendarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCFCF26A070BB00A7A7FD /* CalendarExtension.swift */; };
 		44FDCFD226A1419100A7A7FD /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCFD126A1419000A7A7FD /* UIExtension.swift */; };
 		44FDCFD826A1BFC200A7A7FD /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCFD726A1BFC200A7A7FD /* CoreData.swift */; };
-		F06B8686CC2813B83D9CB7F9 /* Pods_DiffuserStick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FC7F3E2441C722E623B73C9 /* Pods_DiffuserStick.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2E7F8D062E27F83FDAED5264 /* Pods-DiffuserStick.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiffuserStick.release.xcconfig"; path = "Target Support Files/Pods-DiffuserStick/Pods-DiffuserStick.release.xcconfig"; sourceTree = "<group>"; };
-		2FA35A9B35CF6614E1D187C0 /* Pods-DiffuserStick.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiffuserStick.debug.xcconfig"; path = "Target Support Files/Pods-DiffuserStick/Pods-DiffuserStick.debug.xcconfig"; sourceTree = "<group>"; };
 		444EEE0A26B167EF00454428 /* LocalNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotification.swift; sourceTree = "<group>"; };
-		4456C9AD269D4E8400A29B77 /* DiffuserStick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiffuserStick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4456C9B0269D4E8400A29B77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4456C9B2269D4E8400A29B77 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4456C9B4269D4E8400A29B77 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +45,7 @@
 		4456C9C1269D4E8500A29B77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4456C9C9269D534200A29B77 /* CurrentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentViewController.swift; sourceTree = "<group>"; };
 		447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuserVO.swift; sourceTree = "<group>"; };
+		44BD7D082B8F645B00818570 /* DiffuserStick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiffuserStick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44E868FC26A80A3A008B2D62 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		44E8690126A9423F008B2D62 /* help.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
 		44E8690326A948C2008B2D62 /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
@@ -61,7 +59,6 @@
 		44FDCFCF26A070BB00A7A7FD /* CalendarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtension.swift; sourceTree = "<group>"; };
 		44FDCFD126A1419000A7A7FD /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
 		44FDCFD726A1BFC200A7A7FD /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
-		8FC7F3E2441C722E623B73C9 /* Pods_DiffuserStick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DiffuserStick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F06B8686CC2813B83D9CB7F9 /* Pods_DiffuserStick.framework in Frameworks */,
+				44BD7D072B8F639E00818570 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,18 +77,8 @@
 			isa = PBXGroup;
 			children = (
 				4456C9AF269D4E8400A29B77 /* DiffuserStick */,
-				4456C9AE269D4E8400A29B77 /* Products */,
-				A06D8C9A217858351D14BB76 /* Pods */,
-				EE424422BAD5A2DFA646881C /* Frameworks */,
+				44BD7D082B8F645B00818570 /* DiffuserStick.app */,
 			);
-			sourceTree = "<group>";
-		};
-		4456C9AE269D4E8400A29B77 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4456C9AD269D4E8400A29B77 /* DiffuserStick.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		4456C9AF269D4E8400A29B77 /* DiffuserStick */ = {
@@ -165,23 +152,6 @@
 			path = util;
 			sourceTree = "<group>";
 		};
-		A06D8C9A217858351D14BB76 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				2FA35A9B35CF6614E1D187C0 /* Pods-DiffuserStick.debug.xcconfig */,
-				2E7F8D062E27F83FDAED5264 /* Pods-DiffuserStick.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		EE424422BAD5A2DFA646881C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8FC7F3E2441C722E623B73C9 /* Pods_DiffuserStick.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -189,19 +159,20 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4456C9C4269D4E8500A29B77 /* Build configuration list for PBXNativeTarget "DiffuserStick" */;
 			buildPhases = (
-				23E69ECC3D8BB7A836DBAB02 /* [CP] Check Pods Manifest.lock */,
 				4456C9A9269D4E8400A29B77 /* Sources */,
 				4456C9AA269D4E8400A29B77 /* Frameworks */,
 				4456C9AB269D4E8400A29B77 /* Resources */,
-				74B5110B9DD3AD06F648203A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = DiffuserStick;
+			packageProductDependencies = (
+				44BD7D062B8F639E00818570 /* GoogleMobileAds */,
+			);
 			productName = DiffuserStick;
-			productReference = 4456C9AD269D4E8400A29B77 /* DiffuserStick.app */;
+			productReference = 44BD7D082B8F645B00818570 /* DiffuserStick.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -227,7 +198,10 @@
 				Base,
 			);
 			mainGroup = 4456C9A4269D4E8400A29B77;
-			productRefGroup = 4456C9AE269D4E8400A29B77 /* Products */;
+			packageReferences = (
+				44BD7D052B8F639E00818570 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
+			productRefGroup = 4456C9A4269D4E8400A29B77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -251,48 +225,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		23E69ECC3D8BB7A836DBAB02 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DiffuserStick-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		74B5110B9DD3AD06F648203A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DiffuserStick/Pods-DiffuserStick-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DiffuserStick/Pods-DiffuserStick-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DiffuserStick/Pods-DiffuserStick-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4456C9A9269D4E8400A29B77 /* Sources */ = {
@@ -459,7 +391,6 @@
 		};
 		4456C9C5269D4E8500A29B77 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2FA35A9B35CF6614E1D187C0 /* Pods-DiffuserStick.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -473,7 +404,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.02;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yoonbumtae.DiffuserStick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "iPhone XR";
@@ -484,7 +415,6 @@
 		};
 		4456C9C6269D4E8500A29B77 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E7F8D062E27F83FDAED5264 /* Pods-DiffuserStick.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -498,7 +428,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.02;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yoonbumtae.DiffuserStick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "iPhone XR";
@@ -529,6 +459,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		44BD7D052B8F639E00818570 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		44BD7D062B8F639E00818570 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 44BD7D052B8F639E00818570 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		4456C9B9269D4E8400A29B77 /* DiffuserStick.xcdatamodeld */ = {
