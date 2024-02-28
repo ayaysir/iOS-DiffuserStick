@@ -17,6 +17,7 @@
 		4456C9C0269D4E8500A29B77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4456C9BE269D4E8500A29B77 /* LaunchScreen.storyboard */; };
 		4456C9CA269D534200A29B77 /* CurrentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9C9269D534200A29B77 /* CurrentViewController.swift */; };
 		447A45D8269DC0A0009C4B47 /* DiffuserVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */; };
+		44BB07762B8F665500F57C4B /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BB07752B8F665500F57C4B /* IAPHelper.swift */; };
 		44BD7D072B8F639E00818570 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 44BD7D062B8F639E00818570 /* GoogleMobileAds */; };
 		44E868FD26A80A59008B2D62 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 44E868FC26A80A3A008B2D62 /* fontawesome-webfont.ttf */; };
 		44E8690226A9423F008B2D62 /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 44E8690126A9423F008B2D62 /* help.html */; };
@@ -45,6 +46,7 @@
 		4456C9C1269D4E8500A29B77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4456C9C9269D534200A29B77 /* CurrentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentViewController.swift; sourceTree = "<group>"; };
 		447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuserVO.swift; sourceTree = "<group>"; };
+		44BB07752B8F665500F57C4B /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		44BD7D082B8F645B00818570 /* DiffuserStick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiffuserStick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44E868FC26A80A3A008B2D62 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		44E8690126A9423F008B2D62 /* help.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
@@ -84,11 +86,12 @@
 		4456C9AF269D4E8400A29B77 /* DiffuserStick */ = {
 			isa = PBXGroup;
 			children = (
+				44BB07742B8F664B00F57C4B /* IAP */,
 				44E8690026A94222008B2D62 /* website */,
-				44FDCFCA269FEC8100A7A7FD /* util */,
-				44FDCFC7269FCBF800A7A7FD /* lab */,
-				44FDCFC6269FCBD800A7A7FD /* vo */,
-				44FDCFC3269F1C1900A7A7FD /* controllers */,
+				44FDCFCA269FEC8100A7A7FD /* Util */,
+				44FDCFC7269FCBF800A7A7FD /* Lab */,
+				44FDCFC6269FCBD800A7A7FD /* ValueObject */,
+				44FDCFC3269F1C1900A7A7FD /* ViewController */,
 				4456C9B0269D4E8400A29B77 /* AppDelegate.swift */,
 				4456C9B2269D4E8400A29B77 /* SceneDelegate.swift */,
 				4456C9B6269D4E8400A29B77 /* Main.storyboard */,
@@ -101,6 +104,14 @@
 			path = DiffuserStick;
 			sourceTree = "<group>";
 		};
+		44BB07742B8F664B00F57C4B /* IAP */ = {
+			isa = PBXGroup;
+			children = (
+				44BB07752B8F665500F57C4B /* IAPHelper.swift */,
+			);
+			path = IAP;
+			sourceTree = "<group>";
+		};
 		44E8690026A94222008B2D62 /* website */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,7 +120,7 @@
 			path = website;
 			sourceTree = "<group>";
 		};
-		44FDCFC3269F1C1900A7A7FD /* controllers */ = {
+		44FDCFC3269F1C1900A7A7FD /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				4456C9C9269D534200A29B77 /* CurrentViewController.swift */,
@@ -119,27 +130,27 @@
 				44FDCFC8269FCEF900A7A7FD /* SettingViewController.swift */,
 				44E8690326A948C2008B2D62 /* ArchiveViewController.swift */,
 			);
-			path = controllers;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
-		44FDCFC6269FCBD800A7A7FD /* vo */ = {
+		44FDCFC6269FCBD800A7A7FD /* ValueObject */ = {
 			isa = PBXGroup;
 			children = (
 				447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */,
 			);
-			path = vo;
+			path = ValueObject;
 			sourceTree = "<group>";
 		};
-		44FDCFC7269FCBF800A7A7FD /* lab */ = {
+		44FDCFC7269FCBF800A7A7FD /* Lab */ = {
 			isa = PBXGroup;
 			children = (
 				44FDCFC1269EA8B300A7A7FD /* ParsePlist.swift */,
 				44FDCFBF269EA7F300A7A7FD /* testprops.plist */,
 			);
-			path = lab;
+			path = Lab;
 			sourceTree = "<group>";
 		};
-		44FDCFCA269FEC8100A7A7FD /* util */ = {
+		44FDCFCA269FEC8100A7A7FD /* Util */ = {
 			isa = PBXGroup;
 			children = (
 				44FDCFCB269FEC9700A7A7FD /* AlertUtil.swift */,
@@ -149,7 +160,7 @@
 				44FDCFD726A1BFC200A7A7FD /* CoreData.swift */,
 				444EEE0A26B167EF00454428 /* LocalNotification.swift */,
 			);
-			path = util;
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,6 +246,7 @@
 				44FDCFC9269FCEF900A7A7FD /* SettingViewController.swift in Sources */,
 				44E8690426A948C2008B2D62 /* ArchiveViewController.swift in Sources */,
 				4456C9BB269D4E8400A29B77 /* DiffuserStick.xcdatamodeld in Sources */,
+				44BB07762B8F665500F57C4B /* IAPHelper.swift in Sources */,
 				44FDCFD826A1BFC200A7A7FD /* CoreData.swift in Sources */,
 				44FDCFC5269F1C3B00A7A7FD /* DiffuserAddViewController.swift in Sources */,
 				44FDCFCC269FEC9700A7A7FD /* AlertUtil.swift in Sources */,
@@ -394,8 +406,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6S2SA26VAN;
 				INFOPLIST_FILE = DiffuserStick/Info.plist;
@@ -407,7 +419,7 @@
 				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yoonbumtae.DiffuserStick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "iPhone XR";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -418,8 +430,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6S2SA26VAN;
 				INFOPLIST_FILE = DiffuserStick/Info.plist;
@@ -431,7 +443,7 @@
 				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yoonbumtae.DiffuserStick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "iPhone XR";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
