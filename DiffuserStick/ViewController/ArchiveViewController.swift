@@ -14,7 +14,7 @@ class SendToArchive {
     var isNeedReloadCDData = false
 }
 
-class ArchiveViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class ArchiveViewController: UIViewController {
     
     // AdMob
     private var bannerView: GADBannerView!
@@ -54,7 +54,32 @@ class ArchiveViewController: UIViewController, UICollectionViewDataSource, UICol
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "archiveDetailView" {
+            guard let detailViewController = segue.destination as? DiffuserDetailViewController else { return }
+            detailViewController.selectedDiffuser = currentSelectedDiffuser
+            detailViewController.currentArrayIndex = currentArrayIndex
+            detailViewController.archiveDelegate = self
+        }
+    }
+}
+
+extension ArchiveViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if archiveViewModel.numOfDiffuserInfoList == 0 {
+            collectionView.displayBackgroundMessage("""
+            🫙 아카이브 리스트가 비어있어요.
+            
+            디퓨저 리스트에서 더 이상 사용하지
+            않는 디퓨저가 있는 경우 [보관] 기능을
+            이용하면 아카이브에 추가할 수 있어요!
+            """)
+        } else {
+            collectionView.dismissBackgroundMessage()
+        }
+        
         return archiveViewModel.numOfDiffuserInfoList
     }
     
@@ -83,18 +108,6 @@ class ArchiveViewController: UIViewController, UICollectionViewDataSource, UICol
         let height: CGFloat = width * 10/7 + textAreaHeight
         return CGSize(width: width, height: height)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        if segue.identifier == "archiveDetailView" {
-            guard let detailViewController = segue.destination as? DiffuserDetailViewController else { return }
-            detailViewController.selectedDiffuser = currentSelectedDiffuser
-            detailViewController.currentArrayIndex = currentArrayIndex
-            detailViewController.archiveDelegate = self
-        }
-    }
-    
 }
 
 class ArchiveCell: UICollectionViewCell {
@@ -123,10 +136,7 @@ extension ArchiveViewController: ArchiveDetailViewDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             simpleAlert(self, message: "삭제 완료되었습니다.", title: "삭제 완료", handler: nil)
         }
-        
     }
-    
-    
 }
 
 

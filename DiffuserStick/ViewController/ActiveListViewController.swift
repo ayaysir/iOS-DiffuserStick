@@ -16,7 +16,7 @@ enum CurrentSort {
     case orderByRemainDayDesc
 }
 
-class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddDelegate {
+class ActiveListViewController: UIViewController, AddDelegate {
     
     @IBOutlet weak var constraintBottom: NSLayoutConstraint!
     var currentSelectedDiffuser: DiffuserVO? = nil
@@ -35,56 +35,6 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // MVVM 2: view Model 클래스의 인스턴스 생성
     let viewModel = DiffuserViewModel()
-    
-    // MVVM 3: 뷰모델 인스턴스에서 갯수 가져오기
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numOfDiffuserInfoList
-    }
-    
-    // MVVM 4: 뷰모델 인스턴스에 VO 가져오고 커스템 셀에 정보 업데이트
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? DiffuserListCell else {
-            return UITableViewCell()
-        }
-        
-        let diffuserInfo = viewModel.getDiffuserInfo(at: indexPath.row)
-        cell.update(info: diffuserInfo)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentSelectedDiffuser = viewModel.getDiffuserInfo(at: indexPath.row)
-        currentArrayIndex = indexPath.row
-        performSegue(withIdentifier: "detailView", sender: nil)
-    }
-    
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        //        let archiveAction = UITableViewRowAction(style: .normal, title: "Archive") { _, index in
-        //            print("archavie")
-        //        }
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "삭제") { _, index in
-            simpleDestructiveYesAndNo(self, message: "정말 삭제하시겠습니까?", title: "삭제") { action in
-                let deleteResult = deleteCoreData(id: self.viewModel.diffuserInfoList[indexPath.row].id)
-                if deleteResult {
-                    self.viewModel.diffuserInfoList.remove(at: (indexPath as NSIndexPath).row)
-                    tableView.deleteRows(at: [indexPath], with: .fade)
-                }
-            }
-        }
-        return [deleteAction]
-    }
-    
-    //    // 왼쪽 슬라이드 삭제 버튼
-    //    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    //        if editingStyle == .delete {
-    //
-    //
-    //        } else if editingStyle == .insert {
-    //            print("e)dsa")
-    //        }
-    //    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,15 +74,7 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
         tblList.reloadData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-    }
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "detailView" {
             guard let detailViewController = segue.destination as? DiffuserDetailViewController else { return }
             detailViewController.selectedDiffuser = currentSelectedDiffuser
@@ -148,8 +90,8 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func btnAdd(_ sender: Any) {
         performSegue(withIdentifier: "addView", sender: nil)
     }
+    
     @IBAction func btnSort(_ sender: Any) {
-   
         let alertController = UIAlertController(title: "정렬", message: "정렬 방식을 선택하세요.", preferredStyle: .alert)
         let sortRegister = UIAlertAction(title: "디퓨저를 등록한 최근 날짜 순서 (기본)", style: .default) { action in
             if self.currentSort == .orderByCreateDateDesc { return }
@@ -173,13 +115,10 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.currentSort = .orderByRemainDayDesc
         }
         
-
-        
         alertController.addAction(sortRegister)
         alertController.addAction(sortDefault)
         alertController.addAction(sortReverse)
         self.present(alertController, animated: true, completion: nil)
-        
     }
     
     // AddDelegate
@@ -198,9 +137,54 @@ class CurrentViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
     }
+}
+
+extension ActiveListViewController: UITableViewDelegate, UITableViewDataSource {
+    // MVVM 3: 뷰모델 인스턴스에서 갯수 가져오기
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if viewModel.numOfDiffuserInfoList == 0 {
+            tableView.displayBackgroundMessage("""
+            🫙 디퓨저 리스트가 비어있어요.
+            
+            오른쪽 상단의 [+] 버튼을 눌러
+            새로운 디퓨저를 추가해보세요.
+            """)
+        } else {
+            tableView.dismissBackgroundMessage()
+        }
+        return viewModel.numOfDiffuserInfoList
+    }
     
+    // MVVM 4: 뷰모델 인스턴스에 VO 가져오고 커스템 셀에 정보 업데이트
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? DiffuserListCell else {
+            return UITableViewCell()
+        }
+        
+        let diffuserInfo = viewModel.getDiffuserInfo(at: indexPath.row)
+        cell.update(info: diffuserInfo)
+        return cell
+    }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentSelectedDiffuser = viewModel.getDiffuserInfo(at: indexPath.row)
+        currentArrayIndex = indexPath.row
+        performSegue(withIdentifier: "detailView", sender: nil)
+    }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "삭제") { _, index in
+            simpleDestructiveYesAndNo(self, message: "정말 삭제하시겠습니까?", title: "삭제") { action in
+                let deleteResult = deleteCoreData(id: self.viewModel.diffuserInfoList[indexPath.row].id)
+                if deleteResult {
+                    self.viewModel.diffuserInfoList.remove(at: (indexPath as NSIndexPath).row)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            }
+        }
+        return [deleteAction]
+    }
 }
 
 class DiffuserListCell: UITableViewCell {
@@ -298,7 +282,7 @@ class DiffuserViewModel {
     
 }
 
-extension CurrentViewController: DetailViewDelegate {
+extension ActiveListViewController: DetailViewDelegate {
     func deleteFromList(_ controller: DiffuserDetailViewController, diffuser: DiffuserVO, index: Int) {
         self.viewModel.diffuserInfoList.remove(at: index)
         tblList.reloadData()
@@ -325,14 +309,14 @@ extension CurrentViewController: DetailViewDelegate {
 }
 
 // 노치 채우기
-extension CurrentViewController: UINavigationBarDelegate {
+extension ActiveListViewController: UINavigationBarDelegate {
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
     }
 }
 
 // ============ 애드몹 셋업 ============
-extension CurrentViewController: GADBannerViewDelegate {
+extension ActiveListViewController: GADBannerViewDelegate {
     // 본 클래스에 다음 선언 추가
     // // AdMob
     // private var bannerView: GADBannerView!
