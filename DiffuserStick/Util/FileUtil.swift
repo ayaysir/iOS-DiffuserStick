@@ -115,6 +115,24 @@ enum ImageFormat {
     case gif, jpg, png, webp, unknown
 }
 
+func removeImageFileFromDocument(fileNameIncludesExtension: String) {
+    let fileManager = FileManager.default
+    let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
+    let nsUserDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+    let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
+    
+    guard let dirPath = paths.first else {
+        return
+    }
+    
+    let filePath = "\(dirPath)/\(fileNameIncludesExtension)"
+    do {
+        try fileManager.removeItem(atPath: filePath)
+    } catch let error as NSError {
+        print(error.debugDescription)
+    }
+}
+
 extension String {
     func contains(_ string: String) -> Bool {
         return range(of: string, options: [.literal, .caseInsensitive, .diacriticInsensitive]) != nil

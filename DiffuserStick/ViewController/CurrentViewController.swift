@@ -317,11 +317,11 @@ extension CurrentViewController: DetailViewDelegate {
     
     func replaceModifiedDiffuser(_ controller: DiffuserDetailViewController, diffuser: DiffuserVO, isModified: Bool, index: Int) {
         if isModified {
+            // TODO: - 2024-2-28: 보관함으로 이동시 IndexOfRange 에러 발생했는데 정확한 조건을 알 수 없음
             viewModel.diffuserInfoList[index] = diffuser
             tblList.reloadData()
         }
     }
-    
 }
 
 // 노치 채우기

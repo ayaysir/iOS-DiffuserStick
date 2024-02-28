@@ -123,10 +123,19 @@ func deleteCoreData(id: UUID) -> Bool {
     
     do {
         let result = try managedContext.fetch(fetchRequest)
-        let objectToDelete = result[0] as! NSManagedObject
+        let objectToDelete = result[0] as! Diffuser
+        
+        // fileName: 확장자까지 포함되어 있음
+        if let fileNameIncludesExtension = objectToDelete.photoName {
+            removeImageFileFromDocument(fileNameIncludesExtension: fileNameIncludesExtension)
+        }
+        
         managedContext.delete(objectToDelete)
         try managedContext.save()
         removePushNoti(id: id)
+        
+        
+        
         return true
     } catch let error as NSError {
         print("Could not update. \(error), \(error.userInfo)")
