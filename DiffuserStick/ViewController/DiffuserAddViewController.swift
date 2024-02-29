@@ -38,8 +38,6 @@ class DiffuserAddViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var btnSaveOutlet: UIButton!
     
-    
-    
     var userDays: Int = UserDefaults.standard.integer(forKey: "config-defaultDays")
     
     // 사진: 이미지 피커 컨트롤러 생성
@@ -54,21 +52,12 @@ class DiffuserAddViewController: UIViewController {
         imagePickerController.delegate = self
         
         // 사진, 카메라 권한 (최초 요청)
-        
-        if #available(iOS 14, *) {
-            
-        }
-        
         PHPhotoLibrary.requestAuthorization { status in
             return
         }
         
         AVCaptureDevice.requestAccess(for: .video) { granted in
-            if granted {
-                
-            } else {
-                
-            }
+            
         }
         
         // 키보드 DONE 버튼 추가
@@ -315,8 +304,8 @@ class DiffuserAddViewController: UIViewController {
             print("keyboardWillShow", self.view.frame.origin.y, self.scrollView.frame.origin.y)
             
         }
-        
     }
+    
     // 키보드가 사라졌다는 알림을 받으면 실행할 메서드
     @objc func keyboardWillHide(_ sender: NSNotification){
         if activeField == "title" {

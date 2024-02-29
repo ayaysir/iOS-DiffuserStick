@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AppTrackingTransparency
 import GoogleMobileAds
 
 func formatLastChanged(date: Date) -> String {
@@ -57,7 +58,6 @@ class DiffuserDetailViewController: UIViewController {
     @IBOutlet weak var innerAdView: UIView!
     var bannerView: GADBannerView!
     
-    
     var selectedDiffuser: DiffuserVO?
     var currentArrayIndex: Int?
     var delegate: DetailViewDelegate?
@@ -107,10 +107,15 @@ class DiffuserDetailViewController: UIViewController {
             lblLastChangedDate.isHidden = true
         }
         
-        if Bundle.main.object(forInfoDictionaryKey: "ShowAd") as! Bool {
-            setupAd()
+        if AdManager.default.isReallyShowAd {
+            if #available(iOS 14, *) {
+                ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
+                    // Tracking authorization completed. Start loading ads here
+                })
+            }
+            
+            setupBannerView()
         }
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -226,13 +231,13 @@ extension DiffuserDetailViewController: ModifyDelegate {
 
 extension DiffuserDetailViewController: GADBannerViewDelegate {
     // innerAdView 아웃렛
-    func setupAd() {
+    func setupBannerView() {
         // 광고
         innerAdView.backgroundColor = nil
         bannerView = GADBannerView(adSize: GADAdSizeBanner)
         addBannerViewToView(bannerView)
         bannerView.adUnitID = Bundle.main.object(forInfoDictionaryKey: "GADDetail") as? String
-          bannerView.rootViewController = self
+        bannerView.rootViewController = self
         bannerView.delegate = self
         bannerView.load(GADRequest())
     }

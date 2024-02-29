@@ -10,9 +10,12 @@ import StoreKit
 public struct InAppProducts {
     private init() {}
     
-    public static let productID = "com.yoonbumtae.DiffuserStick.IAP.removeAds1"
-    private static let productIdentifiers: Set<ProductIdentifier> = [InAppProducts.productID]
-    public static let store = IAPHelper(productIds: InAppProducts.productIdentifiers)
+    public static let productIDs = [
+        "com.yoonbumtae.DiffuserStick.IAP.removeAds1"
+    ]
+    
+    private static let productIdentifiers: Set<ProductIdentifier> = Set(productIDs)
+    public static let helper = IAPHelper(productIds: InAppProducts.productIdentifiers)
 }
 
 public typealias ProductIdentifier = String
@@ -194,3 +197,27 @@ extension IAPHelper {
     }
 }
 
+extension SKProduct {
+
+    private static let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        return formatter
+    }()
+
+    var isFree: Bool {
+        price == 0.00
+    }
+
+    var localizedPrice: String? {
+        guard !isFree else {
+            return nil
+        }
+        
+        let formatter = SKProduct.formatter
+        formatter.locale = priceLocale
+
+        return formatter.string(from: price)
+    }
+
+}

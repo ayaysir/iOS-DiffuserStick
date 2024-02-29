@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AppTrackingTransparency
 import GoogleMobileAds
 
 class SendToArchive {
@@ -36,7 +37,13 @@ class ArchiveViewController: UIViewController {
             print(error)
         }
         
-        if Bundle.main.object(forInfoDictionaryKey: "ShowAd") as! Bool {
+        if AdManager.default.isReallyShowAd {
+            if #available(iOS 14, *) {
+                ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
+                    // Tracking authorization completed. Start loading ads here
+                })
+            }
+            
             setupBannerView()
         }
     }

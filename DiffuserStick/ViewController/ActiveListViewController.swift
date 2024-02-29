@@ -50,13 +50,14 @@ class ActiveListViewController: UIViewController, AddDelegate {
         requestAuthNoti()
         naviBar.delegate = self
         
-        if Bundle.main.object(forInfoDictionaryKey: "ShowAd") as! Bool {
+        if AdManager.default.isReallyShowAd {
             if #available(iOS 14, *) {
                 ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
                     // Tracking authorization completed. Start loading ads here
                 })
             }
-            self.setupBannerView()
+            
+            setupBannerView()
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(appClosed), name: UIApplication.willResignActiveNotification, object: nil)

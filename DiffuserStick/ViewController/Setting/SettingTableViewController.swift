@@ -7,6 +7,8 @@
 
 import UIKit
 import MessageUI
+import StoreKit
+import AppTrackingTransparency
 import GoogleMobileAds
 
 class SettingTableViewController: UITableViewController {
@@ -15,6 +17,7 @@ class SettingTableViewController: UITableViewController {
     private let SECTION_AD_CONTAINER = 4
     
     private var bannerView: GADBannerView!
+    private var iapProducts: [SKProduct]?
     
     @IBOutlet weak var lblDays: UILabel!
     @IBOutlet weak var stepperDaysOutlet: UIStepper!
@@ -24,8 +27,15 @@ class SettingTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initDays()
+        initIAP()
         
-        if Bundle.main.object(forInfoDictionaryKey: "ShowAd") as! Bool {
+        if AdManager.default.isReallyShowAd {
+            if #available(iOS 14, *) {
+                ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
+                    // Tracking authorization completed. Start loading ads here
+                })
+            }
+            
             setupBannerView()
         }
     }
@@ -39,12 +49,21 @@ class SettingTableViewController: UITableViewController {
 
 extension SettingTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath {
-        case .init(row: 0, section: SECTION_OTHER):
-            launchEmail()
-        case .init(row: 1, section: SECTION_OTHER):
-            let vc = AppExhibitionTableViewController()
-            navigationController?.pushViewController(vc, animated: true)
+        switch indexPath.section {
+        case SECTION_IAP:
+            if let iapProducts, indexPath.row < iapProducts.count {
+                let product = iapProducts[indexPath.row]
+                purchaseIAP(productID: product.productIdentifier)
+            } else {
+                restoreIAP()
+            }
+        case SECTION_OTHER:
+            if indexPath.row == 0 {
+                launchEmail()
+            } else if indexPath.row == 1 {
+                let vc = AppExhibitionTableViewController()
+                navigationController?.pushViewController(vc, animated: true)
+            }
         default:
             break
         }
@@ -66,6 +85,33 @@ extension SettingTableViewController {
         return super.tableView(tableView, heightForFooterInSection: section)
     }
     
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == SECTION_IAP {
+            return (iapProducts?.count ?? 0) + 1
+        }
+        
+        return super.tableView(tableView, numberOfRowsInSection: section)
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        if indexPath.section == SECTION_IAP,
+           let firstLabel = cell.contentView.subviews[0] as? UILabel,
+           let iapProducts, indexPath.row < iapProducts.count {
+            let currentProduct = iapProducts[indexPath.row]
+            let isPurchased = InAppProducts.helper.isProductPurchased(currentProduct.productIdentifier)
+            firstLabel.text = isPurchased ? "[구입 완료] " : ""
+            firstLabel.text! += iapProducts[indexPath.row].localizedTitle
+            
+            if let localizedPrice = iapProducts[indexPath.row].localizedPrice {
+                firstLabel.text! += " (\(localizedPrice))"
+            }
+            
+            firstLabel.textColor = isPurchased ? .lightGray : nil
+        }
+        
+        return cell
+    }
 }
 
 extension SettingTableViewController {
@@ -184,3 +230,94 @@ extension SettingTableViewController: GADBannerViewDelegate {
         print("GAD: \(#function)")
     }
 }
+
+/*
+ ===> 인앱 결제로 광고 제거
+ */
+extension SettingTableViewController {
+    private func initIAP() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleIAPPurchase(_:)), name: .IAPHelperPurchaseNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(hadnleIAPError(_:)), name: .IAPHelperErrorNotification, object: nil)
+        
+        // IAP 불러오기
+        InAppProducts.helper.inquireProductsRequest { [weak self] (success, products) in
+            guard let self, success else { return }
+            self.iapProducts = products
+            
+            DispatchQueue.main.async { [weak self] in
+                guard let self,
+                      let products else {
+                    return
+                }
+                
+                // 불러오기 후 할 UI 작업
+                tableView.reloadSections([SECTION_IAP], with: .none)
+                
+                products.forEach {
+                    if !InAppProducts.helper.isProductPurchased($0.productIdentifier) {
+                        print("\($0.localizedTitle) (\($0.price))")
+                    }
+                }
+            }
+        }
+        
+        if InAppProducts.helper.isProductPurchased(InAppProducts.productIDs[0]) || UserDefaults.standard.bool(forKey: InAppProducts.productIDs[0]) {
+            // changePurchaseButtonStyle(isPurchased: true)
+        }
+    }
+    
+    /// 구매: 인앱 결제 버튼 눌렀을 때
+    private func purchaseIAP(productID: String) {
+        if let product = iapProducts?.first(where: {productID == $0.productIdentifier}),
+           !InAppProducts.helper.isProductPurchased(productID) {
+            InAppProducts.helper.buyProduct(product)
+            LoadingIndicatorUtil.default.show(
+                self,
+                style: .blur,
+                text: "결제 작업을 처리중입니다.\n잠시만 기다려 주세요...")
+        } else {
+            simpleAlert(self, message: "구매 완료되었습니다. 이제 앱에서 광고가 표시되지 않습니다.", title: "구매 완료", handler: nil)
+        }
+    }
+    
+    /// 복원: 인앱 복원 버튼 눌렀을 때
+    private func restoreIAP() {
+        InAppProducts.helper.restorePurchases()
+    }
+    
+    /// 결제 후 Notification을 받아 처리
+    @objc func handleIAPPurchase(_ notification: Notification) {
+        guard notification.object is String else {
+            simpleAlert(self, message: "구매 실패: 다시 시도해주세요.")
+            return
+        }
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            simpleAlert(self, message: "구매 완료되었습니다. 이제 앱에서 광고가 표시되지 않습니다.", title: "구매 완료") { [weak self] action in
+                guard let self else { return }
+                // 결제 성공하면 해야할 작업...
+                // 1. 로딩 인디케이터 숨기기
+                LoadingIndicatorUtil.default.hide(self)
+                
+                // 2. 세팅VC 광고 제거 (나머지 뷰는 다시 들어가면 제거되어 있음)
+                // removeBannerView()
+                
+                // 3. 버튼
+                // changePurchaseButtonStyle(isPurchased: true)
+            }
+        }
+    }
+    
+    @objc func hadnleIAPError(_ notification: Notification) {
+        LoadingIndicatorUtil.default.hide(self)
+    }
+    
+    // private func changePurchaseButtonStyle(isPurchased: Bool, buttonTitleForSell: String? = nil) {
+    //     let buttonTitle = isPurchased ? "구매 완료".localized : buttonTitleForSell
+    //     btnPurchaseAdRemoval.backgroundColor = isPurchased ? .green : .button
+    //     btnPurchaseAdRemoval.setTitle(buttonTitle, for: .normal)
+    //     btnPurchaseAdRemoval.isEnabled = true
+    // }
+}
+

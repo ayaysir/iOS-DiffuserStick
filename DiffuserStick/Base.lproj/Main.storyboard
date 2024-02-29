@@ -169,108 +169,6 @@
             </objects>
             <point key="canvasLocation" x="-213" y="94"/>
         </scene>
-        <!--설정 및 더보기-->
-        <scene sceneID="UmM-c8-vH4">
-            <objects>
-                <viewController id="VkP-0k-GXU" customClass="SettingViewController" customModule="DiffuserStick" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="9Tg-Jt-uwy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기본 설정 기간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FbG-XB-6Cx">
-                                <rect key="frame" x="20" y="85" width="378" height="28"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알고 계셨나요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryx-C1-cOA">
-                                <rect key="frame" x="20" y="334" width="378" height="28"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="교체 일수를 입력하세요. 읿반적인 권장 교체 기간은 30일입니다." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhh-oI-8SJ">
-                                <rect key="frame" x="20" y="106" width="374" height="63"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="63" id="BiH-8M-WzW"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minimumValue="15" maximumValue="360" stepValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="uQ9-je-q9P">
-                                <rect key="frame" x="151" y="180" width="94" height="32"/>
-                                <connections>
-                                    <action selector="stepperDays:" destination="VkP-0k-GXU" eventType="valueChanged" id="jtm-Qj-hgO"/>
-                                </connections>
-                            </stepper>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMm-US-nM8">
-                                <rect key="frame" x="20" y="177" width="59" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="59" id="b4n-wJ-6hV"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vQR-p4-VSl">
-                                <rect key="frame" x="20" y="237" width="374" height="30"/>
-                                <state key="normal" title="제작자에게 건의사항 또는 버그 제출하기">
-                                    <color key="titleColor" systemColor="systemIndigoColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="launchEmailWithSender:" destination="VkP-0k-GXU" eventType="touchUpInside" id="9Se-1n-bOT"/>
-                                </connections>
-                            </button>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Qz-Dw-Loy">
-                                <rect key="frame" x="20" y="370" width="374" height="478"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="kGl-MK-p1N"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="tMm-US-nM8" firstAttribute="leading" secondItem="9Qz-Dw-Loy" secondAttribute="leading" id="07b-r9-CgH"/>
-                            <constraint firstItem="kGl-MK-p1N" firstAttribute="trailing" secondItem="FbG-XB-6Cx" secondAttribute="trailing" constant="16" id="0bN-QZ-WAD"/>
-                            <constraint firstItem="9Qz-Dw-Loy" firstAttribute="top" secondItem="ryx-C1-cOA" secondAttribute="bottom" constant="8" id="28b-uz-WF1"/>
-                            <constraint firstItem="tMm-US-nM8" firstAttribute="top" secondItem="9Tg-Jt-uwy" secondAttribute="top" constant="177" id="8R2-5T-ccD"/>
-                            <constraint firstItem="tMm-US-nM8" firstAttribute="top" secondItem="nhh-oI-8SJ" secondAttribute="bottom" constant="8" symbolic="YES" id="AZp-GA-XaC"/>
-                            <constraint firstItem="vQR-p4-VSl" firstAttribute="leading" secondItem="kGl-MK-p1N" secondAttribute="leading" constant="20" id="Cqt-Jb-4z5"/>
-                            <constraint firstItem="nhh-oI-8SJ" firstAttribute="leading" secondItem="kGl-MK-p1N" secondAttribute="leading" constant="20" id="MM5-3s-ryP"/>
-                            <constraint firstItem="9Qz-Dw-Loy" firstAttribute="trailing" secondItem="nhh-oI-8SJ" secondAttribute="trailing" id="O2Z-sn-xFn"/>
-                            <constraint firstItem="FbG-XB-6Cx" firstAttribute="top" secondItem="kGl-MK-p1N" secondAttribute="top" constant="37" id="Rdp-uW-nj3"/>
-                            <constraint firstItem="vQR-p4-VSl" firstAttribute="top" secondItem="uQ9-je-q9P" secondAttribute="bottom" constant="25" id="S2z-KW-oC1"/>
-                            <constraint firstItem="kGl-MK-p1N" firstAttribute="trailing" secondItem="nhh-oI-8SJ" secondAttribute="trailing" constant="20" id="Smb-Hc-hqO"/>
-                            <constraint firstItem="FbG-XB-6Cx" firstAttribute="leading" secondItem="kGl-MK-p1N" secondAttribute="leading" constant="20" id="W3r-gh-RBD"/>
-                            <constraint firstItem="tMm-US-nM8" firstAttribute="leading" secondItem="kGl-MK-p1N" secondAttribute="leading" constant="20" id="XN5-hL-8yt"/>
-                            <constraint firstItem="kGl-MK-p1N" firstAttribute="bottom" secondItem="9Qz-Dw-Loy" secondAttribute="bottom" constant="14" id="Xre-Rs-tjW"/>
-                            <constraint firstItem="uQ9-je-q9P" firstAttribute="leading" secondItem="tMm-US-nM8" secondAttribute="trailing" constant="72" id="ZEa-jh-rtm"/>
-                            <constraint firstItem="9Qz-Dw-Loy" firstAttribute="trailing" secondItem="9Tg-Jt-uwy" secondAttribute="trailingMargin" id="b3F-y9-q8O"/>
-                            <constraint firstItem="tMm-US-nM8" firstAttribute="bottom" secondItem="uQ9-je-q9P" secondAttribute="bottom" id="bzF-xI-dt8"/>
-                            <constraint firstItem="kGl-MK-p1N" firstAttribute="trailing" secondItem="ryx-C1-cOA" secondAttribute="trailing" constant="16" id="dUp-Xc-jKZ"/>
-                            <constraint firstItem="ryx-C1-cOA" firstAttribute="leading" secondItem="FbG-XB-6Cx" secondAttribute="leading" id="i0k-kg-7LN"/>
-                            <constraint firstItem="9Qz-Dw-Loy" firstAttribute="centerX" secondItem="vQR-p4-VSl" secondAttribute="centerX" id="mAE-fE-yu6"/>
-                            <constraint firstItem="nhh-oI-8SJ" firstAttribute="leading" secondItem="kGl-MK-p1N" secondAttribute="leading" constant="20" id="plT-5a-V5T"/>
-                            <constraint firstItem="ryx-C1-cOA" firstAttribute="top" secondItem="tMm-US-nM8" secondAttribute="bottom" constant="122" id="t82-Ru-DdC"/>
-                            <constraint firstItem="kGl-MK-p1N" firstAttribute="trailing" secondItem="nhh-oI-8SJ" secondAttribute="trailing" constant="20" id="wDZ-mq-Ula"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="설정 및 더보기" image="info.circle.fill" catalog="system" id="kvm-Qt-cOa"/>
-                    <connections>
-                        <outlet property="constraintBottom" destination="Xre-Rs-tjW" id="cEd-2I-akY"/>
-                        <outlet property="lblDays" destination="tMm-US-nM8" id="GHB-o5-lKe"/>
-                        <outlet property="stepperDaysOutlet" destination="uQ9-je-q9P" id="Fby-2z-D3d"/>
-                        <outlet property="webView" destination="9Qz-Dw-Loy" id="UI7-Tt-JG4"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MM6-YW-b9o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-119" y="1309"/>
-        </scene>
         <!--보관함-->
         <scene sceneID="fYM-cJ-9io">
             <objects>
@@ -886,6 +784,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="도움말" id="LSB-6U-l7I"/>
                     <connections>
+                        <outlet property="cnstWebViewBottom" destination="sNu-Ew-KnK" id="ZpC-Dq-uKh"/>
                         <outlet property="webView" destination="bLT-TS-NvY" id="95K-0h-wJb"/>
                     </connections>
                 </viewController>
@@ -964,7 +863,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="인 앱 결제" footerTitle="광고를 제거할 수 있습니다." id="c6c-E4-KjP">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bVn-xi-oaT" style="IBUITableViewCellStyleDefault" id="MqJ-vj-OYq">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bVn-xi-oaT" style="IBUITableViewCellStyleDefault" id="MqJ-vj-OYq">
                                         <rect key="frame" x="20" y="274" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MqJ-vj-OYq" id="0tI-Rx-9eq">
@@ -981,7 +880,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="WKs-pO-3SN" style="IBUITableViewCellStyleDefault" id="DBp-vm-SVb">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="WKs-pO-3SN" style="IBUITableViewCellStyleDefault" id="DBp-vm-SVb">
                                         <rect key="frame" x="20" y="317.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DBp-vm-SVb" id="i5m-Eh-pEe">
@@ -1097,25 +996,25 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
-            <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

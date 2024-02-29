@@ -7,14 +7,27 @@
 
 import UIKit
 import WebKit
+import AppTrackingTransparency
+import GoogleMobileAds
 
 class HelpViewController: UIViewController {
-    
+    private var bannerView: GADBannerView!
     @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var cnstWebViewBottom: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initWebPageLoad()
+        
+        if AdManager.default.isReallyShowAd {
+            if #available(iOS 14, *) {
+                ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
+                    // Tracking authorization completed. Start loading ads here
+                })
+            }
+            
+            setupBannerView()
+        }
     }
     
     private func initWebPageLoad() {
@@ -42,5 +55,53 @@ extension HelpViewController: WKNavigationDelegate {
         }
         
         decisionHandler(targetUrl == url ? .allow : .cancel)
+    }
+}
+
+// ============ 애드몹 셋업 ============
+extension HelpViewController: GADBannerViewDelegate {
+    // 본 클래스에 다음 선언 추가
+    // // AdMob
+    // private var bannerView: GADBannerView!
+    
+    // viewDidLoad()에 다음 추가
+    // setupBannerView()
+    
+    private func setupBannerView() {
+        let adSize = GADAdSizeFromCGSize(CGSize(width: self.view.frame.width, height: 50))
+        bannerView = GADBannerView(adSize: adSize)
+        addBannerViewToView(bannerView)
+        bannerView.adUnitID = Bundle.main.object(forInfoDictionaryKey: "GADSetting") as? String
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
+        cnstWebViewBottom.constant += adSize.size.height
+    }
+    
+    private func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints( [NSLayoutConstraint(item: bannerView, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0), NSLayoutConstraint(item: bannerView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0) ])
+    }
+    
+    // GADBannerViewDelegate
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("GAD: \(#function)")
+    }
+    
+    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+        print("GAD: \(#function)")
+    }
+    
+    func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
+        print("GAD: \(#function)")
+    }
+    
+    func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
+        print("GAD: \(#function)")
+    }
+    
+    func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
+        print("GAD: \(#function)")
     }
 }
