@@ -75,7 +75,7 @@ extension HelpViewController: GADBannerViewDelegate {
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
-        cnstWebViewBottom.constant += adSize.size.height
+        cnstWebViewBottom.constant -= adSize.size.height
     }
     
     private func addBannerViewToView(_ bannerView: GADBannerView) {

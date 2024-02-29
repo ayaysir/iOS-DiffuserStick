@@ -200,7 +200,6 @@ extension SettingTableViewController: GADBannerViewDelegate {
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
-        
     }
     
     private func addBannerViewToView(_ bannerView: GADBannerView) {
@@ -301,10 +300,10 @@ extension SettingTableViewController {
                 LoadingIndicatorUtil.default.hide(self)
                 
                 // 2. 세팅VC 광고 제거 (나머지 뷰는 다시 들어가면 제거되어 있음)
-                // removeBannerView()
+                bannerView.removeFromSuperview()
                 
                 // 3. 버튼
-                // changePurchaseButtonStyle(isPurchased: true)
+                tableView.reloadData()
             }
         }
     }

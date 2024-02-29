@@ -59,6 +59,12 @@ class ArchiveViewController: UIViewController {
                 print(error)
             }
         }
+        
+        if !AdManager.default.isReallyShowAd && bannerView != nil {
+            bannerView.removeFromSuperview()
+            // constraint 원상복구
+            constraintBottom.constant = -50
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -65,6 +65,16 @@ class ActiveListViewController: UIViewController, AddDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(appOpened), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if !AdManager.default.isReallyShowAd && bannerView != nil {
+            bannerView.removeFromSuperview()
+            // constraint 원상복구
+            constraintBottom.constant = +50
+        }
+    }
+    
     @objc func appClosed() {
         print("===== app closed =====")
         UserDefaults.standard.setValue(Date(), forKey: "last-closed-date")
