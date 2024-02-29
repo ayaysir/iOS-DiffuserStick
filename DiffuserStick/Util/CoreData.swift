@@ -88,7 +88,7 @@ func updateCoreData(id: UUID, diffuserVO diffuser: DiffuserVO) -> Bool {
     
     do {
         let result = try managedContext.fetch(fetchRequest)
-        let diffuserCD = result[0] as! NSManagedObject
+        let diffuserCD = result[0] as! Diffuser
         
         diffuserCD.setValue(diffuser.comments, forKey: "comments")
         diffuserCD.setValue(diffuser.photoName, forKey: "photoName")

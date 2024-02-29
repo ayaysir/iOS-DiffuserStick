@@ -152,10 +152,14 @@ class DiffuserAddViewController: UIViewController {
                 return
             }
             
+            let oldPhotoNameWithExt = selectedDiffuser?.photoName
             let modifiedPhotoNameWithoutExt = inputTitle.text!.convertToValidFileName() + "___" + uuid.uuidString
             let savePhotoResult = saveImage(image: imgPhoto.image!, fileNameWithoutExt: modifiedPhotoNameWithoutExt)
             selectedDiffuser?.photoName = modifiedPhotoNameWithoutExt + "." + savePhotoResult!
             
+            if let oldPhotoNameWithExt, oldPhotoNameWithExt != selectedDiffuser?.photoName {
+                removeImageFileFromDocument(fileNameIncludesExtension: oldPhotoNameWithExt)
+            }
             
             if modifyDelegate != nil {
                 modifyDelegate?.sendDiffuser(self, diffuser: selectedDiffuser!)

@@ -28,6 +28,8 @@
 		44BD7D072B8F639E00818570 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 44BD7D062B8F639E00818570 /* GoogleMobileAds */; };
 		44C3B86D2B90C6AF00B71A95 /* LoadingIndicatorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3B86C2B90C6AF00B71A95 /* LoadingIndicatorUtil.swift */; };
 		44C3B86F2B90D91A00B71A95 /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3B86E2B90D91A00B71A95 /* AdManager.swift */; };
+		44C3B8712B90E5F500B71A95 /* FirstRunUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3B8702B90E5F500B71A95 /* FirstRunUtil.swift */; };
+		44C3B8732B90E7B300B71A95 /* CleanupDocumentDirectoryUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3B8722B90E7B300B71A95 /* CleanupDocumentDirectoryUtil.swift */; };
 		44E868FD26A80A59008B2D62 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 44E868FC26A80A3A008B2D62 /* fontawesome-webfont.ttf */; };
 		44E8690226A9423F008B2D62 /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 44E8690126A9423F008B2D62 /* help.html */; };
 		44E8690426A948C2008B2D62 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E8690326A948C2008B2D62 /* ArchiveViewController.swift */; };
@@ -65,6 +67,8 @@
 		44BB07752B8F665500F57C4B /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		44C3B86C2B90C6AF00B71A95 /* LoadingIndicatorUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorUtil.swift; sourceTree = "<group>"; };
 		44C3B86E2B90D91A00B71A95 /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
+		44C3B8702B90E5F500B71A95 /* FirstRunUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstRunUtil.swift; sourceTree = "<group>"; };
+		44C3B8722B90E7B300B71A95 /* CleanupDocumentDirectoryUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanupDocumentDirectoryUtil.swift; sourceTree = "<group>"; };
 		44E868FC26A80A3A008B2D62 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		44E8690126A9423F008B2D62 /* help.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
 		44E8690326A948C2008B2D62 /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +195,8 @@
 				448784B82B9066690073B2DE /* DeviceUtil.swift */,
 				448784BA2B9067310073B2DE /* AppMetadataUtil.swift */,
 				44C3B86C2B90C6AF00B71A95 /* LoadingIndicatorUtil.swift */,
+				44C3B8702B90E5F500B71A95 /* FirstRunUtil.swift */,
+				44C3B8722B90E7B300B71A95 /* CleanupDocumentDirectoryUtil.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -291,12 +297,14 @@
 				4456C9B1269D4E8400A29B77 /* AppDelegate.swift in Sources */,
 				44FDCFD026A070BB00A7A7FD /* CalendarExtension.swift in Sources */,
 				4456C9CA269D534200A29B77 /* ActiveListViewController.swift in Sources */,
+				44C3B8732B90E7B300B71A95 /* CleanupDocumentDirectoryUtil.swift in Sources */,
 				44C3B86F2B90D91A00B71A95 /* AdManager.swift in Sources */,
 				44FDCFCE269FEF7F00A7A7FD /* FileUtil.swift in Sources */,
 				4456C9B3269D4E8400A29B77 /* SceneDelegate.swift in Sources */,
 				44FDCFD226A1419100A7A7FD /* UIExtension.swift in Sources */,
 				44FDCFC2269EA8B300A7A7FD /* ParsePlist.swift in Sources */,
 				444EEE0B26B167EF00454428 /* LocalNotification.swift in Sources */,
+				44C3B8712B90E5F500B71A95 /* FirstRunUtil.swift in Sources */,
 				448784B22B905CE80073B2DE /* HelpViewController.swift in Sources */,
 				44C3B86D2B90C6AF00B71A95 /* LoadingIndicatorUtil.swift in Sources */,
 				448784B92B9066690073B2DE /* DeviceUtil.swift in Sources */,

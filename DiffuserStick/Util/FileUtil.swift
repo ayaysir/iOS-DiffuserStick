@@ -115,6 +115,14 @@ enum ImageFormat {
     case gif, jpg, png, webp, unknown
 }
 
+func removeFile(from url: URL) {
+    do {
+        try FileManager.default.removeItem(at: url)
+    } catch {
+        print(#function, error)
+    }
+}
+
 func removeImageFileFromDocument(fileNameIncludesExtension: String) {
     let fileManager = FileManager.default
     let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory

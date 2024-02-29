@@ -343,7 +343,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minimumValue="15" maximumValue="360" stepValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="p6e-7a-SlM">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minimumValue="15" maximumValue="360" stepValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="p6e-7a-SlM">
                                                 <rect key="frame" x="300" y="506.5" width="94" height="32"/>
                                                 <connections>
                                                     <action selector="stepperDaysAction:" destination="VgC-oY-3JU" eventType="valueChanged" id="QUY-gt-u8Y"/>
