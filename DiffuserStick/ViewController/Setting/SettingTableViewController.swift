@@ -42,6 +42,9 @@ extension SettingTableViewController {
         switch indexPath {
         case .init(row: 0, section: SECTION_OTHER):
             launchEmail()
+        case .init(row: 1, section: SECTION_OTHER):
+            let vc = AppExhibitionTableViewController()
+            navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }

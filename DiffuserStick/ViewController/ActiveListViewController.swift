@@ -332,8 +332,7 @@ extension ActiveListViewController: GADBannerViewDelegate {
         bannerView.adUnitID = Bundle.main.object(forInfoDictionaryKey: "GADHome") as? String
         print("adUnitID: ", bannerView.adUnitID!)
         bannerView.rootViewController = self
-        let request = GADRequest()
-        bannerView.load(request)
+        bannerView.load(GADRequest())
         bannerView.delegate = self
         // tblList의 align bottom to 를 50만큼 올린다.
         constraintBottom.constant = -50

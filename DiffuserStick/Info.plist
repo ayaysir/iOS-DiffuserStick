@@ -190,7 +190,7 @@
 		</dict>
 	</array>
 	<key>ShowAd</key>
-	<true/>
+	<false/>
 	<key>TestMode</key>
 	<false/>
 	<key>UIAppFonts</key>
