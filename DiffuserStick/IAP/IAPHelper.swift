@@ -10,6 +10,7 @@ import StoreKit
 public struct InAppProducts {
     private init() {}
     
+    /// 앱 스토어 커넥트에 등록된 IAP의 제품 ID들의 리스트입니다.
     public static let productIDs = [
         "com.yoonbumtae.DiffuserStick.IAP.removeAds1"
     ]
@@ -52,7 +53,7 @@ open class IAPHelper: NSObject {
 }
 
 extension IAPHelper {
-    /// 앱스토어에서 결제된 인앱결제 상품들을 가져옵니다.
+    /// 앱스토어에서 등록된 인앱결제 상품들을 가져옵니다.
     public func inquireProductsRequest(_ completionHandler: @escaping ProductsRequestCompletionHandler) {
         productsRequest?.cancel()
         productsRequestCompletionHandler = completionHandler
@@ -68,10 +69,14 @@ extension IAPHelper {
         SKPaymentQueue.default().add(payment)
     }
     
+    /// IAP 제품을 구매했는지 판별합니다.
+    /// - `purchasedProductIdentifiers`: IAPHelper 초기화시 또는 실제 제품을 구입했을 때 추가됩니다.
     public func isProductPurchased(_ productIdentifier: ProductIdentifier) -> Bool {
         return purchasedProductIdentifiers.contains(productIdentifier)
     }
     
+    /// 제품을 구입할 권한이 있는지
+    /// - 계정을 관리하는 자가 별도로 있는 경우 제품 구매 권한이 없을 수도 있습니다.
     public class func canMakePayments() -> Bool {
         return SKPaymentQueue.canMakePayments()
     }
@@ -83,6 +88,9 @@ extension IAPHelper {
 }
 
 extension IAPHelper: SKProductsRequestDelegate {
+    /*
+     SKProductsRequestDelegate에서 구현을 요구하는 메서드로 IAP 제품 리스트 목록을 성공적으로 받아왔을 때 실행됩니다.
+     */
     public func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         print("IAP: Loaded list of products...")
         let products = response.products
@@ -94,6 +102,9 @@ extension IAPHelper: SKProductsRequestDelegate {
         }
     }
     
+    /*
+     SKProductsRequestDelegate에서 구현을 요구하는 메서드로 IAP 제품 리스트 목록을 가져오는데 실패했을 때 실행됩니다.
+     */
     public func request(_ request: SKRequest, didFailWithError error: Error) {
         print("IAP - Failed to load list of products.")
         print("IAP - Error: \(error.localizedDescription)")
@@ -108,6 +119,9 @@ extension IAPHelper: SKProductsRequestDelegate {
 }
 
 extension IAPHelper: SKPaymentTransactionObserver {
+    /// paymentQueue(_:updatedTransactions:)는 프로토콜에서 실제로 필요한 유일한 방법입니다.
+    /// - 하나 이상의 트랜잭션 상태가 변경될 때 호출됩니다.
+    /// - 이 메서드는 업데이트된 트랜잭션 배열에서 각 트랜잭션의 상태를 평가하고 관련 도우미 메서드인 `complete(transaction:)`, `restore(transaction:)` 또는 `fail(transaction:)`을 호출합니다.
     public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
             switch transaction.transactionState {
@@ -132,14 +146,14 @@ extension IAPHelper: SKPaymentTransactionObserver {
         }
     }
     
-    /// 구입 성공
+    /// 구입 완료한 경우 트랜잭션 처리
     private func complete(transaction: SKPaymentTransaction) {
         print("IAP Transaction Purchase: complete...")
         deliverPurchaseNotificationFor(identifier: transaction.payment.productIdentifier)
         SKPaymentQueue.default().finishTransaction(transaction)
     }
     
-    /// 복원 성공
+    /// 복원 성공한 경우 트랜잭션 처리
     private func restore(transaction: SKPaymentTransaction) {
         guard let productIdentifier = transaction.original?.payment.productIdentifier else { return }
         
@@ -171,7 +185,8 @@ extension IAPHelper: SKPaymentTransactionObserver {
         NotificationCenter.default.post(name: .IAPHelperPurchaseNotification, object: identifier)
     }
     
-    /// 실패시 보냄
+    /// 제품 구매 실패시 Notification을 보냅니다.
+    /// - Notification의 이름은 `.IAPHelperErrorNotification`입니다.
     private func deliverPurchaseErrorNotification() {
         NotificationCenter.default.post(name: .IAPHelperErrorNotification, object: nil)
     }
@@ -198,17 +213,20 @@ extension IAPHelper {
 }
 
 extension SKProduct {
-
+    /// 각국 통화 포맷 처리기
     private static let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         return formatter
     }()
 
+    /// IAP 제품이 공짜인지 여부
     var isFree: Bool {
         price == 0.00
     }
 
+    /// 현지화된 가격 정보
+    /// - 통화 기호가 같이 표시됩니다.
     var localizedPrice: String? {
         guard !isFree else {
             return nil
@@ -219,5 +237,4 @@ extension SKProduct {
 
         return formatter.string(from: price)
     }
-
 }

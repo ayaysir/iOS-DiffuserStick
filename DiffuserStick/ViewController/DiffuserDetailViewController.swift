@@ -10,7 +10,6 @@ import AppTrackingTransparency
 import GoogleMobileAds
 
 func formatLastChanged(date: Date) -> String {
-    
     let formatter = DateFormatter()
     formatter.dateFormat = "마지막 디퓨저 교체일은 YYYY년 M월 dd일 입니다."
     return formatter.string(from: date)
@@ -132,11 +131,11 @@ class DiffuserDetailViewController: UIViewController {
     }
     
     @IBAction func btnRefresh(_ sender: Any) {
-        
         let oldDate = selectedDiffuser?.startDate
         let newDate = Date()
         selectedDiffuser?.startDate = newDate
         let updateResult = updateCoreData(id: selectedDiffuser!.id, diffuserVO: selectedDiffuser!)
+      
         if updateResult {
             displayDates()
             delegate?.replaceModifiedDiffuser(self, diffuser: selectedDiffuser!, isModified: true, index: currentArrayIndex!)
@@ -146,7 +145,6 @@ class DiffuserDetailViewController: UIViewController {
             displayDates()
             simpleAlert(self, message: "오류로 인해 날짜가 교체되지 않았습니다.")
         }
-        
     }
     
     @IBAction func btnArchive(_ sender: Any) {

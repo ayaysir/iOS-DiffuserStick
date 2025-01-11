@@ -194,7 +194,28 @@ extension ActiveListViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
         }
-        return [deleteAction]
+        
+        let refreshAction = UITableViewRowAction(style: .normal, title: "교체") { [unowned self] _, _ in
+            let diffuserInfo = viewModel.diffuserInfoList[indexPath.row]
+            let oldDate = diffuserInfo.startDate
+            let newDate = Date()
+            viewModel.diffuserInfoList[indexPath.row].startDate = newDate
+            
+            let updateResult = updateCoreData(id: diffuserInfo.id, diffuserVO: diffuserInfo)
+          
+            if updateResult {
+                simpleAlert(self, message: "디퓨저 교체 날짜를 오늘로 새로고침하였습니다.", title: "교체되었습니다.", handler: nil)
+            } else {
+                viewModel.diffuserInfoList[indexPath.row].startDate = oldDate
+                simpleAlert(self, message: "오류로 인해 날짜가 교체되지 않았습니다.")
+            }
+
+            tblList.reloadData()
+        }
+        refreshAction.backgroundColor = .systemGreen
+        
+        // 배열에서 나중에 있는 것이 제일 왼쪽으로 온다
+        return [deleteAction, refreshAction,]
     }
 }
 
