@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6j6-i5-T2l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6j6-i5-T2l">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -141,7 +141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="928.98550724637687" y="93.75"/>
+            <point key="canvasLocation" x="54" y="-287"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="5k7-VB-MO8">
@@ -167,7 +167,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ebw-Oq-Ib7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-213" y="94"/>
+            <point key="canvasLocation" x="-754" y="-287"/>
         </scene>
         <!--보관함-->
         <scene sceneID="fYM-cJ-9io">
@@ -178,7 +178,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Pf4-gg-M7Q">
-                                <rect key="frame" x="20" y="48" width="374" height="765"/>
+                                <rect key="frame" x="20" y="112" width="374" height="701"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rHz-ZO-7X1">
                                     <size key="itemSize" width="178" height="228"/>
@@ -243,26 +243,36 @@
                                     <outlet property="delegate" destination="jlf-fb-7yg" id="tDi-Gr-TRp"/>
                                 </connections>
                             </collectionView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ivh-dl-sQP">
+                                <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="보관함" id="ZoU-UJ-xdc"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lgP-qA-D2j"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="ivh-dl-sQP" firstAttribute="top" secondItem="lgP-qA-D2j" secondAttribute="top" id="2bM-fZ-Kk9"/>
+                            <constraint firstItem="ivh-dl-sQP" firstAttribute="leading" secondItem="lgP-qA-D2j" secondAttribute="leading" id="4p4-o2-CIM"/>
+                            <constraint firstItem="Pf4-gg-M7Q" firstAttribute="top" secondItem="ivh-dl-sQP" secondAttribute="bottom" constant="20" id="MIU-MU-UA7"/>
                             <constraint firstItem="Pf4-gg-M7Q" firstAttribute="trailing" secondItem="lgP-qA-D2j" secondAttribute="trailing" constant="-20" id="csA-bH-lLo"/>
-                            <constraint firstItem="Pf4-gg-M7Q" firstAttribute="top" secondItem="lgP-qA-D2j" secondAttribute="top" id="fSe-O0-NHn"/>
                             <constraint firstItem="lgP-qA-D2j" firstAttribute="bottom" secondItem="Pf4-gg-M7Q" secondAttribute="bottom" id="fUX-Cl-u82"/>
                             <constraint firstItem="Pf4-gg-M7Q" firstAttribute="leading" secondItem="lgP-qA-D2j" secondAttribute="leading" constant="20" id="q5M-Xv-pTS"/>
+                            <constraint firstItem="lgP-qA-D2j" firstAttribute="trailing" secondItem="ivh-dl-sQP" secondAttribute="trailing" id="xH4-Fb-y8S"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="보관함" image="shippingbox.fill" catalog="system" id="UOo-WQ-FlI"/>
                     <connections>
                         <outlet property="collectionView" destination="Pf4-gg-M7Q" id="7G1-Xs-XFO"/>
                         <outlet property="constraintBottom" destination="fUX-Cl-u82" id="dGc-Wz-5aa"/>
+                        <outlet property="naviBar" destination="ivh-dl-sQP" id="vV8-OK-noO"/>
                         <segue destination="kqs-M2-Fj3" kind="show" identifier="archiveDetailView" id="BAf-tz-0ve"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H1t-Ze-3AF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="697.10144927536237" y="905.35714285714278"/>
+            <point key="canvasLocation" x="-755" y="431"/>
         </scene>
         <!--Diffuser Add View Controller-->
         <scene sceneID="9FL-H2-9gV">
@@ -535,7 +545,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oeo-fr-wBl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2195.6521739130435" y="904.01785714285711"/>
+            <point key="canvasLocation" x="838" y="66"/>
         </scene>
         <!--Diffuser Detail View Controller-->
         <scene sceneID="d5g-qe-aEh">
@@ -754,7 +764,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8kU-hP-4Uz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1788.4057971014495" y="91.741071428571431"/>
+            <point key="canvasLocation" x="54" y="431"/>
         </scene>
         <!--도움말-->
         <scene sceneID="Ipw-Ba-Sud">
@@ -790,7 +800,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ffj-Lf-7dG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1788" y="1232"/>
+            <point key="canvasLocation" x="-755" y="1171"/>
         </scene>
         <!--설정 및 더보기-->
         <scene sceneID="MR1-Qz-CpS">
@@ -954,7 +964,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q5P-EQ-Sje" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1061" y="1231"/>
+            <point key="canvasLocation" x="-1497" y="1171"/>
         </scene>
         <!--설정 및 도움말-->
         <scene sceneID="hVc-r6-ZEe">
@@ -973,12 +983,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vcz-jF-Iqx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1484" y="431"/>
+            <point key="canvasLocation" x="-1497" y="431"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="BAf-tz-0ve"/>
-        <segue reference="I8W-jf-xGj"/>
+        <segue reference="Dsr-pZ-DL4"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="aromatic" width="25" height="25"/>
@@ -989,8 +999,8 @@
         <image name="info.circle.fill" catalog="system" width="128" height="123"/>
         <image name="photo.fill" catalog="system" width="128" height="93"/>
         <image name="shippingbox.fill" catalog="system" width="128" height="123"/>
-        <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
-        <image name="text.alignleft" catalog="system" width="128" height="99"/>
+        <image name="square.and.arrow.up.fill" catalog="system" width="117" height="128"/>
+        <image name="text.alignleft" catalog="system" width="128" height="101"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

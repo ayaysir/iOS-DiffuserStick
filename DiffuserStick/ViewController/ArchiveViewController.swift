@@ -22,6 +22,7 @@ class ArchiveViewController: UIViewController {
     
     let archiveViewModel = DiffuserViewModel()
     
+    @IBOutlet weak var naviBar: UINavigationBar!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var constraintBottom: NSLayoutConstraint!
     
@@ -36,7 +37,9 @@ class ArchiveViewController: UIViewController {
         } catch {
             print(error)
         }
-        
+      
+        naviBar.delegate = self
+      
         if AdManager.default.isReallyShowAd {
             if #available(iOS 14, *) {
                 ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
@@ -152,6 +155,12 @@ extension ArchiveViewController: ArchiveDetailViewDelegate {
     }
 }
 
+// 노치 채우기
+extension ArchiveViewController: UINavigationBarDelegate {
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
+    }
+}
 
 // ============ 애드몹 셋업 ============
 extension ArchiveViewController: GADBannerViewDelegate {
