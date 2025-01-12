@@ -1,5 +1,5 @@
 //
-//  CurrentViewController.swift
+//  MainActiveListViewController.swift
 //  DiffuserStick
 //
 //  Created by yoonbumtae on 2021/07/13.
@@ -16,7 +16,7 @@ enum CurrentSort {
     case orderByRemainDayDesc
 }
 
-class ActiveListViewController: UIViewController, AddDelegate {
+class MainActiveListViewController: UIViewController, AddDelegate {
     
     @IBOutlet weak var constraintBottom: NSLayoutConstraint!
     var currentSelectedDiffuser: DiffuserVO? = nil
@@ -150,7 +150,7 @@ class ActiveListViewController: UIViewController, AddDelegate {
     }
 }
 
-extension ActiveListViewController: UITableViewDelegate, UITableViewDataSource {
+extension MainActiveListViewController: UITableViewDelegate, UITableViewDataSource {
     // MVVM 3: 뷰모델 인스턴스에서 갯수 가져오기
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if viewModel.numOfDiffuserInfoList == 0 {
@@ -314,7 +314,7 @@ class DiffuserViewModel {
     
 }
 
-extension ActiveListViewController: DetailViewDelegate {
+extension MainActiveListViewController: DetailViewDelegate {
     func deleteFromList(_ controller: DiffuserDetailViewController, diffuser: DiffuserVO, index: Int) {
         self.viewModel.diffuserInfoList.remove(at: index)
         tblList.reloadData()
@@ -341,14 +341,14 @@ extension ActiveListViewController: DetailViewDelegate {
 }
 
 // 노치 채우기
-extension ActiveListViewController: UINavigationBarDelegate {
+extension MainActiveListViewController: UINavigationBarDelegate {
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
     }
 }
 
 // ============ 애드몹 셋업 ============
-extension ActiveListViewController: GADBannerViewDelegate {
+extension MainActiveListViewController: GADBannerViewDelegate {
     // 본 클래스에 다음 선언 추가
     // // AdMob
     // private var bannerView: GADBannerView!

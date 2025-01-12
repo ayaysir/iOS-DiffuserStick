@@ -13,7 +13,7 @@
 		4456C9B5269D4E8400A29B77 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9B4269D4E8400A29B77 /* MainTabBarController.swift */; };
 		4456C9BB269D4E8400A29B77 /* DiffuserStick.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9B9269D4E8400A29B77 /* DiffuserStick.xcdatamodeld */; };
 		4456C9BD269D4E8500A29B77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4456C9BC269D4E8500A29B77 /* Assets.xcassets */; };
-		4456C9CA269D534200A29B77 /* ActiveListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9C9269D534200A29B77 /* ActiveListViewController.swift */; };
+		4456C9CA269D534200A29B77 /* MainActiveListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9C9269D534200A29B77 /* MainActiveListViewController.swift */; };
 		447A45D8269DC0A0009C4B47 /* DiffuserVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */; };
 		448784A62B8F6EB70073B2DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448784A82B8F6EB70073B2DE /* Main.storyboard */; };
 		448784A92B8F6EC30073B2DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448784AB2B8F6EC30073B2DE /* LaunchScreen.storyboard */; };
@@ -52,7 +52,7 @@
 		4456C9BA269D4E8400A29B77 /* DiffuserStick.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiffuserStick.xcdatamodel; sourceTree = "<group>"; };
 		4456C9BC269D4E8500A29B77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4456C9C1269D4E8500A29B77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4456C9C9269D534200A29B77 /* ActiveListViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ActiveListViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
+		4456C9C9269D534200A29B77 /* MainActiveListViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = MainActiveListViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuserVO.swift; sourceTree = "<group>"; };
 		448784AC2B8F8C970073B2DE /* TableCollectionViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCollectionViewUtil.swift; sourceTree = "<group>"; };
 		448784AE2B8F94D60073B2DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				448784B02B905BA30073B2DE /* Setting */,
-				4456C9C9269D534200A29B77 /* ActiveListViewController.swift */,
+				4456C9C9269D534200A29B77 /* MainActiveListViewController.swift */,
 				4456C9B4269D4E8400A29B77 /* MainTabBarController.swift */,
 				44FDCFBD269E96DA00A7A7FD /* DiffuserDetailViewController.swift */,
 				44FDCFC4269F1C3B00A7A7FD /* DiffuserAddViewController.swift */,
@@ -296,7 +296,7 @@
 				44FDCFBE269E96DA00A7A7FD /* DiffuserDetailViewController.swift in Sources */,
 				4456C9B1269D4E8400A29B77 /* AppDelegate.swift in Sources */,
 				44FDCFD026A070BB00A7A7FD /* CalendarExtension.swift in Sources */,
-				4456C9CA269D534200A29B77 /* ActiveListViewController.swift in Sources */,
+				4456C9CA269D534200A29B77 /* MainActiveListViewController.swift in Sources */,
 				44C3B8732B90E7B300B71A95 /* CleanupDocumentDirectoryUtil.swift in Sources */,
 				44C3B86F2B90D91A00B71A95 /* AdManager.swift in Sources */,
 				44FDCFCE269FEF7F00A7A7FD /* FileUtil.swift in Sources */,
