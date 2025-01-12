@@ -103,7 +103,7 @@ class ActiveListViewController: UIViewController, AddDelegate {
     }
     
     @IBAction func btnSort(_ sender: Any) {
-        let alertController = UIAlertController(title: "정렬", message: "정렬 방식을 선택하세요.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "정렬", message: "정렬 방식을 선택하세요.", preferredStyle: .actionSheet)
         let sortRegister = UIAlertAction(title: "디퓨저를 등록한 최근 날짜 순서 (기본)", style: .default) { action in
             if self.currentSort == .orderByCreateDateDesc { return }
             self.viewModel.sortByCreateDateDesc()
