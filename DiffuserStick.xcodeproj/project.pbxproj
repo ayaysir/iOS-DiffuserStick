@@ -61,7 +61,7 @@
 		448784B32B9060EA0073B2DE /* SettingTableViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		448784B82B9066690073B2DE /* DeviceUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceUtil.swift; sourceTree = "<group>"; };
 		448784BA2B9067310073B2DE /* AppMetadataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetadataUtil.swift; sourceTree = "<group>"; };
-		448784BC2B90907B0073B2DE /* AppExhibitionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExhibitionTableViewController.swift; sourceTree = "<group>"; };
+		448784BC2B90907B0073B2DE /* AppExhibitionTableViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = AppExhibitionTableViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		448784BE2B909ACE0073B2DE /* AppExhibitionAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppExhibitionAssets.xcassets; sourceTree = "<group>"; };
 		44B8B2252B8F6DD000FFD0E0 /* DiffuserStick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiffuserStick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44BB07752B8F665500F57C4B /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };

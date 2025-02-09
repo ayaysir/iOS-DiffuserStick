@@ -17,6 +17,10 @@ struct AppInfo {
 
 class AppExhibitionTableViewController: UITableViewController {
     private let infos: [AppInfo] = [
+        AppInfo(title: "Music Interval Quiz Master",
+                description: "음정 공부를 퀴즈, 악보, 소리와 함께 쉽게 마스터하세요!",
+                imgAssetName: "icon-IntervalQuiz",
+                appStoreID: "6738980588"),
         AppInfo(title: "UltimateScale",
                 description: "UtimateScale은 다양한 키를 지원하는 내장 신디사이저 키보드와, 퀴즈를 통한 효율적인 학습이 가능한 스케일(음계) 학습 도우미입니다.",
                 imgAssetName: "icon-UltimateScale",
@@ -25,29 +29,29 @@ class AppExhibitionTableViewController: UITableViewController {
                 description: "iPhone/iPad에서 뮤직박스가 다시 태어났습니다. 나만의 오르골과 악보를 만들어보세요.",
                 imgAssetName: "icon-MusicBox",
                 appStoreID: "1596583920"),
-        AppInfo(title: "Tuner XR", 
+        AppInfo(title: "Tuner XR",
                 description: "Tuner XR(Tuner with eXtRa features)은 보컬, 악기 등을 연주하는 음악가들을 위한 튜너 앱입니다.",
                 imgAssetName: "icon-TunerXR",
                 appStoreID: "1581803256"),
-        // AppInfo(title: "DiffuserStick", 
+        // AppInfo(title: "DiffuserStick",
         //         description: "디퓨저 스틱(막대기) 교체 주기 관리 도우미 앱으로, 디퓨저의 사진과 함께 디퓨저 스틱을 꽂은 날을 기록하고, 교체 기간이 되면 푸시 알람을 통해 알려줍니다.",
         //         imgAssetName: "icon-DiffuserStick",
         //         appStoreID: "1578285458"),
         
     ]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "BGSMM이 만든 다른 앱 보기"
         tableView.register(AppInfoCell.self, forCellReuseIdentifier: AppInfoCell.cellId)
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return infos.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: AppInfoCell.cellId, for: indexPath) as! AppInfoCell
         
@@ -110,7 +114,7 @@ class AppInfoCell: UITableViewCell {
      row height: 120
      
      Constraints
-
+     
      • Img View App Icon.leading = leading
      • bottom = Img View App Icon.bottom + 15
      • Img View App Icon.top = top + 15
