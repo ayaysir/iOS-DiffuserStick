@@ -12,7 +12,7 @@ import AppTrackingTransparency
 import GoogleMobileAds
 
 class SettingTableViewController: UITableViewController {
-    private let SECTION_IAP = 2
+    private let SECTION_IAP = 0
     private let SECTION_OTHER = 3
     private let SECTION_AD_CONTAINER = 4
     
@@ -42,7 +42,7 @@ class SettingTableViewController: UITableViewController {
     
     @IBAction func stepperActChangeDays(_ sender: UIStepper) {
         let days = Int(sender.value)
-        lblDays.text = String(days)
+        lblDays.text = String(days) + "일"
         refreshDefaultDaysOfConfig(days)
     }
 }
@@ -94,20 +94,29 @@ extension SettingTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // TODO: - 상품 표시 부분 바뀐 내용 적용하기 ->
+        // 구입 완료시 변경 내용 반영되게
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        if indexPath.section == SECTION_IAP,
-           let firstLabel = cell.contentView.subviews[0] as? UILabel,
-           let iapProducts, indexPath.row < iapProducts.count {
+        
+        if let iapProducts, indexPath.section == SECTION_IAP,
+           indexPath.row < iapProducts.count {
             let currentProduct = iapProducts[indexPath.row]
             let isPurchased = InAppProducts.helper.isProductPurchased(currentProduct.productIdentifier)
-            firstLabel.text = isPurchased ? "[구입 완료] " : ""
-            firstLabel.text! += iapProducts[indexPath.row].localizedTitle
             
-            if let localizedPrice = iapProducts[indexPath.row].localizedPrice {
-                firstLabel.text! += " (\(localizedPrice))"
+            if let firstLabel = cell.contentView.subviews[0] as? UILabel {
+                firstLabel.text = iapProducts[indexPath.row].localizedTitle
+                
+                if let localizedPrice = iapProducts[indexPath.row].localizedPrice {
+                    firstLabel.text! += " (\(localizedPrice))"
+                }
+                
+                firstLabel.textColor = isPurchased ? .lightGray : nil
             }
             
-            firstLabel.textColor = isPurchased ? .lightGray : nil
+            if let secondLabel = cell.contentView.subviews[1] as? UILabel {
+                secondLabel.text = isPurchased ? "[구입 완료]" : "[미구입]"
+                secondLabel.textColor = isPurchased ? .systemGreen : .darkGray
+            }
         }
         
         return cell
@@ -126,7 +135,7 @@ extension SettingTableViewController {
             refreshDefaultDaysOfConfig(30)
         }
         
-        lblDays.text = String(currentDays)
+        lblDays.text = String(currentDays) + "일"
     }
     
     private func refreshDefaultDaysOfConfig(_ day: Int) {
@@ -142,7 +151,7 @@ extension SettingTableViewController: MFMailComposeViewControllerDelegate {
         }
         
         let emailTitle = "디퓨저 스틱 피드백"
-        let messageBody = 
+        let messageBody =
         """
         '디퓨저 스틱'에 대한 문의사항 또는 피드백이 있으신가요?
         
@@ -162,24 +171,24 @@ extension SettingTableViewController: MFMailComposeViewControllerDelegate {
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-            switch result {
-            case .cancelled:
-                print("Mail cancelled")
-            case .saved:
-                print("Mail saved")
-            case .sent:
-                print("Mail sent")
-            case .failed:
-                if let error {
-                    print("Mail sent failure: \(error.localizedDescription)")
-                } else {
-                    print("Mail sent failure: unknown error")
-                }
-            default:
-                break
+        switch result {
+        case .cancelled:
+            print("Mail cancelled")
+        case .saved:
+            print("Mail saved")
+        case .sent:
+            print("Mail sent")
+        case .failed:
+            if let error {
+                print("Mail sent failure: \(error.localizedDescription)")
+            } else {
+                print("Mail sent failure: unknown error")
             }
+        default:
+            break
+        }
         
-            self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }
 

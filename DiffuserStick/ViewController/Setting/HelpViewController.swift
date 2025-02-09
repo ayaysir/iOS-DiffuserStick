@@ -6,9 +6,10 @@
 //
 
 import UIKit
-import WebKit
 import AppTrackingTransparency
 import GoogleMobileAds
+
+@preconcurrency import WebKit
 
 class HelpViewController: UIViewController {
     private var bannerView: GADBannerView!
