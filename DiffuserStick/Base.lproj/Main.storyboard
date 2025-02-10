@@ -194,24 +194,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="178" height="233"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="diffuser" translatesAutoresizingMaskIntoConstraints="NO" id="Q5a-jV-9es">
+                                                    <rect key="frame" x="0.0" y="0.0" width="178" height="187"/>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fdsfs" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJf-z7-F4V">
-                                                    <rect key="frame" x="0.0" y="183" width="178" height="42"/>
+                                                    <rect key="frame" x="0.0" y="187" width="178" height="38"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="42" id="gC2-sS-MQ4"/>
+                                                        <constraint firstAttribute="height" constant="38" id="gC2-sS-MQ4"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="diffuser" translatesAutoresizingMaskIntoConstraints="NO" id="Q5a-jV-9es">
-                                                    <rect key="frame" x="0.0" y="-3" width="178" height="178"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="Q5a-jV-9es" firstAttribute="leading" secondItem="b50-Kr-DCo" secondAttribute="leading" id="8ui-7H-wDk"/>
+                                                <constraint firstItem="LJf-z7-F4V" firstAttribute="top" secondItem="Q5a-jV-9es" secondAttribute="bottom" id="BgE-hJ-mYV"/>
                                                 <constraint firstItem="LJf-z7-F4V" firstAttribute="leading" secondItem="b50-Kr-DCo" secondAttribute="leading" id="Cyy-eL-evJ"/>
                                                 <constraint firstItem="LJf-z7-F4V" firstAttribute="bottom" secondItem="b50-Kr-DCo" secondAttribute="bottomMargin" id="TdR-rE-qRw"/>
+                                                <constraint firstItem="Q5a-jV-9es" firstAttribute="top" secondItem="b50-Kr-DCo" secondAttribute="top" id="Vjk-F3-HaE"/>
                                                 <constraint firstAttribute="trailing" secondItem="LJf-z7-F4V" secondAttribute="trailing" id="WbC-l6-nW1"/>
+                                                <constraint firstAttribute="trailing" secondItem="Q5a-jV-9es" secondAttribute="trailing" id="eVS-1W-DHo"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="178" height="233"/>
@@ -994,7 +997,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="21M-zC-7Dn"/>
+        <segue reference="BAf-tz-0ve"/>
         <segue reference="I8W-jf-xGj"/>
     </inferredMetricsTieBreakers>
     <resources>

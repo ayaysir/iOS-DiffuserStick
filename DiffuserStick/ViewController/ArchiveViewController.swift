@@ -16,7 +16,6 @@ class SendToArchive {
 }
 
 class ArchiveViewController: UIViewController {
-    
     // AdMob
     private var bannerView: GADBannerView!
     
@@ -37,9 +36,10 @@ class ArchiveViewController: UIViewController {
         } catch {
             print(error)
         }
-      
+        
         naviBar.delegate = self
-      
+        // collectionViewDelegate, dataSource는 스토리보드 상에서 연결되어 있음
+        
         if AdManager.default.isReallyShowAd {
             if #available(iOS 14, *) {
                 ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
@@ -114,14 +114,22 @@ extension ArchiveViewController: UICollectionViewDataSource, UICollectionViewDel
         performSegue(withIdentifier: "archiveDetailView", sender: nil)
     }
     
+    
+}
+
+extension ArchiveViewController: UICollectionViewDelegateFlowLayout {
     // 사이즈 결정
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let layout = collectionViewLayout as? UICollectionViewFlowLayout
+        let itemSpacing: CGFloat = layout?.minimumInteritemSpacing ?? 10
+        // UICollectionViewFlowLayout의 sectionInset 값이 적용되지 않으면, 일부 디바이스에서 가로 공간 계산이 틀어질 수 있음.
+        let sectionInset = layout?.sectionInset ?? .zero
         
-        let itemSpacing: CGFloat = 10
-        let textAreaHeight: CGFloat = 65
+        let totalSpacing = itemSpacing + sectionInset.left + sectionInset.right
+        let width = (collectionView.bounds.width - totalSpacing) / 2
+        let textAreaHeight: CGFloat = 50
+        let height = width + textAreaHeight
         
-        let width: CGFloat = (collectionView.bounds.width - itemSpacing) / 2
-        let height: CGFloat = width * 10/7 + textAreaHeight
         return CGSize(width: width, height: height)
     }
 }
@@ -130,19 +138,19 @@ class ArchiveCell: UICollectionViewCell {
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     
-        func update(info: DiffuserVO) {
-            imgView.image = getImage(fileNameWithExt: info.photoName)
-            nameLabel.text = info.title
-            
-            // 사이즈가 텍스트에 맞게 조절.
-            
-            // 텍스트에 맞게 조절된 사이즈를 가져와 height만 fit하게 값을 조절.
-            let newSize = nameLabel.sizeThatFits( CGSize(width: nameLabel.frame.width, height: CGFloat.greatestFiniteMagnitude))
-            nameLabel.frame.size.height = newSize.height
-            
-            imgView.layer.cornerRadius = 12
-            imgView.clipsToBounds = true
-        }
+    func update(info: DiffuserVO) {
+        imgView.image = getImage(fileNameWithExt: info.photoName)
+        nameLabel.text = info.title
+        
+        // 사이즈가 텍스트에 맞게 조절.
+        
+        // 텍스트에 맞게 조절된 사이즈를 가져와 height만 fit하게 값을 조절.
+        let newSize = nameLabel.sizeThatFits( CGSize(width: nameLabel.frame.width, height: CGFloat.greatestFiniteMagnitude))
+        nameLabel.frame.size.height = newSize.height
+        
+        imgView.layer.cornerRadius = 15
+        imgView.clipsToBounds = true
+    }
 }
 
 extension ArchiveViewController: ArchiveDetailViewDelegate {
@@ -164,17 +172,18 @@ extension ArchiveViewController: UINavigationBarDelegate {
 
 // ============ 애드몹 셋업 ============
 extension ArchiveViewController: GADBannerViewDelegate {
-    // 본 클래스에 다음 선언 추가
-    // // AdMob
-    // private var bannerView: GADBannerView!
-    
-    // viewDidLoad()에 다음 추가
-    // setupBannerView()
+    /*
+     본 클래스에 다음 선언 추가:
+     // AdMob
+     private var bannerView: GADBannerView!
+     
+     viewDidLoad()에 다음 추가:
+     setupBannerView()
+     */
     
     private func setupBannerView() {
         let adSize = GADAdSizeFromCGSize(CGSize(width: self.view.frame.width, height: 50))
         bannerView = GADBannerView(adSize: adSize)
-//        bannerView.backgroundColor = UIColor(named: "notissuWhite1000s")!
         addBannerViewToView(bannerView)
         bannerView.adUnitID = Bundle.main.object(forInfoDictionaryKey: "GADArchive") as? String
         bannerView.rootViewController = self
