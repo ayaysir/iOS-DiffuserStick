@@ -196,21 +196,20 @@ extension MainActiveListViewController: UITableViewDelegate, UITableViewDataSour
         }
         
         let refreshAction = UITableViewRowAction(style: .normal, title: "교체") { [unowned self] _, _ in
-            let diffuserInfo = viewModel.diffuserInfoList[indexPath.row]
-            let oldDate = diffuserInfo.startDate
+            var diffuserInfo = viewModel.diffuserInfoList[indexPath.row]
             let newDate = Date()
-            viewModel.diffuserInfoList[indexPath.row].startDate = newDate
+            diffuserInfo.startDate = newDate
             
             let updateResult = updateCoreData(id: diffuserInfo.id, diffuserVO: diffuserInfo)
-          
+            
             if updateResult {
-                simpleAlert(self, message: "디퓨저 교체 날짜를 오늘로 새로고침하였습니다.", title: "교체되었습니다.", handler: nil)
+                viewModel.diffuserInfoList[indexPath.row] = diffuserInfo
+                simpleAlert(self, message: "디퓨저 교체 날짜를 오늘로 새로고침하였습니다.", title: "교체되었습니다.") { [unowned self] _ in
+                    tblList.reloadData()
+                }
             } else {
-                viewModel.diffuserInfoList[indexPath.row].startDate = oldDate
                 simpleAlert(self, message: "오류로 인해 날짜가 교체되지 않았습니다.")
             }
-
-            tblList.reloadData()
         }
         refreshAction.backgroundColor = .systemGreen
         
@@ -349,12 +348,14 @@ extension MainActiveListViewController: UINavigationBarDelegate {
 
 // ============ 애드몹 셋업 ============
 extension MainActiveListViewController: GADBannerViewDelegate {
-    // 본 클래스에 다음 선언 추가
-    // // AdMob
-    // private var bannerView: GADBannerView!
-    
-    // viewDidLoad()에 다음 추가
-    // setupBannerView()
+    /*
+     본 클래스에 다음 선언 추가:
+     // AdMob
+     private var bannerView: GADBannerView!
+     
+     viewDidLoad()에 다음 추가:
+     setupBannerView()
+     */
     
     private func setupBannerView() {
         let adSize = GADAdSizeFromCGSize(CGSize(width: self.view.frame.width, height: 50))

@@ -104,6 +104,7 @@ func updateCoreData(id: UUID, diffuserVO diffuser: DiffuserVO) -> Bool {
         } else {
             removePushNoti(id: diffuser.id)
         }
+      
         return true
     } catch let error as NSError {
         print("Could not update. \(error), \(error.userInfo)")
