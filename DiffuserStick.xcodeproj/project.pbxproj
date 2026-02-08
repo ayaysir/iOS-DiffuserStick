@@ -53,14 +53,14 @@
 		4456C9BA269D4E8400A29B77 /* DiffuserStick.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiffuserStick.xcdatamodel; sourceTree = "<group>"; };
 		4456C9BC269D4E8500A29B77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4456C9C1269D4E8500A29B77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4456C9C9269D534200A29B77 /* MainActiveListViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = MainActiveListViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
+		4456C9C9269D534200A29B77 /* MainActiveListViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = MainActiveListViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		4464DC1F2F38865900D65F61 /* DFFE.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DFFE.wav; sourceTree = "<group>"; };
 		447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuserVO.swift; sourceTree = "<group>"; };
 		448784AC2B8F8C970073B2DE /* TableCollectionViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCollectionViewUtil.swift; sourceTree = "<group>"; };
 		448784AE2B8F94D60073B2DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		448784AF2B8F94D60073B2DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		448784B12B905CE80073B2DE /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
-		448784B32B9060EA0073B2DE /* SettingTableViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
+		448784B32B9060EA0073B2DE /* SettingTableViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		448784B82B9066690073B2DE /* DeviceUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceUtil.swift; sourceTree = "<group>"; };
 		448784BA2B9067310073B2DE /* AppMetadataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetadataUtil.swift; sourceTree = "<group>"; };
 		448784BC2B90907B0073B2DE /* AppExhibitionTableViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = AppExhibitionTableViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
@@ -73,7 +73,7 @@
 		44C3B8722B90E7B300B71A95 /* CleanupDocumentDirectoryUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanupDocumentDirectoryUtil.swift; sourceTree = "<group>"; };
 		44E868FC26A80A3A008B2D62 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		44E8690126A9423F008B2D62 /* help.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
-		44E8690326A948C2008B2D62 /* ArchiveViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
+		44E8690326A948C2008B2D62 /* ArchiveViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		44FDCFBD269E96DA00A7A7FD /* DiffuserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuserDetailViewController.swift; sourceTree = "<group>"; };
 		44FDCFBF269EA7F300A7A7FD /* testprops.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = testprops.plist; sourceTree = "<group>"; };
 		44FDCFC1269EA8B300A7A7FD /* ParsePlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsePlist.swift; sourceTree = "<group>"; };
