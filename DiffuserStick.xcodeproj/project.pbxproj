@@ -14,6 +14,7 @@
 		4456C9BB269D4E8400A29B77 /* DiffuserStick.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9B9269D4E8400A29B77 /* DiffuserStick.xcdatamodeld */; };
 		4456C9BD269D4E8500A29B77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4456C9BC269D4E8500A29B77 /* Assets.xcassets */; };
 		4456C9CA269D534200A29B77 /* MainActiveListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9C9269D534200A29B77 /* MainActiveListViewController.swift */; };
+		4464DC202F38865900D65F61 /* DFFE.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4464DC1F2F38865900D65F61 /* DFFE.wav */; };
 		447A45D8269DC0A0009C4B47 /* DiffuserVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */; };
 		448784A62B8F6EB70073B2DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448784A82B8F6EB70073B2DE /* Main.storyboard */; };
 		448784A92B8F6EC30073B2DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448784AB2B8F6EC30073B2DE /* LaunchScreen.storyboard */; };
@@ -53,6 +54,7 @@
 		4456C9BC269D4E8500A29B77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4456C9C1269D4E8500A29B77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4456C9C9269D534200A29B77 /* MainActiveListViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = MainActiveListViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
+		4464DC1F2F38865900D65F61 /* DFFE.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DFFE.wav; sourceTree = "<group>"; };
 		447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuserVO.swift; sourceTree = "<group>"; };
 		448784AC2B8F8C970073B2DE /* TableCollectionViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCollectionViewUtil.swift; sourceTree = "<group>"; };
 		448784AE2B8F94D60073B2DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		4456C9AF269D4E8400A29B77 /* DiffuserStick */ = {
 			isa = PBXGroup;
 			children = (
+				4464DC1C2F387FDA00D65F61 /* Resource */,
 				44BB07742B8F664B00F57C4B /* IAP */,
 				44E8690026A94222008B2D62 /* website */,
 				44FDCFCA269FEC8100A7A7FD /* Util */,
@@ -123,6 +126,14 @@
 				44E868FC26A80A3A008B2D62 /* fontawesome-webfont.ttf */,
 			);
 			path = DiffuserStick;
+			sourceTree = "<group>";
+		};
+		4464DC1C2F387FDA00D65F61 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				4464DC1F2F38865900D65F61 /* DFFE.wav */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		448784B02B905BA30073B2DE /* Setting */ = {
@@ -268,6 +279,7 @@
 				44FDCFC0269EA7F300A7A7FD /* testprops.plist in Resources */,
 				448784A62B8F6EB70073B2DE /* Main.storyboard in Resources */,
 				44E868FD26A80A59008B2D62 /* fontawesome-webfont.ttf in Resources */,
+				4464DC202F38865900D65F61 /* DFFE.wav in Resources */,
 				448784A92B8F6EC30073B2DE /* LaunchScreen.storyboard in Resources */,
 				4456C9BD269D4E8500A29B77 /* Assets.xcassets in Resources */,
 				448784BF2B909ACE0073B2DE /* AppExhibitionAssets.xcassets in Resources */,
@@ -463,7 +475,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6S2SA26VAN;
 				INFOPLIST_FILE = DiffuserStick/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
@@ -472,7 +484,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yoonbumtae.DiffuserStick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -488,7 +500,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6S2SA26VAN;
 				INFOPLIST_FILE = DiffuserStick/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
@@ -497,7 +509,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yoonbumtae.DiffuserStick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
