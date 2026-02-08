@@ -8,5 +8,5 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
-    override func viewDidLoad() {}
+  override func viewDidLoad() {}
 }
