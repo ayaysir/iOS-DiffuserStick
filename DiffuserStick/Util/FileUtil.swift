@@ -23,7 +23,6 @@ func getDocumentsDirectory() -> URL {
 }
 
 func saveImage(image: UIImage, fileNameWithoutExt: String) -> String? {
-  
   guard let data = image.jpegData(compressionQuality: 0.95) else {
     return nil
   }
@@ -35,35 +34,51 @@ func saveImage(image: UIImage, fileNameWithoutExt: String) -> String? {
   let fileNameWithExt: String = fileNameWithoutExt + "." + data.format
   
   let imageUrl = directory.appendingPathComponent(fileNameWithExt)
-  print(imageUrl.absoluteString.count)
+
   do {
     try data.write(to: imageUrl)
-    print("write: ", imageUrl, data)
+    print(#function, "write: ", imageUrl, data)
     return data.format
   } catch {
-    print(error.localizedDescription)
+    print(#function, error.localizedDescription)
     return nil
   }
 }
 
-func saveImageToTempDir(image: UIImage, fileName: String) -> URL? {
+func saveImageToAppSupportDir(image: UIImage, fileName: String) -> URL? {
   guard let data = image.jpegData(compressionQuality: 1) ?? image.pngData() else {
     return nil
   }
-  
-  guard let directory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+
+  guard let baseDirectory = FileManager.default
+    .urls(for: .applicationSupportDirectory, in: .userDomainMask)
+    .first else {
     return nil
   }
-  
-  let fileNameWithExt: String = "thumbnail_" + fileName
-  
-  let imageUrl = directory.appendingPathComponent(fileNameWithExt)
-  print(imageUrl.absoluteString)
+
+  let thumbsDirectory = baseDirectory.appendingPathComponent("thumbs", isDirectory: true)
+
+  if !FileManager.default.fileExists(atPath: thumbsDirectory.path) {
+    do {
+      try FileManager.default.createDirectory(
+        at: thumbsDirectory,
+        withIntermediateDirectories: true
+      )
+    } catch {
+      print(#function, "createDirectory Error:", error.localizedDescription)
+      return nil
+    }
+  }
+
+  let fileNameWithExt = "thumbnail_" + fileName
+  let imageUrl = thumbsDirectory.appendingPathComponent(fileNameWithExt)
+
   do {
     try data.write(to: imageUrl)
+    print(#function, "write:", imageUrl.path)
     return imageUrl
   } catch {
-    print(error.localizedDescription)
+    print(#function, "Error:", error.localizedDescription)
     return nil
   }
 }
@@ -73,21 +88,22 @@ func getImageUrl(fileNameWithExt: String) -> URL? {
     return nil
   }
   
-  return URL(fileURLWithPath: directory.absoluteString).appendingPathComponent(fileNameWithExt)
+  return directory.appendingPathComponent(fileNameWithExt)
 }
 
 func getImage(fileNameWithExt: String) -> UIImage? {
   let imageUrl = getImageUrl(fileNameWithExt: fileNameWithExt)!
   let fileManager = FileManager.default
+
   if fileManager.fileExists(atPath: imageUrl.path) {
     return UIImage(contentsOfFile: imageUrl.path)
   } else {
-    print("image not exist")
+    print("image not exist:", imageUrl.path)
     return #imageLiteral(resourceName: "diffuser")
   }
 }
 
-func makeImageThumbnail(image: UIImage) -> UIImage? {
+func makeImageThumbnail(image: UIImage, maxPixelSize: CGFloat = 100) -> UIImage? {
   guard let imageData = image.jpegData(compressionQuality: 1) ?? image.pngData() else {
     return nil
   }
@@ -95,7 +111,8 @@ func makeImageThumbnail(image: UIImage) -> UIImage? {
   let options = [
     kCGImageSourceCreateThumbnailWithTransform: true,
     kCGImageSourceCreateThumbnailFromImageAlways: true,
-    kCGImageSourceThumbnailMaxPixelSize: 100] as CFDictionary // Specify your desired size at kCGImageSourceThumbnailMaxPixelSize. I've specified 100 as per your question
+    kCGImageSourceThumbnailMaxPixelSize: maxPixelSize
+  ] as CFDictionary // Specify your desired size at kCGImageSourceThumbnailMaxPixelSize. I've specified 100 as per your question
   
   var thumbnail: UIImage?
   imageData.withUnsafeBytes { ptr in

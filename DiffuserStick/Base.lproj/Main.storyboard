@@ -102,6 +102,7 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="QEj-m5-otr" secondAttribute="trailing" constant="-3" id="z1N-O4-rnN"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="lblExpirationDate" destination="DCY-yY-Ikm" id="BmL-yA-CAy"/>
                                             <outlet property="lblRefreshTest" destination="yId-61-a6h" id="QjQ-Ow-ERY"/>

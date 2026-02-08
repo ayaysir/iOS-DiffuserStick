@@ -110,13 +110,19 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
   func userNotificationCenter(_ center: UNUserNotificationCenter,
                               didReceive response: UNNotificationResponse,
                               withCompletionHandler completionHandler: @escaping () -> Void) {
-    
     // deep link처리 시 (푸시 클릭 후 작업) 아래 url값 가지고 처리
-    let url = response.notification.request.content.userInfo
-    print("Push: ", url)
+    let userInfo = response.notification.request.content.userInfo
+    print("Push: ", userInfo)
+    
+    if let diffuserIdString = userInfo["diffuserId"] as? String,
+       let diffuserId = UUID(uuidString: diffuserIdString) {
+      NotificationCenter.default.post(
+        name: .didReceiveDiffuserPush,
+        object: nil,
+        userInfo: ["diffuserId": diffuserId]
+      )
+    }
     
     completionHandler()
   }
-  
-  
 }

@@ -18,11 +18,17 @@ func addPushNoti(diffuser: DiffuserVO) {
   let notiContent = getNotiContent(of: diffuser, userNotiCenter: userNotiCenter)
   
   // 이미지 집어넣기
+  // 알람이 나타나면 이미지가 삭제됨 -> 원본 넣으면 안됨
+  guard let image = getImage(fileNameWithExt: diffuser.photoName),
+        let thumb = makeImageThumbnail(image: image, maxPixelSize: 300),
+        let imageUrl = saveImageToAppSupportDir(image: thumb, fileName: diffuser.photoName) else {
+    return
+  }
+  
   do {
-    let imageThumbnail = makeImageThumbnail(image: getImage(fileNameWithExt: diffuser.photoName)!)!
-    let imageUrl = saveImageToTempDir(image: imageThumbnail, fileName: diffuser.photoName)
-    let attach = try UNNotificationAttachment(identifier: "", url: imageUrl!, options: nil)
+    let attach = try UNNotificationAttachment(identifier: "", url: imageUrl, options: nil)
     notiContent.attachments.append(attach)
+    print("Attached: \(attach)")
   } catch {
     print("Can't attach image:", error)
   }
@@ -78,19 +84,19 @@ private func getNotiContent(
   return notiContent
 }
 
-private func getTestModeTrigger() -> UNCalendarNotificationTrigger {
+private func getTestModeTrigger() -> UNNotificationTrigger {
   // 알림이 trigger되는 시간 설정 - Test
-  //        trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10.0, repeats: false)
+  return UNTimeIntervalNotificationTrigger(timeInterval: 10.0, repeats: false)
   
-  let addedDate = Date().addingTimeInterval(10)
-  var alarmDateComponents = Calendar.current.dateComponents([.second, .month, .day, .hour, .minute, .year], from: addedDate)
-  alarmDateComponents.hour = 19
-  alarmDateComponents.minute = 51
-  alarmDateComponents.second = 30
-  print("NSNoti reserved date: (test) >>>", alarmDateComponents as Any)
+  // let addedDate = Date().addingTimeInterval(10)
+  // var alarmDateComponents = Calendar.current.dateComponents([.second, .month, .day, .hour, .minute, .year], from: addedDate)
+  // alarmDateComponents.hour = 19
+  // alarmDateComponents.minute = 51
+  // alarmDateComponents.second = 30
+  // print("NSNoti reserved date: (test) >>>", alarmDateComponents as Any)
   
   // Create the trigger as a repeating event.
-  return UNCalendarNotificationTrigger(dateMatching: alarmDateComponents, repeats: false)
+  // return UNCalendarNotificationTrigger(dateMatching: alarmDateComponents, repeats: false)
 }
 
 /// 테스트 전용 알람

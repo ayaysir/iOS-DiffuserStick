@@ -63,6 +63,14 @@ class MainActiveListViewController: UIViewController, AddDelegate {
     NotificationCenter.default.addObserver(self, selector: #selector(appClosed), name: UIApplication.willResignActiveNotification, object: nil)
     
     NotificationCenter.default.addObserver(self, selector: #selector(appOpened), name: UIApplication.didBecomeActiveNotification, object: nil)
+    
+    // Receive local noti
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(handleDiffuserPush),
+      name: .didReceiveDiffuserPush,
+      object: nil
+    )
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -83,6 +91,21 @@ class MainActiveListViewController: UIViewController, AddDelegate {
   @objc func appOpened() {
     print("===== app opened =====")
     tblList.reloadData()
+  }
+  
+  @objc func handleDiffuserPush(_ noti: Notification) {
+    guard let diffuserId = noti.userInfo?["diffuserId"] as? UUID else {
+      print("Error: no diffuserId in notification")
+      return
+    }
+    
+    print("MainActiveVC received diffuserId: \(diffuserId)")
+    guard let index = viewModel.getDiffuserInfoIndex(of: diffuserId) else {
+      print("Error: no such diffuserId in viewModel")
+      return
+    }
+    
+    showDetailView(at: index)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -148,6 +171,13 @@ class MainActiveListViewController: UIViewController, AddDelegate {
       }
     }
   }
+  
+  /// 디퓨저 상세 페이지로 이동
+  func showDetailView(at indexPathRow: Int) {
+    currentSelectedDiffuser = viewModel.getDiffuserInfo(at: indexPathRow)
+    currentArrayIndex = indexPathRow
+    performSegue(withIdentifier: "detailView", sender: nil)
+  }
 }
 
 extension MainActiveListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -179,9 +209,10 @@ extension MainActiveListViewController: UITableViewDelegate, UITableViewDataSour
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    currentSelectedDiffuser = viewModel.getDiffuserInfo(at: indexPath.row)
-    currentArrayIndex = indexPath.row
-    performSegue(withIdentifier: "detailView", sender: nil)
+    // currentSelectedDiffuser = viewModel.getDiffuserInfo(at: indexPath.row)
+    // currentArrayIndex = indexPath.row
+    // performSegue(withIdentifier: "detailView", sender: nil)
+    showDetailView(at: indexPath.row)
   }
   
   func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -244,7 +275,6 @@ class DiffuserListCell: UITableViewCell {
       self.contentView.backgroundColor = #colorLiteral(red: 0.9926608205, green: 0.8840166926, blue: 0.8681346178, alpha: 1)
     }
     
-    
     // 마지막 교체일 또는 신규 등록일에 따라 레이블 구분 (교체, 설치? 등록?)
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "YYYY년 MM월 dd일 교체됨"
@@ -276,6 +306,10 @@ class DiffuserViewModel {
   
   func getDiffuserInfo(at index: Int) -> DiffuserVO {
     return diffuserInfoList[index]
+  }
+  
+  func getDiffuserInfoIndex(of id: UUID) -> Int? {
+    return diffuserInfoList.firstIndex(where: { $0.id == id })
   }
   
   func addDiffuserInfo(diffuser: DiffuserVO) {

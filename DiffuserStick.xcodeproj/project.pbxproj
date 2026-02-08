@@ -15,6 +15,7 @@
 		4456C9BD269D4E8500A29B77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4456C9BC269D4E8500A29B77 /* Assets.xcassets */; };
 		4456C9CA269D534200A29B77 /* MainActiveListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C9C9269D534200A29B77 /* MainActiveListViewController.swift */; };
 		4464DC202F38865900D65F61 /* DFFE.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4464DC1F2F38865900D65F61 /* DFFE.wav */; };
+		4464DC942F38C5D900D65F61 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4464DC932F38C5D100D65F61 /* NotificationNames.swift */; };
 		447A45D8269DC0A0009C4B47 /* DiffuserVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */; };
 		448784A62B8F6EB70073B2DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448784A82B8F6EB70073B2DE /* Main.storyboard */; };
 		448784A92B8F6EC30073B2DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448784AB2B8F6EC30073B2DE /* LaunchScreen.storyboard */; };
@@ -55,6 +56,7 @@
 		4456C9C1269D4E8500A29B77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4456C9C9269D534200A29B77 /* MainActiveListViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = MainActiveListViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		4464DC1F2F38865900D65F61 /* DFFE.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DFFE.wav; sourceTree = "<group>"; };
+		4464DC932F38C5D100D65F61 /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuserVO.swift; sourceTree = "<group>"; };
 		448784AC2B8F8C970073B2DE /* TableCollectionViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCollectionViewUtil.swift; sourceTree = "<group>"; };
 		448784AE2B8F94D60073B2DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 		44FDCFCA269FEC8100A7A7FD /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				4464DC932F38C5D100D65F61 /* NotificationNames.swift */,
 				44FDCFCB269FEC9700A7A7FD /* AlertUtil.swift */,
 				44FDCFCD269FEF7F00A7A7FD /* FileUtil.swift */,
 				44FDCFCF26A070BB00A7A7FD /* CalendarExtension.swift */,
@@ -319,6 +322,7 @@
 				444EEE0B26B167EF00454428 /* LocalNotification.swift in Sources */,
 				44C3B8712B90E5F500B71A95 /* FirstRunUtil.swift in Sources */,
 				448784B22B905CE80073B2DE /* HelpViewController.swift in Sources */,
+				4464DC942F38C5D900D65F61 /* NotificationNames.swift in Sources */,
 				44C3B86D2B90C6AF00B71A95 /* LoadingIndicatorUtil.swift in Sources */,
 				448784B92B9066690073B2DE /* DeviceUtil.swift in Sources */,
 			);
