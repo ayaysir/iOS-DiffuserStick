@@ -596,11 +596,8 @@
                                                 </constraints>
                                             </imageView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nkS-cr-38U">
-                                                <rect key="frame" x="0.0" y="389" width="374" height="143"/>
+                                                <rect key="frame" x="0.0" y="389" width="374" height="148"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="143" id="yKG-Y2-cT1"/>
-                                                </constraints>
                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -691,6 +688,9 @@
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="svE-x9-veP">
                                                 <rect key="frame" x="-20" y="548" width="414" height="55"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="LMl-nb-UTf"/>
+                                                </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NuO-Mm-Peh">
                                                 <rect key="frame" x="345" y="108" width="29" height="33"/>
@@ -713,7 +713,6 @@
                                             <constraint firstItem="3Xa-3i-3wg" firstAttribute="top" secondItem="bOB-Mt-TF5" secondAttribute="bottom" constant="23.5" id="Kty-m7-jIz"/>
                                             <constraint firstAttribute="trailing" secondItem="Amx-N3-Wyb" secondAttribute="trailing" id="Pri-aQ-dZg"/>
                                             <constraint firstAttribute="bottom" secondItem="3Xa-3i-3wg" secondAttribute="bottom" constant="34" id="STS-ZV-wVQ"/>
-                                            <constraint firstItem="svE-x9-veP" firstAttribute="top" secondItem="nkS-cr-38U" secondAttribute="bottom" constant="16" id="U3i-nq-0Rc"/>
                                             <constraint firstAttribute="height" constant="788" id="UeN-Jl-nMy"/>
                                             <constraint firstItem="nkS-cr-38U" firstAttribute="top" secondItem="2L8-zv-0gw" secondAttribute="bottom" constant="12" id="XYk-wy-27b"/>
                                             <constraint firstItem="bOB-Mt-TF5" firstAttribute="leading" secondItem="TCi-DV-XpN" secondAttribute="leading" id="ad2-Pt-e2K"/>
@@ -722,6 +721,7 @@
                                             <constraint firstAttribute="trailing" secondItem="3Xa-3i-3wg" secondAttribute="trailing" constant="8" id="iUO-SY-ItO"/>
                                             <constraint firstItem="2L8-zv-0gw" firstAttribute="leading" secondItem="TCi-DV-XpN" secondAttribute="leading" id="jxk-Sh-3sv"/>
                                             <constraint firstAttribute="trailing" secondItem="2L8-zv-0gw" secondAttribute="trailing" id="p5U-nT-zP6"/>
+                                            <constraint firstItem="svE-x9-veP" firstAttribute="top" secondItem="nkS-cr-38U" secondAttribute="bottom" constant="11" id="qnh-9r-bcP"/>
                                             <constraint firstItem="2L8-zv-0gw" firstAttribute="top" secondItem="VzY-fe-BSA" secondAttribute="bottom" constant="8" symbolic="YES" id="ut6-fe-i8k"/>
                                             <constraint firstItem="VzY-fe-BSA" firstAttribute="leading" secondItem="TCi-DV-XpN" secondAttribute="leading" id="w1S-fG-qfG"/>
                                             <constraint firstItem="nkS-cr-38U" firstAttribute="leading" secondItem="TCi-DV-XpN" secondAttribute="leading" id="yOs-r5-6IL"/>
@@ -999,7 +999,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="21M-zC-7Dn"/>
-        <segue reference="I8W-jf-xGj"/>
+        <segue reference="Dsr-pZ-DL4"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="aromatic" width="25" height="25"/>
