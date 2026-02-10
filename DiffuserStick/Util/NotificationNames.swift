@@ -9,4 +9,5 @@ import Foundation
 
 extension Notification.Name {
   static let didReceiveDiffuserPush = Notification.Name("didReceiveDiffuserPush")
+  static let didRewriteDiffuserPush = Notification.Name("didRewriteDiffuserPush")
 }

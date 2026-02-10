@@ -19,9 +19,14 @@ let TEXT_VIEW_PLACEHOLDER_MSG = "메모를 입력해주세요."
 
 class DiffuserAddViewController: UIViewController {
   
+  enum Mode {
+    case add, modify, rewrite
+  }
+  
   var delegate: AddDelegate?
   var modifyDelegate: ModifyDelegate?
-  var mode: String = "add"
+  
+  var mode: Mode = .add
   var selectedDiffuser: DiffuserVO?
   
   var isKeyboardAppeared: Bool = false
@@ -74,8 +79,9 @@ class DiffuserAddViewController: UIViewController {
     btnSaveOutlet!.layer.cornerRadius = 0.5 * btnSaveOutlet!.bounds.size.width
     btnSaveOutlet!.clipsToBounds = true
     
-    // 기본 일수
-    if mode == "add" {
+    switch mode {
+    case .add:
+      // 기본 일수
       if userDays < 15 {
         userDays = 30
       }
@@ -83,28 +89,30 @@ class DiffuserAddViewController: UIViewController {
       stepperOutlet.value = Double(userDays)
       textComments.text = TEXT_VIEW_PLACEHOLDER_MSG
       textComments.textColor = UIColor.lightGray
-    } else if mode == "modify" {
-      // modify 모드일 경우 컴포넌트에 기존 값을 표시해야 함
-      userDays = selectedDiffuser!.usersDays
-      lblDays.text = String(selectedDiffuser!.usersDays)
+    case .modify, .rewrite:
+      // modify/rewrite 모드일 경우 컴포넌트에 기존 값을 표시해야 함
+      guard let diffuser = selectedDiffuser else {
+        return
+      }
+      
+      userDays = diffuser.usersDays
+      lblDays.text = String(diffuser.usersDays)
       print("userDays: \(userDays)")
       
-      stepperOutlet.value = Double(selectedDiffuser!.usersDays)
-      inputTitle.text = selectedDiffuser?.title
-      datepickerStartDate.date = selectedDiffuser!.startDate
-      imgPhoto.image = getImage(fileNameWithExt: selectedDiffuser!.photoName)
+      stepperOutlet.value = Double(diffuser.usersDays)
+      inputTitle.text = diffuser.title
+      datepickerStartDate.date = diffuser.startDate
+      imgPhoto.image = getImage(fileNameWithExt: diffuser.photoName)
+      
       if textComments.text == "" {
         textComments.text = TEXT_VIEW_PLACEHOLDER_MSG
         textComments.textColor = UIColor.lightGray
       } else {
-        textComments.text = selectedDiffuser?.comments
+        textComments.text = diffuser.comments
       }
-      
     }
     
-    // 이미지 터치 추가
-    
-    
+    // 이미지 터치 추가 (??)
     print("mode: \(mode)")
   }
   
@@ -113,38 +121,64 @@ class DiffuserAddViewController: UIViewController {
   }
   
   @IBAction func btnSave(_ sender: Any) {
-    // 유효성 검시
-    if inputTitle.text == "" {
+    // 유효성 검사
+    guard let inputTitleText = inputTitle.text, !inputTitleText.isEmpty else {
       simpleAlert(self, message: "제목은 1자 이상 입력해야 합니다.")
       return
     }
     
-    if mode == "add" {
-      let uuid = UUID()
-      let photoNameWithoutExt = inputTitle.text!.convertToValidFileName() + "___" + uuid.uuidString
-      guard let savePhotoResult = saveImage(image: imgPhoto.image!, fileNameWithoutExt: photoNameWithoutExt) else { return }
+    guard let image = imgPhoto.image else {
+      simpleAlert(self, message: "이미지가 첨부되지 않았습니다.")
+      return
+    }
+    
+    switch mode {
+    case .add, .rewrite:
+      let uuid = UUID() // 새로운 아이디 부여
+      let photoNameWithoutExt = inputTitleText.convertToValidFileName() + "___" + uuid.uuidString
+      
+      guard let savePhotoResult = saveImage(image: image, fileNameWithoutExt: photoNameWithoutExt) else {
+        simpleAlert(self, message: "이미지 저장 중 오류가 발생하였습니다.")
+        return
+      }
       
       let comments = (TEXT_VIEW_PLACEHOLDER_MSG != textComments.text ? textComments.text : "")!
-      let diffuser = DiffuserVO(title: inputTitle.text!, startDate: datepickerStartDate.date, comments: comments, usersDays: userDays, photoName: photoNameWithoutExt + "." + savePhotoResult, id: uuid, createDate: Date(), isFinished: false)
+      let diffuser = DiffuserVO(
+        title: inputTitleText,
+        startDate: datepickerStartDate.date,
+        comments: comments,
+        usersDays: userDays,
+        photoName: photoNameWithoutExt + "." + savePhotoResult,
+        id: uuid,
+        createDate: Date(),
+        isFinished: false
+      )
       
       let saveCDResult = saveCoreData(diffuserVO: diffuser)
       
-      if delegate != nil {
-        delegate?.sendDiffuser(self, diffuser: diffuser)
+      if mode == .add, let addDelegate = delegate {
+        addDelegate.sendDiffuser(self, diffuser: diffuser)
+      } else if mode == .rewrite {
+        NotificationCenter.default.post(name: .didRewriteDiffuserPush, object: diffuser)
       }
-      if saveCDResult{
+      
+      if saveCDResult {
         simpleAlert(self, message: "저장되었습니다.", title: "저장") { action in
           self.dismiss(animated: true, completion: nil)
         }
       } else {
         simpleAlert(self, message: "저장이 되지 않았습니다. 다시 시도해주세요.")
       }
-    } else if mode == "modify" {
-      let uuid = selectedDiffuser!.id
-      selectedDiffuser?.title = inputTitle.text!
-      selectedDiffuser?.startDate = datepickerStartDate.date
-      selectedDiffuser?.comments = textComments.text
-      selectedDiffuser?.usersDays = userDays
+    case .modify:
+      guard var diffuser = selectedDiffuser else {
+        return
+      }
+      
+      let uuid = diffuser.id
+      diffuser.title = inputTitle.text!
+      diffuser.startDate = datepickerStartDate.date
+      diffuser.comments = textComments.text
+      diffuser.usersDays = userDays
       
       // 유효성 검사: 일수
       if userDays < 15 {
@@ -152,31 +186,34 @@ class DiffuserAddViewController: UIViewController {
         return
       }
       
-      let oldPhotoNameWithExt = selectedDiffuser?.photoName
-      let modifiedPhotoNameWithoutExt = inputTitle.text!.convertToValidFileName() + "___" + uuid.uuidString
-      let savePhotoResult = saveImage(image: imgPhoto.image!, fileNameWithoutExt: modifiedPhotoNameWithoutExt)
-      selectedDiffuser?.photoName = modifiedPhotoNameWithoutExt + "." + savePhotoResult!
+      let oldPhotoNameWithExt = diffuser.photoName
+      let modifiedPhotoNameWithoutExt = inputTitleText.convertToValidFileName() + "___" + uuid.uuidString
       
-      if let oldPhotoNameWithExt, oldPhotoNameWithExt != selectedDiffuser?.photoName {
+      guard let savePhotoResult = saveImage(image: image, fileNameWithoutExt: modifiedPhotoNameWithoutExt) else {
+        simpleAlert(self, message: "이미지 저장 중 오류가 발생하였습니다.")
+        return
+      }
+      diffuser.photoName = modifiedPhotoNameWithoutExt + "." + savePhotoResult
+      
+      
+      if oldPhotoNameWithExt != diffuser.photoName {
         removeImageFileFromDocument(fileNameIncludesExtension: oldPhotoNameWithExt)
       }
       
-      if modifyDelegate != nil {
-        modifyDelegate?.sendDiffuser(self, diffuser: selectedDiffuser!)
+      if let modifyDelegate = modifyDelegate {
+        modifyDelegate.sendDiffuser(self, diffuser: diffuser)
       }
       
-      let updateCDResult = updateCoreData(id: uuid, diffuserVO: selectedDiffuser!)
+      let updateCDResult = updateCoreData(id: uuid, diffuserVO: diffuser)
       
-      if (savePhotoResult != nil) && updateCDResult {
+      if updateCDResult {
         simpleAlert(self, message: "업데이트 되었습니다.", title: "업데이트") { action in
           self.dismiss(animated: true, completion: nil)
         }
       } else {
         simpleAlert(self, message: "업데이트가 되지 않았습니다. 다시 시도해주세요.")
       }
-      
     }
-    
   }
   
   private func openSetting(action: UIAlertAction) -> Void {
@@ -331,9 +368,6 @@ class DiffuserAddViewController: UIViewController {
   @objc func tapDone(sender: Any) {
     self.view.endEditing(true)
   }
-  
-  
-  
 }
 
 // 사진: 딜리게이트 구현한 뷰 컨트롤러 생성

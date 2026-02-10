@@ -23,6 +23,8 @@ class DiffuserDetailViewController: UIViewController {
   @IBOutlet weak var btnReplaceOutlet: UIButton!
   @IBOutlet weak var btnArchiveOutlet: UIButton!
   @IBOutlet weak var btnEditOutlet: UIButton!
+  @IBOutlet weak var btnShare: UIButton!
+  @IBOutlet weak var btnTrayUpToList: UIButton!
   
   @IBOutlet weak var innerAdView: UIView!
   var bannerView: GADBannerView!
@@ -53,6 +55,9 @@ class DiffuserDetailViewController: UIViewController {
       button?.clipsToBounds = true
     }
     
+    btnShare.layer.cornerRadius = 0.5 * btnShare.bounds.size.width
+    btnTrayUpToList.layer.cornerRadius = 0.5 * btnTrayUpToList.bounds.size.width
+    
     // 이미지 탭 이벤트 추가
     imgPhoto.isUserInteractionEnabled = true
 
@@ -60,13 +65,16 @@ class DiffuserDetailViewController: UIViewController {
     imgPhoto.addGestureRecognizer(tapGesture)
         
     // 보관된 글인 경우 안보이게 할 요소들
-    if selectedDiffuser!.isFinished {
+    if selectedDiffuser?.isFinished == true {
       btnReplaceOutlet.isHidden = true
       btnArchiveOutlet.isHidden = true
       btnEditOutlet.isHidden = true
       lblFutureChangeDate.isHidden = true
       lblRemainDays.isHidden = true
       lblLastChangedDate.isHidden = true
+      // btnTrayUpToList.isHidden = false
+    } else {
+      btnTrayUpToList.isHidden = true
     }
     
     if AdManager.default.isReallyShowAd {
@@ -169,12 +177,24 @@ class DiffuserDetailViewController: UIViewController {
     self.present(activityVC, animated: true, completion: nil)
   }
   
+  @IBAction func btnActTrayUp(_ sender: UIButton) {
+    performSegue(withIdentifier: "rewriteView", sender: nil)
+  }
+  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "modifyView" {
+    switch segue.identifier {
+    case "modifyView":
       guard let modifyViewController = segue.destination as? DiffuserAddViewController else { return }
-      modifyViewController.mode = "modify"
+      modifyViewController.mode = .modify
       modifyViewController.selectedDiffuser = selectedDiffuser
       modifyViewController.modifyDelegate = self
+    case "rewriteView":
+      guard let rewriteVC = segue.destination as? DiffuserAddViewController else { return }
+      rewriteVC.mode = .rewrite
+      rewriteVC.selectedDiffuser = selectedDiffuser
+      // rewriteVC.delegate = self
+    default:
+      break
     }
   }
   
@@ -200,7 +220,7 @@ extension DiffuserDetailViewController: UIScrollViewDelegate {
 }
 
 extension DiffuserDetailViewController: ModifyDelegate {
-  // MARK: - ModifyDelegates
+  // MARK: - ModifyDelegate
   
   func sendDiffuser(_ controller: DiffuserAddViewController, diffuser: DiffuserVO) {
     // 먼저 detail view의 내용을 갱신하고
@@ -208,6 +228,12 @@ extension DiffuserDetailViewController: ModifyDelegate {
     // view model의 vo 도 교체한다.
     isDiffuserModified = true
   }
+}
+
+extension DiffuserDetailViewController: AddDelegate {
+  // MARK: - RewriteDelegate
+  
+  
 }
 
 extension DiffuserDetailViewController {

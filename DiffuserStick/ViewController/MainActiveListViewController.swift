@@ -71,6 +71,14 @@ class MainActiveListViewController: UIViewController, AddDelegate {
       name: .didReceiveDiffuserPush,
       object: nil
     )
+    
+    // Receive rewrite finished
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(handleTableRefresh),
+      name: .didRewriteDiffuserPush,
+      object: nil
+    )
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -106,6 +114,16 @@ class MainActiveListViewController: UIViewController, AddDelegate {
     }
     
     showDetailView(at: index)
+  }
+  
+  @objc func handleTableRefresh(_ noti: Notification) {
+    guard let receivedDiffuser = noti.object as? DiffuserVO else {
+      print("Error: no receivedDiffuser in notification")
+      return
+    }
+    
+    viewModel.addDiffuserInfo(diffuser: receivedDiffuser)
+    tblList.reloadData()
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

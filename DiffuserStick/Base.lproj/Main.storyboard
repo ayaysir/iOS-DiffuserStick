@@ -566,14 +566,15 @@
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="788"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Amx-N3-Wyb">
-                                                <rect key="frame" x="344" y="8" width="30" height="30"/>
+                                                <rect key="frame" x="349" y="8" width="25" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="30" id="kM3-dV-tPu"/>
+                                                    <constraint firstAttribute="width" constant="25" id="kM3-dV-tPu"/>
                                                     <constraint firstAttribute="height" constant="30" id="tbl-zd-K3G"/>
                                                 </constraints>
-                                                <color key="tintColor" systemColor="opaqueSeparatorColor"/>
+                                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button">
-                                                    <imageReference key="image" image="xmark.circle.fill" catalog="system" symbolScale="large"/>
+                                                    <imageReference key="image" image="xmark" catalog="system"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="25"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="btnClose:" destination="kqs-M2-Fj3" eventType="touchUpInside" id="43C-xs-582"/>
@@ -693,13 +694,33 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NuO-Mm-Peh">
-                                                <rect key="frame" x="345" y="108" width="29" height="33"/>
+                                                <rect key="frame" x="342" y="108" width="32" height="32"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="32" id="aRL-G1-sdZ"/>
+                                                    <constraint firstAttribute="height" constant="32" id="jp1-4c-VXZ"/>
+                                                </constraints>
                                                 <color key="tintColor" systemColor="systemIndigoColor"/>
-                                                <state key="normal" image="square.and.arrow.up.fill" catalog="system">
-                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="26"/>
+                                                <state key="normal" image="square.and.arrow.up" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="12"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="btnActShare:" destination="kqs-M2-Fj3" eventType="touchUpInside" id="Sba-5y-doz"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJY-N6-8Lh">
+                                                <rect key="frame" x="302" y="108" width="32" height="32"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="KfG-Tb-n5v"/>
+                                                    <constraint firstAttribute="width" constant="32" id="Uvv-YB-BUn"/>
+                                                </constraints>
+                                                <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                <state key="normal" image="tray.and.arrow.up" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="12"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnActTrayUp:" destination="kqs-M2-Fj3" eventType="touchUpInside" id="fjZ-Fs-kRy"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -712,11 +733,13 @@
                                             <constraint firstItem="NuO-Mm-Peh" firstAttribute="trailing" secondItem="Amx-N3-Wyb" secondAttribute="trailing" id="DO1-Jg-r85"/>
                                             <constraint firstItem="3Xa-3i-3wg" firstAttribute="top" secondItem="bOB-Mt-TF5" secondAttribute="bottom" constant="23.5" id="Kty-m7-jIz"/>
                                             <constraint firstAttribute="trailing" secondItem="Amx-N3-Wyb" secondAttribute="trailing" id="Pri-aQ-dZg"/>
+                                            <constraint firstItem="2L8-zv-0gw" firstAttribute="top" secondItem="UJY-N6-8Lh" secondAttribute="bottom" constant="12" id="S9p-dW-Cx7"/>
                                             <constraint firstAttribute="bottom" secondItem="3Xa-3i-3wg" secondAttribute="bottom" constant="34" id="STS-ZV-wVQ"/>
+                                            <constraint firstItem="NuO-Mm-Peh" firstAttribute="leading" secondItem="UJY-N6-8Lh" secondAttribute="trailing" constant="8" symbolic="YES" id="Tyb-tr-gZ9"/>
                                             <constraint firstAttribute="height" constant="788" id="UeN-Jl-nMy"/>
                                             <constraint firstItem="nkS-cr-38U" firstAttribute="top" secondItem="2L8-zv-0gw" secondAttribute="bottom" constant="12" id="XYk-wy-27b"/>
+                                            <constraint firstItem="2L8-zv-0gw" firstAttribute="top" secondItem="NuO-Mm-Peh" secondAttribute="bottom" constant="12" id="aa9-C6-17A"/>
                                             <constraint firstItem="bOB-Mt-TF5" firstAttribute="leading" secondItem="TCi-DV-XpN" secondAttribute="leading" id="ad2-Pt-e2K"/>
-                                            <constraint firstItem="NuO-Mm-Peh" firstAttribute="top" secondItem="Amx-N3-Wyb" secondAttribute="bottom" constant="70" id="cFD-sR-eEC"/>
                                             <constraint firstItem="bOB-Mt-TF5" firstAttribute="top" secondItem="svE-x9-veP" secondAttribute="bottom" constant="16" id="f8M-LL-kmy"/>
                                             <constraint firstAttribute="trailing" secondItem="3Xa-3i-3wg" secondAttribute="trailing" constant="8" id="iUO-SY-ItO"/>
                                             <constraint firstItem="2L8-zv-0gw" firstAttribute="leading" secondItem="TCi-DV-XpN" secondAttribute="leading" id="jxk-Sh-3sv"/>
@@ -756,6 +779,8 @@
                         <outlet property="btnDeleteOutlet" destination="BQD-OC-gsb" id="U5w-22-pb8"/>
                         <outlet property="btnEditOutlet" destination="KV0-M4-eDQ" id="rQU-re-0FL"/>
                         <outlet property="btnReplaceOutlet" destination="mRq-LL-hv0" id="i2Y-Ud-Sof"/>
+                        <outlet property="btnShare" destination="NuO-Mm-Peh" id="8hM-VH-GqM"/>
+                        <outlet property="btnTrayUpToList" destination="UJY-N6-8Lh" id="7pn-qm-GQA"/>
                         <outlet property="imgPhoto" destination="2L8-zv-0gw" id="ezC-6R-lIA"/>
                         <outlet property="innerAdView" destination="svE-x9-veP" id="I0D-lF-YOO"/>
                         <outlet property="lblFutureChangeDate" destination="d9h-On-skP" id="uU1-HA-pnq"/>
@@ -764,6 +789,7 @@
                         <outlet property="lblTitle" destination="VzY-fe-BSA" id="jba-eo-1RH"/>
                         <outlet property="textComments" destination="nkS-cr-38U" id="J1W-dJ-z6d"/>
                         <segue destination="VgC-oY-3JU" kind="show" identifier="modifyView" id="Dsr-pZ-DL4"/>
+                        <segue destination="VgC-oY-3JU" kind="show" identifier="rewriteView" id="gzH-Nd-pcU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8kU-hP-4Uz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -999,7 +1025,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="21M-zC-7Dn"/>
-        <segue reference="Dsr-pZ-DL4"/>
+        <segue reference="gzH-Nd-pcU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="aromatic" width="25" height="25"/>
@@ -1010,8 +1036,10 @@
         <image name="info.circle.fill" catalog="system" width="128" height="123"/>
         <image name="photo.fill" catalog="system" width="128" height="93"/>
         <image name="shippingbox.fill" catalog="system" width="128" height="123"/>
-        <image name="square.and.arrow.up.fill" catalog="system" width="117" height="128"/>
+        <image name="square.and.arrow.up" catalog="system" width="110" height="128"/>
         <image name="text.alignleft" catalog="system" width="128" height="101"/>
+        <image name="tray.and.arrow.up" catalog="system" width="128" height="117"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1033,6 +1061,9 @@
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
