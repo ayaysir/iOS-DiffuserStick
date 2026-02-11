@@ -21,6 +21,7 @@ struct DSWidgetEntryView : View {
         DefaultView
       }
     }
+    .widgetURL(URL(string: "diffuserstick://detail?id=\(entry.diffuser.id.uuidString)"))
   }
   
   @ViewBuilder private func ResizableRendered(imageView: Image) -> some View {

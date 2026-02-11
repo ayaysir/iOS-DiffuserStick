@@ -50,6 +50,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
   }
   
-  
+  func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+    guard let url = URLContexts.first?.url else {
+      return
+    }
+    
+    guard url.scheme == "diffuserstick",
+          url.host == "detail"
+    else { return }
+    
+    
+    guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+          let idString = components.queryItems? .first(where: { $0.name == "id" })?.value,
+          let id = UUID(uuidString: idString)
+    else { return }
+
+    print("추출된 UUID:", id)
+    
+    NotificationCenter.default.post(
+      name: .didReceiveDiffuserPush,
+      object: nil,
+      userInfo: ["diffuserId": id]
+    )
+  }
 }
 
