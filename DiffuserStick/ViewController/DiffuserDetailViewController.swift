@@ -243,9 +243,16 @@ extension DiffuserDetailViewController {
     lblLastChangedDate.text = formatLastChanged(date: selectedDiffuser!.startDate)
     lblFutureChangeDate.text = formatFutureChange(date: selectedDiffuser!.startDate, addDay: selectedDiffuser!.usersDays)
     
+    
+    guard let diffuser = selectedDiffuser else {
+      lblRemainDays.text = "디퓨저가 없음 (있을 수 없는 경우)"
+      return
+    }
+    
     // 마지막 교체일과 오늘 날짜와의 차이
-    let calendar = Calendar(identifier: .gregorian)
-    let betweenDays = selectedDiffuser!.usersDays - calendar.numberOfDaysBetween(selectedDiffuser!.startDate, and: Date())
+    // let calendar = Calendar(identifier: .gregorian)
+    // let betweenDays = selectedDiffuser!.usersDays - calendar.numberOfDaysBetween(selectedDiffuser!.startDate, and: Date())
+    let betweenDays = diffuser.startDate.diffuserDaysRemaining(totalDays: diffuser.usersDays)
     
     if betweenDays > 0 {
       lblRemainDays.text = "\(betweenDays)일 후 교체 필요"

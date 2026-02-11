@@ -79,6 +79,17 @@ class MainActiveListViewController: UIViewController, AddDelegate {
       name: .didRewriteDiffuserPush,
       object: nil
     )
+    
+    // data 목록을 app group 폴더에 작성
+    let dtos = viewModel.diffuserInfoList.map {
+      DiffuserWidgetDTO(
+        id: $0.id,
+        title: $0.title,
+        lastStartDate: $0.startDate,
+        usersDays: $0.usersDays
+      )
+    }
+    saveDiffusersToAppGroup(diffuserWidgetDTOs: dtos)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -279,9 +290,11 @@ class DiffuserListCell: UITableViewCell {
   // 커스텀 셀의 데이터 업데이트
   func update(info: DiffuserVO) {
     // 마지막 교체일과 오늘 날짜와의 차이
-    let calendar = Calendar(identifier: .gregorian)
-    let betweenDays = info.usersDays - calendar.numberOfDaysBetween(info.startDate, and: Date())
+    // let calendar = Calendar(identifier: .gregorian)
+    // let betweenDays = info.usersDays - calendar.numberOfDaysBetween(info.startDate, and: Date())
+    let betweenDays = info.startDate.diffuserDaysRemaining(totalDays: info.usersDays)
     lblTitle.text = info.title
+    
     if betweenDays > 3 {
       lblRemainDayText.text = "\(betweenDays)일 후 교체 필요"
       self.contentView.backgroundColor = nil
@@ -340,17 +353,17 @@ class DiffuserViewModel {
   }
   
   func sortByStartDateDesc() {
-    diffuserInfoList = diffuserInfoList.sorted { obj1, obj2 in
-      let remainDay1 = betweenDays(usersDays: obj1.usersDays, startDate: obj1.startDate)
-      let remainDay2 = betweenDays(usersDays: obj2.usersDays, startDate: obj2.startDate)
+    diffuserInfoList = diffuserInfoList.sorted { lhs, rhs in
+      let remainDay1 = lhs.startDate.diffuserDaysRemaining(totalDays: lhs.usersDays)
+      let remainDay2 = rhs.startDate.diffuserDaysRemaining(totalDays: rhs.usersDays)
       return remainDay1 > remainDay2
     }
   }
   
   func sortByStartDateAsc() {
-    diffuserInfoList = diffuserInfoList.sorted { obj1, obj2 in
-      let remainDay1 = betweenDays(usersDays: obj1.usersDays, startDate: obj1.startDate)
-      let remainDay2 = betweenDays(usersDays: obj2.usersDays, startDate: obj2.startDate)
+    diffuserInfoList = diffuserInfoList.sorted { lhs, rhs in
+      let remainDay1 = lhs.startDate.diffuserDaysRemaining(totalDays: lhs.usersDays)
+      let remainDay2 = rhs.startDate.diffuserDaysRemaining(totalDays: rhs.usersDays)
       return remainDay1 < remainDay2
     }
   }

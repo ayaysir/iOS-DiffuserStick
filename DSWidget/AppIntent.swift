@@ -13,6 +13,6 @@ struct ConfigurationAppIntent: WidgetConfigurationIntent {
   static var description: IntentDescription { "This is an example widget." }
   
   // An example configurable parameter.
-  @Parameter(title: "Favorite Emoji", default: "😃")
-  var favoriteEmoji: String
+  @Parameter(title: "이미지를 풀 컬러로 보기", default: false)
+  var isFullColorImage: Bool
 }

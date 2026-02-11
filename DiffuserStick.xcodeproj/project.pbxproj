@@ -21,6 +21,13 @@
 		4464DCBF2F3B80EF00D65F61 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4464DCA42F3B809600D65F61 /* WidgetKit.framework */; };
 		4464DCC02F3B80EF00D65F61 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4464DCA62F3B809700D65F61 /* SwiftUI.framework */; };
 		4464DCCD2F3B80F100D65F61 /* DSWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4464DCBE2F3B80EF00D65F61 /* DSWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4464DCD72F3BA46500D65F61 /* DiffuserWidgetDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4464DCD62F3BA45E00D65F61 /* DiffuserWidgetDTO.swift */; };
+		4464DCD82F3BA47500D65F61 /* DiffuserWidgetDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4464DCD62F3BA45E00D65F61 /* DiffuserWidgetDTO.swift */; };
+		4464DCE12F3CB23B00D65F61 /* SharedGlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4464DCE02F3CB23500D65F61 /* SharedGlobalVariables.swift */; };
+		4464DCE22F3CB23B00D65F61 /* SharedGlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4464DCE02F3CB23500D65F61 /* SharedGlobalVariables.swift */; };
+		4464DCE42F3CB3A500D65F61 /* DiffuserWidgetStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4464DCE32F3CB39D00D65F61 /* DiffuserWidgetStorage.swift */; };
+		4464DCE52F3CB3C800D65F61 /* DiffuserWidgetStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4464DCE32F3CB39D00D65F61 /* DiffuserWidgetStorage.swift */; };
+		4464DCE62F3CBCB200D65F61 /* CalendarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCFCF26A070BB00A7A7FD /* CalendarExtension.swift */; };
 		447A45D8269DC0A0009C4B47 /* DiffuserVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */; };
 		448784A62B8F6EB70073B2DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448784A82B8F6EB70073B2DE /* Main.storyboard */; };
 		448784A92B8F6EC30073B2DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448784AB2B8F6EC30073B2DE /* LaunchScreen.storyboard */; };
@@ -91,6 +98,11 @@
 		4464DCA42F3B809600D65F61 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		4464DCA62F3B809700D65F61 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		4464DCBE2F3B80EF00D65F61 /* DSWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DSWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4464DCD42F3BA3DD00D65F61 /* DSWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DSWidgetExtension.entitlements; sourceTree = "<group>"; };
+		4464DCD52F3BA43400D65F61 /* DiffuserStick.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DiffuserStick.entitlements; sourceTree = "<group>"; };
+		4464DCD62F3BA45E00D65F61 /* DiffuserWidgetDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuserWidgetDTO.swift; sourceTree = "<group>"; };
+		4464DCE02F3CB23500D65F61 /* SharedGlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedGlobalVariables.swift; sourceTree = "<group>"; };
+		4464DCE32F3CB39D00D65F61 /* DiffuserWidgetStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuserWidgetStorage.swift; sourceTree = "<group>"; };
 		447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuserVO.swift; sourceTree = "<group>"; };
 		448784AC2B8F8C970073B2DE /* TableCollectionViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCollectionViewUtil.swift; sourceTree = "<group>"; };
 		448784AE2B8F94D60073B2DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -159,6 +171,7 @@
 		4456C9A4269D4E8400A29B77 = {
 			isa = PBXGroup;
 			children = (
+				4464DCD42F3BA3DD00D65F61 /* DSWidgetExtension.entitlements */,
 				4456C9AF269D4E8400A29B77 /* DiffuserStick */,
 				44B8B2252B8F6DD000FFD0E0 /* DiffuserStick.app */,
 				4464DCC12F3B80EF00D65F61 /* DSWidget */,
@@ -170,6 +183,8 @@
 		4456C9AF269D4E8400A29B77 /* DiffuserStick */ = {
 			isa = PBXGroup;
 			children = (
+				4464DCDF2F3CB22500D65F61 /* Shared */,
+				4464DCD52F3BA43400D65F61 /* DiffuserStick.entitlements */,
 				4464DC1C2F387FDA00D65F61 /* Resource */,
 				44BB07742B8F664B00F57C4B /* IAP */,
 				44E8690026A94222008B2D62 /* website */,
@@ -213,6 +228,17 @@
 				4464DCA62F3B809700D65F61 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4464DCDF2F3CB22500D65F61 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				4464DCE02F3CB23500D65F61 /* SharedGlobalVariables.swift */,
+				4464DCD62F3BA45E00D65F61 /* DiffuserWidgetDTO.swift */,
+				4464DCE32F3CB39D00D65F61 /* DiffuserWidgetStorage.swift */,
+				44FDCFCF26A070BB00A7A7FD /* CalendarExtension.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		448784B02B905BA30073B2DE /* Setting */ = {
@@ -280,7 +306,6 @@
 				4464DC932F38C5D100D65F61 /* NotificationNames.swift */,
 				44FDCFCB269FEC9700A7A7FD /* AlertUtil.swift */,
 				44FDCFCD269FEF7F00A7A7FD /* FileUtil.swift */,
-				44FDCFCF26A070BB00A7A7FD /* CalendarExtension.swift */,
 				44FDCFD126A1419000A7A7FD /* UIExtension.swift */,
 				44FDCFD726A1BFC200A7A7FD /* CoreData.swift */,
 				444EEE0A26B167EF00454428 /* LocalNotification.swift */,
@@ -433,13 +458,16 @@
 				4456C9B3269D4E8400A29B77 /* SceneDelegate.swift in Sources */,
 				44FDCFD226A1419100A7A7FD /* UIExtension.swift in Sources */,
 				4464DC992F3A207C00D65F61 /* ImageViewerViewController.swift in Sources */,
+				4464DCE52F3CB3C800D65F61 /* DiffuserWidgetStorage.swift in Sources */,
 				44FDCFC2269EA8B300A7A7FD /* ParsePlist.swift in Sources */,
+				4464DCE22F3CB23B00D65F61 /* SharedGlobalVariables.swift in Sources */,
 				444EEE0B26B167EF00454428 /* LocalNotification.swift in Sources */,
 				44C3B8712B90E5F500B71A95 /* FirstRunUtil.swift in Sources */,
 				448784B22B905CE80073B2DE /* HelpViewController.swift in Sources */,
 				4464DC9D2F3A222400D65F61 /* DetailViewDelegate.swift in Sources */,
 				4464DC942F38C5D900D65F61 /* NotificationNames.swift in Sources */,
 				44C3B86D2B90C6AF00B71A95 /* LoadingIndicatorUtil.swift in Sources */,
+				4464DCD72F3BA46500D65F61 /* DiffuserWidgetDTO.swift in Sources */,
 				448784B92B9066690073B2DE /* DeviceUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,6 +476,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4464DCD82F3BA47500D65F61 /* DiffuserWidgetDTO.swift in Sources */,
+				4464DCE42F3CB3A500D65F61 /* DiffuserWidgetStorage.swift in Sources */,
+				4464DCE12F3CB23B00D65F61 /* SharedGlobalVariables.swift in Sources */,
+				4464DCE62F3CBCB200D65F61 /* CalendarExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,6 +640,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DiffuserStick/DiffuserStick.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -633,6 +666,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DiffuserStick/DiffuserStick.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -659,6 +693,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = DSWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -676,7 +711,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yoonbumtae.DiffuserStick.DSWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -696,6 +731,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = DSWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -712,7 +748,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yoonbumtae.DiffuserStick.DSWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
