@@ -21,7 +21,9 @@ func addPushNoti(diffuser: DiffuserVO) {
   // 알람이 나타나면 이미지가 삭제됨 -> 원본 넣으면 안됨
   guard let image = getImage(fileNameWithExt: diffuser.photoName),
         let thumb = makeImageThumbnail(image: image, maxPixelSize: 300),
-        let imageUrl = saveImageToAppSupportDir(image: thumb, fileName: diffuser.photoName) else {
+        // let imageUrl = saveImageToAppSupportDir(image: thumb, fileName: diffuser.photoName)
+        let (_, imageUrl) = saveImage(thumb, fileName: diffuser.photoName, location: .applicationSupport(subdirectory: nil))
+  else {
     return
   }
   

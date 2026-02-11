@@ -137,18 +137,19 @@ class DiffuserAddViewController: UIViewController {
       let uuid = UUID() // 새로운 아이디 부여
       let photoNameWithoutExt = inputTitleText.convertToValidFileName() + "___" + uuid.uuidString
       
-      guard let savePhotoResult = saveImage(image: image, fileNameWithoutExt: photoNameWithoutExt) else {
+      // guard let savePhotoResult = saveImage(image: image, fileNameWithoutExt: photoNameWithoutExt) else {
+      guard let (ext, url) = saveImage(image, fileName: photoNameWithoutExt, location: .documents) else {
         simpleAlert(self, message: "이미지 저장 중 오류가 발생하였습니다.")
         return
       }
       
-      let comments = (TEXT_VIEW_PLACEHOLDER_MSG != textComments.text ? textComments.text : "")!
+      let comments = TEXT_VIEW_PLACEHOLDER_MSG != textComments.text ? textComments.text ?? "" : ""
       let diffuser = DiffuserVO(
         title: inputTitleText,
         startDate: datepickerStartDate.date,
         comments: comments,
         usersDays: userDays,
-        photoName: photoNameWithoutExt + "." + savePhotoResult,
+        photoName: photoNameWithoutExt + "." + ext,
         id: uuid,
         createDate: Date(),
         isFinished: false
@@ -189,12 +190,12 @@ class DiffuserAddViewController: UIViewController {
       let oldPhotoNameWithExt = diffuser.photoName
       let modifiedPhotoNameWithoutExt = inputTitleText.convertToValidFileName() + "___" + uuid.uuidString
       
-      guard let savePhotoResult = saveImage(image: image, fileNameWithoutExt: modifiedPhotoNameWithoutExt) else {
+      // guard let savePhotoResult = saveImage(image: image, fileNameWithoutExt: modifiedPhotoNameWithoutExt) else {
+      guard let (ext, url) = saveImage(image, fileName: modifiedPhotoNameWithoutExt, location: .documents) else {
         simpleAlert(self, message: "이미지 저장 중 오류가 발생하였습니다.")
         return
       }
-      diffuser.photoName = modifiedPhotoNameWithoutExt + "." + savePhotoResult
-      
+      diffuser.photoName = modifiedPhotoNameWithoutExt + "." + ext
       
       if oldPhotoNameWithExt != diffuser.photoName {
         removeImageFileFromDocument(fileNameIncludesExtension: oldPhotoNameWithExt)

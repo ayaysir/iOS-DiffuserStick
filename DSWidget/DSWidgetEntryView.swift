@@ -13,11 +13,13 @@ struct DSWidgetEntryView : View {
   @Environment(\.widgetFamily) var family
   
   var body: some View {
-    switch family {
-    case .systemSmall:
-      SmallView
-    default:
-      DefaultView
+    Group {
+      switch family {
+      case .systemSmall:
+        SmallView
+      default:
+        DefaultView
+      }
     }
   }
   
@@ -35,7 +37,8 @@ struct DSWidgetEntryView : View {
   @ViewBuilder private var SmallView: some View {
     VStack {
       HStack(spacing: 12) {
-        ResizableRendered(imageView: Image(.jelly1))
+        let uiImage = getImageFromAppGroupDir(diffuserId: entry.diffuser.id) ?? .jelly1
+        ResizableRendered(imageView: Image(uiImage: uiImage))
           .scaledToFit()
           .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
         VStack {
@@ -56,7 +59,8 @@ struct DSWidgetEntryView : View {
   @ViewBuilder private var DefaultView: some View {
     let diffuser = entry.diffuser
     HStack(spacing: 16) {
-      ResizableRendered(imageView: Image(.jelly1))
+      let uiImage = getImageFromAppGroupDir(diffuserId: entry.diffuser.id) ?? .jelly1
+      ResizableRendered(imageView: Image(uiImage: uiImage))
         .scaledToFit()
         .frame(width: 100)
         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
@@ -104,7 +108,6 @@ struct DSWidgetEntryView : View {
       return "\(remainingDays)일 후 교체 필요"
     }
   }
-
 }
 
 #Preview(as: .systemSmall) {

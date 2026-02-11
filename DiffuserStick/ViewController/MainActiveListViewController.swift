@@ -16,7 +16,7 @@ enum CurrentSort {
   case orderByRemainDayDesc
 }
 
-class MainActiveListViewController: UIViewController, AddDelegate {
+class MainActiveListViewController: UIViewController {
   
   @IBOutlet weak var constraintBottom: NSLayoutConstraint!
   var currentSelectedDiffuser: DiffuserVO? = nil
@@ -79,17 +79,6 @@ class MainActiveListViewController: UIViewController, AddDelegate {
       name: .didRewriteDiffuserPush,
       object: nil
     )
-    
-    // data 목록을 app group 폴더에 작성
-    let dtos = viewModel.diffuserInfoList.map {
-      DiffuserWidgetDTO(
-        id: $0.id,
-        title: $0.title,
-        lastStartDate: $0.startDate,
-        usersDays: $0.usersDays
-      )
-    }
-    saveDiffusersToAppGroup(diffuserWidgetDTOs: dtos)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -100,6 +89,13 @@ class MainActiveListViewController: UIViewController, AddDelegate {
       // constraint 원상복구
       constraintBottom.constant = +50
     }
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    // data 목록을 app group 폴더에 작성
+    sendDiffusersToWidget()
   }
   
   @objc func appClosed() {
@@ -184,12 +180,6 @@ class MainActiveListViewController: UIViewController, AddDelegate {
     self.present(alertController, animated: true, completion: nil)
   }
   
-  // AddDelegate
-  func sendDiffuser(_ controller: DiffuserAddViewController, diffuser: DiffuserVO) {
-    viewModel.addDiffuserInfo(diffuser: diffuser)
-    tblList.reloadData()
-  }
-  
   //  Local push
   // 사용자에게 알림 권한 요청
   func requestAuthNoti() {
@@ -206,6 +196,35 @@ class MainActiveListViewController: UIViewController, AddDelegate {
     currentSelectedDiffuser = viewModel.getDiffuserInfo(at: indexPathRow)
     currentArrayIndex = indexPathRow
     performSegue(withIdentifier: "detailView", sender: nil)
+  }
+  
+  func sendDiffusersToWidget() {
+    let dtos = viewModel.diffuserInfoList.map {
+      DiffuserWidgetDTO(
+        id: $0.id,
+        title: $0.title,
+        lastStartDate: $0.startDate,
+        usersDays: $0.usersDays
+      )
+    }
+    saveDiffusersToAppGroup(diffuserWidgetDTOs: dtos)
+    
+    // 이미지를 위젯으로 보내기
+    viewModel.diffuserInfoList.forEach { diffuser in
+      guard let image = getImage(fileNameWithExt: diffuser.photoName) else {
+        return
+      }
+      guard let thumb = makeImageThumbnail(image: image, maxPixelSize: 200) else {
+        return
+      }
+      guard let (_, url) = saveImage(
+        thumb,
+        fileName: diffuser.id.uuidString,
+        location: .appGroup(identifier: .shdAppGroupIdentifier, subdirectory: "thumbs")
+      ) else {
+        return
+      }
+    }
   }
 }
 
@@ -378,6 +397,16 @@ class DiffuserViewModel {
   
 }
 
+extension MainActiveListViewController: AddDelegate {
+  // AddDelegate
+  func sendDiffuser(_ controller: DiffuserAddViewController, diffuser: DiffuserVO) {
+    viewModel.addDiffuserInfo(diffuser: diffuser)
+    tblList.reloadData()
+    sendDiffusersToWidget()
+  }
+  
+}
+
 extension MainActiveListViewController: DetailViewDelegate {
   func deleteFromList(_ controller: DiffuserDetailViewController, diffuser: DiffuserVO, index: Int) {
     self.viewModel.diffuserInfoList.remove(at: index)
@@ -385,6 +414,7 @@ extension MainActiveListViewController: DetailViewDelegate {
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
       simpleAlert(self, message: "삭제 완료되었습니다.", title: "삭제 완료", handler: nil)
     }
+    sendDiffusersToWidget()
   }
   
   func sendArchive(_ controller: DiffuserDetailViewController, diffuser: DiffuserVO, isModified: Bool, index: Int) {
@@ -392,6 +422,7 @@ extension MainActiveListViewController: DetailViewDelegate {
       viewModel.diffuserInfoList.remove(at: index)
       tblList.reloadData()
       SendToArchive.sharedInstance.isNeedReloadCDData = true
+      sendDiffusersToWidget()
     }
   }
   
@@ -400,6 +431,7 @@ extension MainActiveListViewController: DetailViewDelegate {
       // TODO: - 2024-2-28: 보관함으로 이동시 IndexOfRange 에러 발생했는데 정확한 조건을 알 수 없음
       viewModel.diffuserInfoList[index] = diffuser
       tblList.reloadData()
+      sendDiffusersToWidget()
     }
   }
 }

@@ -22,66 +22,66 @@ func getDocumentsDirectory() -> URL {
   return documentsDirectory
 }
 
-func saveImage(image: UIImage, fileNameWithoutExt: String) -> String? {
-  guard let data = image.jpegData(compressionQuality: 0.95) else {
-    return nil
-  }
-  
-  guard let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-    return nil
-  }
-  
-  let fileNameWithExt: String = fileNameWithoutExt + "." + data.format
-  
-  let imageUrl = directory.appendingPathComponent(fileNameWithExt)
-
-  do {
-    try data.write(to: imageUrl)
-    print(#function, "write: ", imageUrl, data)
-    return data.format
-  } catch {
-    print(#function, error.localizedDescription)
-    return nil
-  }
-}
-
-func saveImageToAppSupportDir(image: UIImage, fileName: String) -> URL? {
-  guard let data = image.jpegData(compressionQuality: 1) ?? image.pngData() else {
-    return nil
-  }
-
-  guard let baseDirectory = FileManager.default
-    .urls(for: .applicationSupportDirectory, in: .userDomainMask)
-    .first else {
-    return nil
-  }
-
-  let thumbsDirectory = baseDirectory.appendingPathComponent("thumbs", isDirectory: true)
-
-  if !FileManager.default.fileExists(atPath: thumbsDirectory.path) {
-    do {
-      try FileManager.default.createDirectory(
-        at: thumbsDirectory,
-        withIntermediateDirectories: true
-      )
-    } catch {
-      print(#function, "createDirectory Error:", error.localizedDescription)
-      return nil
-    }
-  }
-
-  let fileNameWithExt = "thumbnail_" + fileName
-  let imageUrl = thumbsDirectory.appendingPathComponent(fileNameWithExt)
-
-  do {
-    try data.write(to: imageUrl)
-    print(#function, "write:", imageUrl.path)
-    return imageUrl
-  } catch {
-    print(#function, "Error:", error.localizedDescription)
-    return nil
-  }
-}
+// func saveImage(image: UIImage, fileNameWithoutExt: String) -> String? {
+//   guard let data = image.jpegData(compressionQuality: 0.95) else {
+//     return nil
+//   }
+//   
+//   guard let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+//     return nil
+//   }
+//   
+//   let fileNameWithExt: String = fileNameWithoutExt + "." + data.format
+//   
+//   let imageUrl = directory.appendingPathComponent(fileNameWithExt)
+// 
+//   do {
+//     try data.write(to: imageUrl)
+//     print(#function, "write: ", imageUrl, data)
+//     return data.format
+//   } catch {
+//     print(#function, error.localizedDescription)
+//     return nil
+//   }
+// }
+// 
+// func saveImageToAppSupportDir(image: UIImage, fileName: String) -> URL? {
+//   guard let data = image.jpegData(compressionQuality: 1) ?? image.pngData() else {
+//     return nil
+//   }
+// 
+//   guard let baseDirectory = FileManager.default
+//     .urls(for: .applicationSupportDirectory, in: .userDomainMask)
+//     .first else {
+//     return nil
+//   }
+// 
+//   let thumbsDirectory = baseDirectory.appendingPathComponent("thumbs", isDirectory: true)
+// 
+//   if !FileManager.default.fileExists(atPath: thumbsDirectory.path) {
+//     do {
+//       try FileManager.default.createDirectory(
+//         at: thumbsDirectory,
+//         withIntermediateDirectories: true
+//       )
+//     } catch {
+//       print(#function, "createDirectory Error:", error.localizedDescription)
+//       return nil
+//     }
+//   }
+// 
+//   let fileNameWithExt = "thumbnail_" + fileName
+//   let imageUrl = thumbsDirectory.appendingPathComponent(fileNameWithExt)
+// 
+//   do {
+//     try data.write(to: imageUrl)
+//     print(#function, "write:", imageUrl.path)
+//     return imageUrl
+//   } catch {
+//     print(#function, "Error:", error.localizedDescription)
+//     return nil
+//   }
+// }
 
 func getImageUrl(fileNameWithExt: String) -> URL? {
   guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else {

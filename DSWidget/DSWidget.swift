@@ -12,7 +12,6 @@ struct DSWidget: Widget {
   let kind: String = "DSWidget"
   
   var body: some WidgetConfiguration {
-
     AppIntentConfiguration(
       kind: kind,
       intent: ConfigurationAppIntent.self,
