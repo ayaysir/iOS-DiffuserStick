@@ -45,6 +45,8 @@ struct DSWidgetEntryView : View {
         VStack {
           Image(systemName: "clock.arrow.circlepath")
           Text(verbatim: betweenDaysText)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
         }
       }
       Divider()
@@ -63,8 +65,9 @@ struct DSWidgetEntryView : View {
       let uiImage = getImageFromAppGroupDir(diffuserId: entry.diffuser.id) ?? .sample
       ResizableRendered(imageView: Image(uiImage: uiImage))
         .scaledToFit()
-        .frame(width: 100)
         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+        .frame(width: 100)
+        
       VStack(alignment: .leading) {
         Text(verbatim: diffuser.title)
           .font(.title2)
@@ -84,8 +87,10 @@ struct DSWidgetEntryView : View {
   
   private var formatLastChanged: String {
     let formatter = DateFormatter()
-    formatter.dateFormat = "loc.common.replace.date.formatted".localized
-    return formatter.string(from: entry.diffuser.lastStartDate)
+    formatter.dateFormat = "loc.common.date.formatted.formal".localized
+    let dateString = formatter.string(from: entry.diffuser.lastStartDate)
+    // return "\(dateString)에 교체됨"
+    return "loc.common.date.replaced".localizedFormat(dateString)
   }
   
   // TODO: - remainingDays만 변수로 해서 텍스트 로직 교체

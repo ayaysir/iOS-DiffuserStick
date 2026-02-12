@@ -272,18 +272,23 @@ extension DiffuserDetailViewController {
   
   func formatLastChanged(date: Date) -> String {
     let formatter = DateFormatter()
-    formatter.dateFormat = "loc.common.replace.date.formatted.formal".localized
-    return formatter.string(from: date)
+    formatter.dateFormat = "loc.common.date.formatted.formal".localized
+    let dateString = formatter.string(from: date)
+    return "loc.common.date.recent.formal".localizedFormat(dateString)
+    
   }
 
   func formatFutureChange(date: Date, addDay: Int) -> String {
     var dateComponent = DateComponents()
     dateComponent.day = addDay
     
-    let futureDate = Calendar.current.date(byAdding: dateComponent, to: date)
+    guard let futureDate = Calendar.current.date(byAdding: dateComponent, to: date) else {
+      return "-"
+    }
     let formatter = DateFormatter()
-    formatter.dateFormat = "loc.common.replace.future.formatted.formal".localized
-    return formatter.string(from: futureDate!)
+    formatter.dateFormat = "loc.common.date.formatted.formal".localized
+    let dateString = formatter.string(from: futureDate)
+    return "loc.common.date.future.formal".localizedFormat(dateString)
   }
 }
 

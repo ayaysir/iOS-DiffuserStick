@@ -356,8 +356,10 @@ class DiffuserListCell: UITableViewCell {
     
     // 마지막 교체일 또는 신규 등록일에 따라 레이블 구분 (교체, 설치? 등록?)
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "loc.common.replace.date.formatted".localized
-    lblExpirationDate.text = dateFormatter.string(from: info.startDate)
+    dateFormatter.dateFormat = "loc.common.date.formatted.formal".localized
+    let dateString = dateFormatter.string(from: info.startDate)
+    // lblExpirationDate.text = "\(dateString)에 교체됨"
+    lblExpirationDate.text = "loc.common.date.replaced".localizedFormat(dateString)
     thumbnailView.image = getImage(fileNameWithExt: info.photoName)
     thumbnailView.layer.cornerRadius = 8
     thumbnailView?.clipsToBounds = true

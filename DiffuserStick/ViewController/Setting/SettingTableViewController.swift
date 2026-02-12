@@ -154,7 +154,7 @@ extension SettingTableViewController {
       }
       
       if let secondLabel = cell.contentView.subviews[1] as? UILabel {
-        secondLabel.text = isPurchased ? "[구입 완료]" : "[미구입]"
+        secondLabel.text = (isPurchased ? "loc.setting.iap.purchase.complete" : "loc.setting.iap.purchase.no_purchase").localized
         secondLabel.textColor = isPurchased ? .systemGreen : .darkGray
       }
     }
