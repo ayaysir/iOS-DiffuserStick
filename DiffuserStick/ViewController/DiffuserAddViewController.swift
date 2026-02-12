@@ -15,7 +15,7 @@ protocol ModifyDelegate {
   func sendDiffuser(_ controller: DiffuserAddViewController, diffuser: DiffuserVO)
 }
 
-let TEXT_VIEW_PLACEHOLDER_MSG = "메모를 입력해주세요."
+let TEXT_VIEW_PLACEHOLDER_MSG = "loc.write.memo.placeholder".localized
 
 class DiffuserAddViewController: UIViewController {
   
@@ -76,7 +76,7 @@ class DiffuserAddViewController: UIViewController {
     
     // 키보드 DONE 버튼 추가
     inputTitle.addDoneButtonOnKeyboard()
-    textComments.addDoneButton(title: "완료", target: self, selector: #selector(tapDone(sender:)))
+    textComments.addDoneButton(title: "loc.common.complete".localized, target: self, selector: #selector(tapDone(sender:)))
     
     // 키보드 높이
     // Will 대신 Did를 사용한 이유는 TextField의 Edit Begin 을 감지하기 위함
@@ -89,22 +89,22 @@ class DiffuserAddViewController: UIViewController {
     btnSaveOutlet!.clipsToBounds = true
     
     // Localizable texts
-    lblTitleIntro.text = "제목: 디퓨저 이름, 위치 등"
+    lblTitleIntro.text = "loc.write.title.intro".localized
     
     switch mode {
     case .add, .modify:
-      lblTitleDesc.text = "디퓨저의 이름이나 위치 등을 알 수 있도록 제목을 작성해주세요."
+      lblTitleDesc.text = "loc.write.title.desc".localized
     case .rewrite:
-      lblTitleDesc.text = "재작성 모드: 보관함에 저장되어 있던 글을 다시 활성 리스트에 업로드할 수 있습니다."
+      lblTitleDesc.text = "loc.write.title.desc.rewrite".localized
     }
     
-    lblImageUploadIntro.text = "사진 업로드"
-    btnCameraDesc.setTitle("사진 찍기", for: .normal)
-    btnLoadPhotoDesc.setTitle("사진 올리기", for: .normal)
-    lblStartDateIntro.text = "시작 날짜"
-    lblReplaceDaysIntro.text = "교체 일수"
-    lblMemoIntro.text = "메모"
-    btnSaveOutlet.setTitle("저장", for: .normal)
+    lblImageUploadIntro.text = "loc.write.image.upload.intro".localized
+    btnCameraDesc.setTitle("loc.write.camera".localized, for: .normal)
+    btnLoadPhotoDesc.setTitle("loc.write.photo.library".localized, for: .normal)
+    lblStartDateIntro.text = "loc.write.start.date.intro".localized
+    lblReplaceDaysIntro.text = "loc.write.replace.days.intro".localized
+    lblMemoIntro.text = "loc.write.memo.intro".localized
+    btnSaveOutlet.setTitle("loc.common.save".localized, for: .normal)
     
     switch mode {
     case .add:
@@ -150,12 +150,12 @@ class DiffuserAddViewController: UIViewController {
   @IBAction func btnSave(_ sender: Any) {
     // 유효성 검사
     guard let inputTitleText = inputTitle.text, !inputTitleText.isEmpty else {
-      simpleAlert(self, message: "제목은 1자 이상 입력해야 합니다.")
+      simpleAlert(self, message: "loc.write.invalid.title.letter.count".localized)
       return
     }
     
     guard let image = imgPhoto.image else {
-      simpleAlert(self, message: "이미지가 첨부되지 않았습니다.")
+      simpleAlert(self, message: "loc.write.invalid.no.image".localized)
       return
     }
     
@@ -165,8 +165,8 @@ class DiffuserAddViewController: UIViewController {
       let photoNameWithoutExt = inputTitleText.convertToValidFileName() + "___" + uuid.uuidString
       
       // guard let savePhotoResult = saveImage(image: image, fileNameWithoutExt: photoNameWithoutExt) else {
-      guard let (ext, url) = saveImage(image, fileName: photoNameWithoutExt, location: .documents) else {
-        simpleAlert(self, message: "이미지 저장 중 오류가 발생하였습니다.")
+      guard let (ext, _) = saveImage(image, fileName: photoNameWithoutExt, location: .documents) else {
+        simpleAlert(self, message: "loc.write.invalid.image.error".localized)
         return
       }
       
@@ -191,11 +191,11 @@ class DiffuserAddViewController: UIViewController {
       }
       
       if saveCDResult {
-        simpleAlert(self, message: "저장되었습니다.", title: "저장") { action in
+        simpleAlert(self, message: "loc.alert.save.complete.message".localized, title: "loc.common.save".localized) { action in
           self.dismiss(animated: true, completion: nil)
         }
       } else {
-        simpleAlert(self, message: "저장이 되지 않았습니다. 다시 시도해주세요.")
+        simpleAlert(self, message: "loc.alert.save.failed.message".localized)
       }
     case .modify:
       guard var diffuser = selectedDiffuser else {
@@ -219,7 +219,7 @@ class DiffuserAddViewController: UIViewController {
       
       // guard let savePhotoResult = saveImage(image: image, fileNameWithoutExt: modifiedPhotoNameWithoutExt) else {
       guard let (ext, _) = saveImage(image, fileName: modifiedPhotoNameWithoutExt, location: .documents) else {
-        simpleAlert(self, message: "이미지 저장 중 오류가 발생하였습니다.")
+        simpleAlert(self, message: "loc.write.invalid.image.error".localized)
         return
       }
       diffuser.photoName = modifiedPhotoNameWithoutExt + "." + ext
@@ -235,11 +235,11 @@ class DiffuserAddViewController: UIViewController {
       let updateCDResult = updateCoreData(id: uuid, diffuserVO: diffuser)
       
       if updateCDResult {
-        simpleAlert(self, message: "업데이트 되었습니다.", title: "업데이트") { action in
+        simpleAlert(self, message: "loc.alert.update.complete.message".localized, title: "loc.alert.update.complete.title".localized) { action in
           self.dismiss(animated: true, completion: nil)
         }
       } else {
-        simpleAlert(self, message: "업데이트가 되지 않았습니다. 다시 시도해주세요.")
+        simpleAlert(self, message: "loc.alert.update.failed.message".localized)
       }
     }
   }
@@ -259,22 +259,21 @@ class DiffuserAddViewController: UIViewController {
   func doTaskByPhotoAuthorization() {
     switch PHPhotoLibrary.authorizationStatus() {
     case .notDetermined:
-      print("photo auth >>> not determined")
-      simpleDestructiveYesAndNo(self, message: "사진 권한 설정을 변경하시겠습니까?", title: "권한 정보 없음", yesHandler: openSetting)
+      let message = "loc.alert.photo.auth.not_determined.message".localized
+      let title = "loc.alert.photo.auth.not_determined.title".localized
+      simpleDestructiveYesAndNo(self, message: message, title: title, yesHandler: openSetting)
     case .restricted:
-      print("photo auth >>> restricted")
-      simpleAlert(self, message: "시스템에 의해 거부되었습니다.")
+      let message = "loc.alert.photo.auth.restricted.message".localized
+      simpleAlert(self, message: message)
     case .denied:
-      print("photo auth >>> denied")
-      simpleDestructiveYesAndNo(self, message: "사진 기능 권한이 거부되어 사용할 수 없습니다. 사진 권한 설정을 변경하시겠습니까?", title: "권한 거부됨", yesHandler: openSetting(action:))
+      let message = "loc.alert.photo.auth.denied.message".localized
+      let title = "loc.alert.photo.auth.denied.title".localized
+      simpleDestructiveYesAndNo(self, message: message, title: title, yesHandler: openSetting(action:))
     case .authorized:
-      print("photo auth >>> authorized")
       self.present(self.imagePickerController, animated: true, completion: nil)
     case .limited:
-      print("photo auth >>> limited")
       self.present(self.imagePickerController, animated: true, completion: nil)
     @unknown default:
-      print("photo auth >>> unknown")
       simpleAlert(self, message: "unknown")
     }
   }
@@ -282,19 +281,19 @@ class DiffuserAddViewController: UIViewController {
   func doTaskByCameraAuthorization() {
     switch AVCaptureDevice.authorizationStatus(for: AVMediaType.video) {
     case .notDetermined:
-      print("camera auth >>> not determined")
-      simpleDestructiveYesAndNo(self, message: "카메라 권한 설정을 변경하시겠습니까?", title: "권한 정보 없음", yesHandler: openSetting)
+      let message = "loc.alert.camera.auth.not_determined.message".localized
+      let title = "loc.alert.photo.auth.not_determined.title".localized
+      simpleDestructiveYesAndNo(self, message: message, title: title, yesHandler: openSetting)
     case .restricted:
-      print("camera auth >>> restricted")
-      simpleAlert(self, message: "시스템에 의해 거부되었습니다.")
+      let message = "loc.alert.photo.auth.restricted.message".localized
+      simpleAlert(self, message: message)
     case .denied:
-      print("camera auth >>> denied")
-      simpleDestructiveYesAndNo(self, message: "카메라 기능 권한이 거부되어 사용할 수 없습니다. 카메라 권한 설정을 변경하시겠습니까?", title: "권한 거부됨", yesHandler: openSetting(action:))
+      let message = "loc.alert.camera.auth.denied.message".localized
+      let title = "loc.alert.photo.auth.denied.title".localized
+      simpleDestructiveYesAndNo(self, message: message, title: title, yesHandler: openSetting(action:))
     case .authorized:
-      print("camera auth >>> authorized")
       self.present(self.imagePickerController, animated: true, completion: nil)
     @unknown default:
-      print("camera auth >>> unknown")
       simpleAlert(self, message: "unknown")
     }
   }

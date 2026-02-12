@@ -10,9 +10,9 @@ import AppIntents
 
 struct ConfigurationAppIntent: WidgetConfigurationIntent {
   static var title: LocalizedStringResource { "Configuration" }
-  static var description: IntentDescription { "This is an example widget." }
+  static var description: IntentDescription { "DiffuserStick Widget Config" }
   
   // An example configurable parameter.
-  @Parameter(title: "이미지를 풀 컬러로 보기", default: false)
+  @Parameter(title: "widget_isFullColorImage_title", default: false)
   var isFullColorImage: Bool
 }

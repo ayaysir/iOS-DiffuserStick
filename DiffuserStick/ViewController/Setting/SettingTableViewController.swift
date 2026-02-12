@@ -37,11 +37,11 @@ class SettingTableViewController: UITableViewController {
     initIAP()
     
     // Localizable texts
-    self.title = "설정 및 더보기"
-    lblRestoreIAP.text = "구입 정보 복원"
-    lblShowHelp.text = "도움말 보기"
-    lblSendEmailToDev.text = "개발자에게 메일 보내기"
-    lblAppTour.text = "개발자의 다른 앱 둘러보기"
+    self.navigationItem.title = "loc.setting.title".localized
+    lblRestoreIAP.text = "loc.setting.restore.iap".localized
+    lblShowHelp.text = "loc.setting.show.help".localized
+    lblSendEmailToDev.text = "loc.setting.send.email".localized
+    lblAppTour.text = "loc.setting.app.tour".localized
     
     
     if AdManager.default.isReallyShowAd {
@@ -57,7 +57,7 @@ class SettingTableViewController: UITableViewController {
   
   @IBAction func stepperActChangeDays(_ sender: UIStepper) {
     let days = Int(sender.value)
-    lblDays.text = String(days) + "일"
+    lblDays.text = "loc.common.day.formatted".localizedFormat(days)
     refreshDefaultDaysOfConfig(days)
   }
 }
@@ -87,15 +87,15 @@ extension SettingTableViewController {
   override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     switch section {
     case SECTION_AD_CONTAINER:
-      return "현재 앱 버전: \(AppMetadataUtil.appVersionAndBuild())"
+      return "\("loc.setting.header.current.app.version".localized): \(AppMetadataUtil.appVersionAndBuild())"
     case SECTION_IAP:
-      return "인 앱 결제"
+      return "loc.setting.header.iap".localized
     case SECTION_DAYS:
-      return "기본 설정 기간"
+      return "loc.setting.header.days".localized
     case SECTION_HELP:
-      return "도움말"
+      return "loc.setting.header.help".localized
     case SECTION_OTHER:
-      return "기타"
+      return "loc.setting.header.other".localized
     default:
       break
     }
@@ -106,9 +106,9 @@ extension SettingTableViewController {
   override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
     switch section {
     case SECTION_IAP:
-      return "앱 내 구입을 통해 앱 내의 모든 광고를 제거할 수 있습니다. 더 나은 앱과 서비스를 제공할 수 있도록 응원해 주시면 감사하겠습니다."
+      return "loc.setting.footer.iap".localized
     case SECTION_DAYS:
-      return "교체 일수를 입력하세요. 디퓨저 스틱의 일반적인 권장 교체기간은 30일입니다."
+      return "loc.setting.footer.days".localized
     default:
       break
     }
@@ -175,7 +175,7 @@ extension SettingTableViewController {
       refreshDefaultDaysOfConfig(30)
     }
     
-    lblDays.text = String(currentDays) + "일"
+    lblDays.text = "loc.common.day.formatted".localizedFormat(currentDays)
   }
   
   private func refreshDefaultDaysOfConfig(_ day: Int) {
@@ -186,20 +186,25 @@ extension SettingTableViewController {
 extension SettingTableViewController: MFMailComposeViewControllerDelegate {
   func launchEmail() {
     guard MFMailComposeViewController.canSendMail() else {
-      simpleAlert(self, message: "사용자의 메일 계정이 설정되어 있지 않습니다.", title: "메일 전송 불가", handler: nil)
+      simpleAlert(
+        self,
+        message: "loc.setting.email.error.messaage".localized,
+        title: "loc.setting.email.error.title".localized,
+        handler: nil
+      )
       return
     }
     
-    let emailTitle = "디퓨저 스틱 피드백"
+    let emailTitle = "loc.setting.email.title".localized
     let messageBody =
         """
-        '디퓨저 스틱'에 대한 문의사항 또는 피드백이 있으신가요?
+        \("loc.setting.email.body.intro".localized)
         
         OS Version: \(AppMetadataUtil.osInfo())
         App Version: \(AppMetadataUtil.appVersionAndBuild())
         Device Name: \(UIDevice.modelName)
         """
-    let toRecipents = ["yoonbumtae@gmail.com"]
+    let toRecipents: [String] = [.shdDevEmail]
     
     let mc = MFMailComposeViewController()
     mc.mailComposeDelegate = self
@@ -322,9 +327,15 @@ extension SettingTableViewController {
       LoadingIndicatorUtil.default.show(
         self,
         style: .blur,
-        text: "결제 작업을 처리중입니다.\n잠시만 기다려 주세요...")
+        text: "loc.iap.processing.text".localized
+      )
     } else {
-      simpleAlert(self, message: "구매 완료되었습니다. 이제 앱에서 광고가 표시되지 않습니다.", title: "구매 완료", handler: nil)
+      simpleAlert(
+        self,
+        message: "loc.iap.complete.message".localized,
+        title: "loc.iap.complete.title".localized,
+        handler: nil
+      )
     }
   }
   
@@ -336,13 +347,17 @@ extension SettingTableViewController {
   /// 결제 후 Notification을 받아 처리
   @objc func handleIAPPurchase(_ notification: Notification) {
     guard notification.object is String else {
-      simpleAlert(self, message: "구매 실패: 다시 시도해주세요.")
+      simpleAlert(self, message: "loc.iap.error.noti.nil".localized)
       return
     }
     
     DispatchQueue.main.async { [weak self] in
       guard let self else { return }
-      simpleAlert(self, message: "구매 완료되었습니다. 이제 앱에서 광고가 표시되지 않습니다.", title: "구매 완료") { [weak self] action in
+      simpleAlert(
+        self,
+        message: "loc.iap.complete.message".localized,
+        title: "loc.iap.complete.title".localized
+      ) { [weak self] action in
         guard let self else { return }
         // 결제 성공하면 해야할 작업...
         // 1. 로딩 인디케이터 숨기기

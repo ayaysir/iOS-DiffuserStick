@@ -21,7 +21,7 @@ class HelpViewController: UIViewController {
     initWebPageLoad()
     
     // Localizable Texts
-    self.title = "도움말"
+    self.title = "loc.help.title".localized
     
     if AdManager.default.isReallyShowAd {
       if #available(iOS 14, *) {
@@ -38,7 +38,13 @@ class HelpViewController: UIViewController {
     // 웹 파일 로딩
     webView.navigationDelegate = self
     
-    let url = Bundle.main.url(forResource: "help", withExtension: "html")!
+    guard let url = Bundle.main.url(
+      forResource: "loc.resource.help".localized,
+      withExtension: "html"
+    ) else {
+      return
+    }
+    
     webView.loadFileURL(url, allowingReadAccessTo: url)
     let request = URLRequest(url: url)
     webView.load(request)
@@ -52,7 +58,7 @@ extension HelpViewController: WKNavigationDelegate {
     }
     
     let appUrl = Bundle.main.resourceURL!
-    let targetUrl = appUrl.appendingPathComponent("help.html")
+    let targetUrl = appUrl.appendingPathComponent("\("loc.resource.help".localized).html")
     
     if url.description.lowercased().starts(with: "https://") || url.description.lowercased().starts(with: "http://") {
       UIApplication.shared.open(url)

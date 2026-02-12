@@ -1,0 +1,1034 @@
+{
+  "sourceLanguage" : "ko",
+  "strings" : {
+    "Configuration" : {
+
+    },
+    "DiffuserStick Widget Config" : {
+
+    },
+    "loc.alert.archive.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보관함으로 이동했습니다. 보관함 메뉴에서 열람할 수 있습니다."
+          }
+        }
+      }
+    },
+    "loc.alert.archive.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보관함으로 이동"
+          }
+        }
+      }
+    },
+    "loc.alert.camera.auth.denied.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "카메라 기능 권한이 거부되어 사용할 수 없습니다. 카메라 권한 설정을 변경하시겠습니까?"
+          }
+        }
+      }
+    },
+    "loc.alert.camera.auth.not_determined.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "카메라 권한 설정을 변경하시겠습니까?"
+          }
+        }
+      }
+    },
+    "loc.alert.caution" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "경고"
+          }
+        }
+      }
+    },
+    "loc.alert.delete.complete.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삭제 완료되었습니다."
+          }
+        }
+      }
+    },
+    "loc.alert.delete.complete.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삭제 완료"
+          }
+        }
+      }
+    },
+    "loc.alert.delete.fail.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삭제에 실패했습니다."
+          }
+        }
+      }
+    },
+    "loc.alert.delete.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정말 삭제하시겠습니까?"
+          }
+        }
+      }
+    },
+    "loc.alert.no" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아니오"
+          }
+        }
+      }
+    },
+    "loc.alert.ok" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "확인"
+          }
+        }
+      }
+    },
+    "loc.alert.photo.auth.denied.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사진 기능 권한이 거부되어 사용할 수 없습니다. 사진 권한 설정을 변경하시겠습니까?"
+          }
+        }
+      }
+    },
+    "loc.alert.photo.auth.denied.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "권한 거부됨"
+          }
+        }
+      }
+    },
+    "loc.alert.photo.auth.not_determined.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사진 권한 설정을 변경하시겠습니까?"
+          }
+        }
+      }
+    },
+    "loc.alert.photo.auth.not_determined.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "권한 정보 없음"
+          }
+        }
+      }
+    },
+    "loc.alert.photo.auth.restricted.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시스템에 의해 거부되었습니다."
+          }
+        }
+      }
+    },
+    "loc.alert.replace.complete.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "디퓨저 교체 날짜를 오늘로 새로고침하였습니다."
+          }
+        }
+      }
+    },
+    "loc.alert.replace.complete.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "교체되었습니다."
+          }
+        }
+      }
+    },
+    "loc.alert.replace.error.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오류로 인해 날짜가 교체되지 않았습니다."
+          }
+        }
+      }
+    },
+    "loc.alert.save.complete.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장되었습니다."
+          }
+        }
+      }
+    },
+    "loc.alert.save.failed.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장이 되지 않았습니다. 다시 시도해주세요."
+          }
+        }
+      }
+    },
+    "loc.alert.update.complete.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "업데이트 되었습니다."
+          }
+        }
+      }
+    },
+    "loc.alert.update.complete.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "업데이트 완료"
+          }
+        }
+      }
+    },
+    "loc.alert.update.failed.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "업데이트가 되지 않았습니다. 다시 시도해주세요."
+          }
+        }
+      }
+    },
+    "loc.alert.yes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "네"
+          }
+        }
+      }
+    },
+    "loc.archive.empty.list" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🫙 아카이브 리스트가 비어있어요.\n\n디퓨저 리스트에서 더 이상 사용하지\n않는 디퓨저가 있는 경우 [보관] 기능을\n이용하면 아카이브에 추가할 수 있어요!"
+          }
+        }
+      }
+    },
+    "loc.archive.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보관함"
+          }
+        }
+      }
+    },
+    "loc.common.archive" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보관"
+          }
+        }
+      }
+    },
+    "loc.common.close" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "닫기"
+          }
+        }
+      }
+    },
+    "loc.common.complete" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "완료"
+          }
+        }
+      }
+    },
+    "loc.common.day.formatted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%(day)d일"
+          }
+        }
+      }
+    },
+    "loc.common.delete" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삭제"
+          }
+        }
+      }
+    },
+    "loc.common.done" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "완료"
+          }
+        }
+      }
+    },
+    "loc.common.need.replace" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%(days)d일 후 교체 필요"
+          }
+        }
+      }
+    },
+    "loc.common.need.replace.now" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "즉시 교체 필요!"
+          }
+        }
+      }
+    },
+    "loc.common.need.replace.now.formal" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "교체일이 지났습니다. 당장 교체해야 합니다!"
+          }
+        }
+      }
+    },
+    "loc.common.replace" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "교체"
+          }
+        }
+      }
+    },
+    "loc.common.replace.date.formatted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "YYYY년 MM월 dd일 교체됨"
+          }
+        }
+      }
+    },
+    "loc.common.replace.date.formatted.formal" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "마지막 디퓨저 교체일은 YYYY년 M월 dd일 입니다."
+          }
+        }
+      }
+    },
+    "loc.common.replace.future.formatted.formal" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다음 디퓨저 교체일은 YYYY년 M월 dd일 입니다."
+          }
+        }
+      }
+    },
+    "loc.common.save" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장"
+          }
+        }
+      }
+    },
+    "loc.common.update" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수정"
+          }
+        }
+      }
+    },
+    "loc.help.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "도움말"
+          }
+        }
+      }
+    },
+    "loc.iap.complete.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구매 완료되었습니다. 이제 앱에서 광고가 표시되지 않습니다."
+          }
+        }
+      }
+    },
+    "loc.iap.complete.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구매 완료"
+          }
+        }
+      }
+    },
+    "loc.iap.error.noti.nil" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구매 실패: 다시 시도해주세요."
+          }
+        }
+      }
+    },
+    "loc.iap.processing.text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "결제 작업을 처리중입니다.\\n잠시만 기다려 주세요..."
+          }
+        }
+      }
+    },
+    "loc.main.empty.list" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🫙 디퓨저 리스트가 비어있어요.\n\n오른쪽 상단의 [+] 버튼을 눌러\n새로운 디퓨저를 추가해보세요."
+          }
+        }
+      }
+    },
+    "loc.main.sort.action.default" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "디퓨저를 등록한 최근 날짜 순서 (기본)"
+          }
+        }
+      }
+    },
+    "loc.main.sort.action.replace.asc" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "교체일이 가까운 순서"
+          }
+        }
+      }
+    },
+    "loc.main.sort.action.replace.dsc" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "교체일이 먼 순서"
+          }
+        }
+      }
+    },
+    "loc.main.sort.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정렬 방식을 선택하세요"
+          }
+        }
+      }
+    },
+    "loc.main.sort.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정렬"
+          }
+        }
+      }
+    },
+    "loc.main.tab.item.archive" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보관함"
+          }
+        }
+      }
+    },
+    "loc.main.tab.item.list" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "리스트"
+          }
+        }
+      }
+    },
+    "loc.main.tab.item.settings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정 및 도움말"
+          }
+        }
+      }
+    },
+    "loc.noti.body" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘%(name)@’ 디퓨저 스틱을 구매해야 합니다."
+          }
+        }
+      }
+    },
+    "loc.resource.help" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "help"
+          }
+        }
+      }
+    },
+    "loc.setting.app.tour" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "개발자의 다른 앱 둘러보기"
+          }
+        }
+      }
+    },
+    "loc.setting.email.body.intro" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "'디퓨저 스틱' 앱에 대한 문의사항 또는 피드백이 있으신가요?"
+          }
+        }
+      }
+    },
+    "loc.setting.email.error.messaage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용자의 메일 계정이 설정되어 있지 않습니다."
+          }
+        }
+      }
+    },
+    "loc.setting.email.error.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "메일 전송 불가"
+          }
+        }
+      }
+    },
+    "loc.setting.email.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "디퓨저 스틱 앱의 피드백"
+          }
+        }
+      }
+    },
+    "loc.setting.footer.days" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "교체 일수를 입력하세요. 디퓨저 스틱의 일반적인 권장 교체기간은 30일입니다."
+          }
+        }
+      }
+    },
+    "loc.setting.footer.iap" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱 내 구입을 통해 앱 내의 모든 광고를 제거할 수 있습니다. 더 나은 앱과 서비스를 제공할 수 있도록 응원해 주시면 감사하겠습니다."
+          }
+        }
+      }
+    },
+    "loc.setting.header.current.app.version" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "현재 앱 버전"
+          }
+        }
+      }
+    },
+    "loc.setting.header.days" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기본 설정 기간"
+          }
+        }
+      }
+    },
+    "loc.setting.header.help" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "도움말"
+          }
+        }
+      }
+    },
+    "loc.setting.header.iap" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱 내 결제"
+          }
+        }
+      }
+    },
+    "loc.setting.header.other" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기타"
+          }
+        }
+      }
+    },
+    "loc.setting.restore.iap" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구입 정보 복원"
+          }
+        }
+      }
+    },
+    "loc.setting.send.email" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "개발자에게 메일 보내기"
+          }
+        }
+      }
+    },
+    "loc.setting.show.help" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "도움말 보기"
+          }
+        }
+      }
+    },
+    "loc.setting.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정 및 더보기"
+          }
+        }
+      }
+    },
+    "loc.share.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"나의 디퓨저: %(name)@ - DiffuserStick App에서 보냄"
+          }
+        }
+      }
+    },
+    "loc.widget.config.description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "교체해야할 디퓨저 목록을 확인할 수 있습니다."
+          }
+        }
+      }
+    },
+    "loc.widget.config.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DiffuserStick 위젯"
+          }
+        }
+      }
+    },
+    "loc.widget.dto.mock.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "창가의 로즈블랙 디퓨저"
+          }
+        }
+      }
+    },
+    "loc.widget.replace.now.small" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "즉시\\n교체"
+          }
+        }
+      }
+    },
+    "loc.write.camera" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사진 찍기"
+          }
+        }
+      }
+    },
+    "loc.write.image.upload.intro" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사진 업로드"
+          }
+        }
+      }
+    },
+    "loc.write.invalid.image.error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이미지 저장 중 오류가 발생하였습니다."
+          }
+        }
+      }
+    },
+    "loc.write.invalid.no.image" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이미지가 첨부되지 않았습니다."
+          }
+        }
+      }
+    },
+    "loc.write.invalid.title.letter.count" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제목은 1자 이상 입력해야 합니다."
+          }
+        }
+      }
+    },
+    "loc.write.memo.intro" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "메모"
+          }
+        }
+      }
+    },
+    "loc.write.memo.placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "메모를 입력해주세요."
+          }
+        }
+      }
+    },
+    "loc.write.photo.library" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사진 올리기"
+          }
+        }
+      }
+    },
+    "loc.write.replace.days.intro" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "교체 일수"
+          }
+        }
+      }
+    },
+    "loc.write.start.date.intro" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시작 날짜"
+          }
+        }
+      }
+    },
+    "loc.write.title.desc" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "디퓨저의 이름이나 위치 등을 알 수 있도록 제목을 작성해주세요."
+          }
+        }
+      }
+    },
+    "loc.write.title.desc.rewrite" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "재작성 모드: 보관함에 저장되어 있던 글을 다시 활성 리스트에 업로드할 수 있습니다."
+          }
+        }
+      }
+    },
+    "loc.write.title.intro" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제목: 디퓨저 이름, 위치 등"
+          }
+        }
+      }
+    },
+    "widget_isFullColorImage_title" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이미지를 풀 컬러로 보기"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.1"
+}

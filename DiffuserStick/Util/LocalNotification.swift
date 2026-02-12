@@ -75,7 +75,7 @@ private func getNotiContent(
 ) -> UNMutableNotificationContent {
   let notiContent = UNMutableNotificationContent()
   notiContent.title = diffuser.title
-  notiContent.body = "'\(diffuser.title)' 디퓨저의 스틱을 교체해야 합니다."
+  notiContent.body = "loc.noti.body".localizedFormat(diffuser.title)
   notiContent.userInfo = [
     "targetScene": "change",
     "diffuserId": diffuser.id.uuidString

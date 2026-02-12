@@ -21,8 +21,8 @@ struct DSWidget: Widget {
         .containerBackground(.fill.quaternary, for: .widget)
     }
     .supportedFamilies([.systemSmall, .systemMedium])
-    .configurationDisplayName(Text("DiffuserStick 위젯"))
-    .description(Text("교체해야할 디퓨저 목록을 확인할 수 있습니다."))
+    .configurationDisplayName(Text(.locWidgetConfigTitle))
+    .description(Text(.locWidgetConfigDescription))
   }
 }
 

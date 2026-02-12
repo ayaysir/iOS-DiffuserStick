@@ -59,10 +59,10 @@ class DiffuserDetailViewController: UIViewController {
     btnTrayUpToList.layer.cornerRadius = 0.5 * btnTrayUpToList.bounds.size.width
     
     // Localizable Texts
-    btnDeleteOutlet.setTitle("삭제", for: .normal)
-    btnEditOutlet.setTitle("수정", for: .normal)
-    btnArchiveOutlet.setTitle("보관", for: .normal)
-    btnReplaceOutlet.setTitle("교체", for: .normal)
+    btnDeleteOutlet.setTitle("loc.common.delete".localized, for: .normal)
+    btnEditOutlet.setTitle("loc.common.update".localized, for: .normal)
+    btnArchiveOutlet.setTitle("loc.common.archive".localized, for: .normal)
+    btnReplaceOutlet.setTitle("loc.common.replace".localized, for: .normal)
     
     // 이미지 탭 이벤트 추가
     imgPhoto.isUserInteractionEnabled = true
@@ -121,11 +121,11 @@ class DiffuserDetailViewController: UIViewController {
     if updateResult {
       displayDates()
       delegate?.replaceModifiedDiffuser(self, diffuser: selectedDiffuser!, isModified: true, index: currentArrayIndex!)
-      simpleAlert(self, message: "디퓨저 교체 날짜를 오늘로 새로고침하였습니다.", title: "교체되었습니다.", handler: nil)
+      simpleAlert(self, message: "loc.alert.replace.complete.message".localized, title: "loc.alert.replace.complete.title".localized, handler: nil)
     } else {
       selectedDiffuser?.startDate = oldDate!
       displayDates()
-      simpleAlert(self, message: "오류로 인해 날짜가 교체되지 않았습니다.")
+      simpleAlert(self, message: "loc.alert.replace.error.message".localized)
     }
   }
   
@@ -134,7 +134,7 @@ class DiffuserDetailViewController: UIViewController {
     let updateResult = updateCoreData(id: selectedDiffuser!.id, diffuserVO: selectedDiffuser!)
     if updateResult {
       // 리스트에서 삭제
-      simpleAlert(self, message: "보관함으로 이동했습니다. 보관함 메뉴에서 열람할 수 있습니다.", title: "보관함으로 이동") { action in
+      simpleAlert(self, message: "loc.alert.archive.message".localized, title: "loc.alert.archive.title".localized) { action in
         self.delegate?.sendArchive(self, diffuser: self.selectedDiffuser!, isModified: true, index: self.currentArrayIndex!)
         self.dismiss(animated: true, completion: nil)
       }
@@ -145,23 +145,23 @@ class DiffuserDetailViewController: UIViewController {
   
   @IBAction func btnDeleteAct(_ sender: Any) {
     if !selectedDiffuser!.isFinished {
-      simpleDestructiveYesAndNo(self, message: "정말 삭제하시겠습니까?", title: "삭제") { action in
+      simpleDestructiveYesAndNo(self, message: "loc.alert.delete.message".localized, title: "loc.common.delete".localized) { action in
         let deleteResult = deleteCoreData(id: self.selectedDiffuser!.id)
         if deleteResult {
           self.delegate?.deleteFromList(self, diffuser: self.selectedDiffuser!, index: self.currentArrayIndex!)
           self.dismiss(animated: true, completion: nil)
         } else {
-          simpleAlert(self, message: "삭제에 실패했습니다.")
+          simpleAlert(self, message: "loc.alert.delete.fail.message".localized)
         }
       }
     } else {
-      simpleDestructiveYesAndNo(self, message: "정말 삭제하시겠습니까?", title: "삭제") { action in
+      simpleDestructiveYesAndNo(self, message: "loc.alert.delete.message".localized, title: "loc.common.delete".localized) { action in
         let deleteResult = deleteCoreData(id: self.selectedDiffuser!.id)
         if deleteResult {
           self.archiveDelegate?.deleteFromList(self, diffuser: self.selectedDiffuser!, index: self.currentArrayIndex!)
           self.dismiss(animated: true, completion: nil)
         } else {
-          simpleAlert(self, message: "삭제에 실패했습니다.")
+          simpleAlert(self, message: "loc.alert.delete.fail.message".localized)
         }
       }
     }
@@ -174,12 +174,15 @@ class DiffuserDetailViewController: UIViewController {
     }
     
     var shareList = [AnyObject]()
+    
+    let message = "loc.share.message".localizedFormat(lblTitle.text ?? "")
     shareList.append(image)
-      
-    shareList.append("나의 디퓨저: \(lblTitle.text ?? "") - DiffuserStick App에서 보냄" as NSString)
+    shareList.append(message as NSString)
+    
     let activityVC = UIActivityViewController(activityItems: shareList, applicationActivities: nil)
     activityVC.excludedActivityTypes = [.postToTwitter, .postToWeibo, .postToVimeo, .postToFlickr, .postToFacebook, .postToTencentWeibo]
     activityVC.popoverPresentationController?.sourceView = self.view
+    
     self.present(activityVC, animated: true, completion: nil)
   }
   
@@ -261,15 +264,15 @@ extension DiffuserDetailViewController {
     let betweenDays = diffuser.startDate.diffuserDaysRemaining(totalDays: diffuser.usersDays)
     
     if betweenDays > 0 {
-      lblRemainDays.text = "\(betweenDays)일 후 교체 필요"
+      lblRemainDays.text = "loc.common.need.replace".localizedFormat(betweenDays)
     } else {
-      lblRemainDays.text = "교체일이 지났습니다. 당장 교체해야 합니다!"
+      lblRemainDays.text = "loc.common.need.replace.now.formal".localized
     }
   }
   
   func formatLastChanged(date: Date) -> String {
     let formatter = DateFormatter()
-    formatter.dateFormat = "마지막 디퓨저 교체일은 YYYY년 M월 dd일 입니다."
+    formatter.dateFormat = "loc.common.replace.date.formatted.formal".localized
     return formatter.string(from: date)
   }
 
@@ -279,7 +282,7 @@ extension DiffuserDetailViewController {
     
     let futureDate = Calendar.current.date(byAdding: dateComponent, to: date)
     let formatter = DateFormatter()
-    formatter.dateFormat = "다음 디퓨저 교체일은 YYYY년 M월 dd일 입니다."
+    formatter.dateFormat = "loc.common.replace.future.formatted.formal".localized
     return formatter.string(from: futureDate!)
   }
 }

@@ -163,22 +163,38 @@ class MainActiveListViewController: UIViewController {
   }
   
   @IBAction func btnSort(_ sender: Any) {
-    let alertController = UIAlertController(title: "정렬", message: "정렬 방식을 선택하세요.", preferredStyle: .actionSheet)
-    let sortRegister = UIAlertAction(title: "디퓨저를 등록한 최근 날짜 순서 (기본)", style: .default) { action in
+    let alertController = UIAlertController(
+      title: "loc.main.sort.title".localized,
+      message: "loc.main.sort.message".localized,
+      preferredStyle: .actionSheet
+    )
+    
+    let sortDefault = UIAlertAction(
+      title: "loc.main.sort.action.default".localized,
+      style: .default
+    ) { action in
       if self.currentSort == .orderByCreateDateDesc { return }
       self.viewModel.sortByCreateDateDesc()
       self.tblList.reloadData()
       self.tblList.setContentOffset(.zero, animated: true)
       self.currentSort = .orderByCreateDateDesc
     }
-    let sortDefault = UIAlertAction(title: "교체일이 가까운 순서", style: .default) { action in
+    
+    let sortReplaceAsc = UIAlertAction(
+      title: "loc.main.sort.action.replace.asc".localized,
+      style: .default
+    ) { action in
       if self.currentSort == .orderByRemainDayAsc { return }
       self.viewModel.sortByStartDateAsc()
       self.tblList.reloadData()
       self.tblList.setContentOffset(.zero, animated: true)
       self.currentSort = .orderByRemainDayAsc
     }
-    let sortReverse = UIAlertAction(title: "교체일이 먼 순서", style: .default) { action in
+    
+    let sortReplaceDsc = UIAlertAction(
+      title: "loc.main.sort.action.replace.dsc".localized,
+      style: .default
+    ) { action in
       if self.currentSort == .orderByRemainDayDesc { return }
       self.viewModel.sortByStartDateDesc()
       self.tblList.reloadData()
@@ -186,9 +202,9 @@ class MainActiveListViewController: UIViewController {
       self.currentSort = .orderByRemainDayDesc
     }
     
-    alertController.addAction(sortRegister)
     alertController.addAction(sortDefault)
-    alertController.addAction(sortReverse)
+    alertController.addAction(sortReplaceAsc)
+    alertController.addAction(sortReplaceDsc)
     self.present(alertController, animated: true, completion: nil)
   }
   
@@ -242,12 +258,7 @@ extension MainActiveListViewController: UITableViewDelegate, UITableViewDataSour
   // MVVM 3: 뷰모델 인스턴스에서 갯수 가져오기
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if viewModel.numOfDiffuserInfoList == 0 {
-      tableView.displayBackgroundMessage("""
-            🫙 디퓨저 리스트가 비어있어요.
-            
-            오른쪽 상단의 [+] 버튼을 눌러
-            새로운 디퓨저를 추가해보세요.
-            """)
+      tableView.displayBackgroundMessage("loc.main.empty.list".localized)
     } else {
       tableView.dismissBackgroundMessage()
     }
@@ -274,8 +285,12 @@ extension MainActiveListViewController: UITableViewDelegate, UITableViewDataSour
   }
   
   func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-    let deleteAction = UITableViewRowAction(style: .destructive, title: "삭제") { _, index in
-      simpleDestructiveYesAndNo(self, message: "정말 삭제하시겠습니까?", title: "삭제") { action in
+    let deleteAction = UITableViewRowAction(style: .destructive, title: "loc.common.delete".localized) { (_, index) in
+      simpleDestructiveYesAndNo(
+        self,
+        message: "loc.alert.delete.message".localized,
+        title: "loc.common.delete".localized
+      ) { action in
         let deleteResult = deleteCoreData(id: self.viewModel.diffuserInfoList[indexPath.row].id)
         if deleteResult {
           self.viewModel.diffuserInfoList.remove(at: (indexPath as NSIndexPath).row)
@@ -284,7 +299,7 @@ extension MainActiveListViewController: UITableViewDelegate, UITableViewDataSour
       }
     }
     
-    let refreshAction = UITableViewRowAction(style: .normal, title: "교체") { [unowned self] _, _ in
+    let refreshAction = UITableViewRowAction(style: .normal, title: "loc.common.replace".localized) { [unowned self] (_, _) in
       var diffuserInfo = viewModel.diffuserInfoList[indexPath.row]
       let newDate = Date()
       diffuserInfo.startDate = newDate
@@ -293,11 +308,15 @@ extension MainActiveListViewController: UITableViewDelegate, UITableViewDataSour
       
       if updateResult {
         viewModel.diffuserInfoList[indexPath.row] = diffuserInfo
-        simpleAlert(self, message: "디퓨저 교체 날짜를 오늘로 새로고침하였습니다.", title: "교체되었습니다.") { [unowned self] _ in
+        simpleAlert(
+          self,
+          message: "loc.alert.replace.complete.message".localized,
+          title: "loc.alert.replace.complete.title".localized
+        ) { [unowned self] _ in
           tblList.reloadData()
         }
       } else {
-        simpleAlert(self, message: "오류로 인해 날짜가 교체되지 않았습니다.")
+        simpleAlert(self, message: "loc.alert.replace.error.message".localized)
       }
     }
     refreshAction.backgroundColor = .systemGreen
@@ -325,19 +344,19 @@ class DiffuserListCell: UITableViewCell {
     lblTitle.text = info.title
     
     if betweenDays > 3 {
-      lblRemainDayText.text = "\(betweenDays)일 후 교체 필요"
+      lblRemainDayText.text = "loc.common.need.replace".localizedFormat(betweenDays)
       self.contentView.backgroundColor = nil
     } else if betweenDays <= 3 && betweenDays > 0 {
-      lblRemainDayText.text = "\(betweenDays)일 후 교체 필요"
+      lblRemainDayText.text = "loc.common.need.replace".localizedFormat(betweenDays)
       self.contentView.backgroundColor = #colorLiteral(red: 0.9773717523, green: 0.9611932635, blue: 0.7925902009, alpha: 1)
     } else {
-      lblRemainDayText.text = "즉시 교체 필요!"
+      lblRemainDayText.text = "loc.common.need.replace.now".localized
       self.contentView.backgroundColor = #colorLiteral(red: 0.9926608205, green: 0.8840166926, blue: 0.8681346178, alpha: 1)
     }
     
     // 마지막 교체일 또는 신규 등록일에 따라 레이블 구분 (교체, 설치? 등록?)
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "YYYY년 MM월 dd일 교체됨"
+    dateFormatter.dateFormat = "loc.common.replace.date.formatted".localized
     lblExpirationDate.text = dateFormatter.string(from: info.startDate)
     thumbnailView.image = getImage(fileNameWithExt: info.photoName)
     thumbnailView.layer.cornerRadius = 8
@@ -422,7 +441,12 @@ extension MainActiveListViewController: DetailViewDelegate {
     self.viewModel.diffuserInfoList.remove(at: index)
     tblList.reloadData()
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-      simpleAlert(self, message: "삭제 완료되었습니다.", title: "삭제 완료", handler: nil)
+      simpleAlert(
+        self,
+        message: "loc.alert.delete.complete.message".localized,
+        title: "loc.alert.delete.complete.title".localized,
+        handler: nil
+      )
     }
     sendDiffusersToWidget()
   }

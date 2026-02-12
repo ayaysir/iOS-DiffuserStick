@@ -38,7 +38,7 @@ struct DSWidgetEntryView : View {
   @ViewBuilder private var SmallView: some View {
     VStack {
       HStack(spacing: 12) {
-        let uiImage = getImageFromAppGroupDir(diffuserId: entry.diffuser.id) ?? .jelly1
+        let uiImage = getImageFromAppGroupDir(diffuserId: entry.diffuser.id) ?? .sample
         ResizableRendered(imageView: Image(uiImage: uiImage))
           .scaledToFit()
           .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
@@ -60,7 +60,7 @@ struct DSWidgetEntryView : View {
   @ViewBuilder private var DefaultView: some View {
     let diffuser = entry.diffuser
     HStack(spacing: 16) {
-      let uiImage = getImageFromAppGroupDir(diffuserId: entry.diffuser.id) ?? .jelly1
+      let uiImage = getImageFromAppGroupDir(diffuserId: entry.diffuser.id) ?? .sample
       ResizableRendered(imageView: Image(uiImage: uiImage))
         .scaledToFit()
         .frame(width: 100)
@@ -84,7 +84,7 @@ struct DSWidgetEntryView : View {
   
   private var formatLastChanged: String {
     let formatter = DateFormatter()
-    formatter.dateFormat = "YYYY년 M월 dd일 교체됨"
+    formatter.dateFormat = "loc.common.replace.date.formatted".localized
     return formatter.string(from: entry.diffuser.lastStartDate)
   }
   
@@ -96,17 +96,17 @@ struct DSWidgetEntryView : View {
     if remainingDays <= 0 {
       switch family {
       case .systemSmall:
-        return "즉시\n교체"
+        return "loc.widget.replace.now.small".localized
       default:
-        return "즉시 교체 필요"
+        return "loc.common.need.replace.now".localized
       }
     }
 
     switch family {
     case .systemSmall:
-      return "\(remainingDays)일"
+      return "loc.common.day.formatted".localizedFormat(remainingDays)
     default:
-      return "\(remainingDays)일 후 교체 필요"
+      return "loc.common.need.replace".localizedFormat(remainingDays)
     }
   }
 }

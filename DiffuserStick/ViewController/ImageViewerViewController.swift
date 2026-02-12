@@ -58,7 +58,7 @@ final class ImageViewerViewController: UIViewController {
   }
 
   private func setupCloseButton() {
-    closeButton.setTitle("닫기", for: .normal)
+    closeButton.setTitle("loc.common.close".localized, for: .normal)
     closeButton.tintColor = .white
     closeButton.addTarget(self, action: #selector(didTapClose), for: .touchUpInside)
 

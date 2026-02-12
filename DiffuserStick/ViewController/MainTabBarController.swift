@@ -16,8 +16,8 @@ class MainTabBarController: UITabBarController {
     }
     
     // Localizable texts
-    items[0].title = "리스트"
-    items[1].title = "보관함"
-    items[2].title = "설정 및 도움말"
+    items[0].title = "loc.main.tab.item.list".localized
+    items[1].title = "loc.main.tab.item.archive".localized
+    items[2].title = "loc.main.tab.item.settings".localized
   }
 }

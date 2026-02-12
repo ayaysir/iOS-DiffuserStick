@@ -18,7 +18,7 @@ struct DiffuserWidgetDTO: Codable {
 extension DiffuserWidgetDTO {
   static let mock: DiffuserWidgetDTO = .init(
     id: UUID(),
-    title: "창가의 로즈블랙 디퓨저",
+    title: "loc.widget.dto.mock.title".localized,
     lastStartDate: Date(),
     usersDays: 30
   )

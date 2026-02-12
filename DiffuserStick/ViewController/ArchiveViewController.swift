@@ -40,7 +40,7 @@ class ArchiveViewController: UIViewController {
     }
     
     // Localizable texts
-    navItemTitle.title = "보관함"
+    navItemTitle.title = "loc.archive.title".localized
     
     naviBar.delegate = self
     // collectionViewDelegate, dataSource는 스토리보드 상에서 연결되어 있음
@@ -90,13 +90,7 @@ class ArchiveViewController: UIViewController {
 extension ArchiveViewController: UICollectionViewDataSource, UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     if archiveViewModel.numOfDiffuserInfoList == 0 {
-      collectionView.displayBackgroundMessage("""
-            🫙 아카이브 리스트가 비어있어요.
-            
-            디퓨저 리스트에서 더 이상 사용하지
-            않는 디퓨저가 있는 경우 [보관] 기능을
-            이용하면 아카이브에 추가할 수 있어요!
-            """)
+      collectionView.displayBackgroundMessage("loc.archive.empty.list".localized)
     } else {
       collectionView.dismissBackgroundMessage()
     }
@@ -163,7 +157,7 @@ extension ArchiveViewController: ArchiveDetailViewDelegate {
     archiveViewModel.diffuserInfoList.remove(at: index)
     collectionView.reloadData()
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-      simpleAlert(self, message: "삭제 완료되었습니다.", title: "삭제 완료", handler: nil)
+      simpleAlert(self, message: "loc.alert.delete.complete.message".localized, title: "loc.alert.delete.complete.title".localized, handler: nil)
     }
   }
 }

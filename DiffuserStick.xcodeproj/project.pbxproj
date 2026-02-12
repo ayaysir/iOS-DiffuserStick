@@ -29,6 +29,10 @@
 		4464DCE52F3CB3C800D65F61 /* DiffuserWidgetStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4464DCE32F3CB39D00D65F61 /* DiffuserWidgetStorage.swift */; };
 		4464DCE62F3CBCB200D65F61 /* CalendarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FDCFCF26A070BB00A7A7FD /* CalendarExtension.swift */; };
 		4464DCE92F3CE37500D65F61 /* SaveImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4464DCE82F3CE36F00D65F61 /* SaveImageUtil.swift */; };
+		4464DCED2F3DC88E00D65F61 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4464DCEC2F3DC88E00D65F61 /* Localizable.xcstrings */; };
+		4464DCEE2F3DC88E00D65F61 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4464DCEC2F3DC88E00D65F61 /* Localizable.xcstrings */; };
+		4464DCF22F3DCE8D00D65F61 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4464DCF12F3DCE7F00D65F61 /* Localized.swift */; };
+		4464DCF32F3DE7CB00D65F61 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4464DCF12F3DCE7F00D65F61 /* Localized.swift */; };
 		447A45D8269DC0A0009C4B47 /* DiffuserVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */; };
 		448784A62B8F6EB70073B2DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448784A82B8F6EB70073B2DE /* Main.storyboard */; };
 		448784A92B8F6EC30073B2DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448784AB2B8F6EC30073B2DE /* LaunchScreen.storyboard */; };
@@ -105,6 +109,8 @@
 		4464DCE02F3CB23500D65F61 /* SharedGlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedGlobalVariables.swift; sourceTree = "<group>"; };
 		4464DCE32F3CB39D00D65F61 /* DiffuserWidgetStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuserWidgetStorage.swift; sourceTree = "<group>"; };
 		4464DCE82F3CE36F00D65F61 /* SaveImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveImageUtil.swift; sourceTree = "<group>"; };
+		4464DCEC2F3DC88E00D65F61 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		4464DCF12F3DCE7F00D65F61 /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
 		447A45D7269DC0A0009C4B47 /* DiffuserVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuserVO.swift; sourceTree = "<group>"; };
 		448784AC2B8F8C970073B2DE /* TableCollectionViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCollectionViewUtil.swift; sourceTree = "<group>"; };
 		448784AE2B8F94D60073B2DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -203,6 +209,7 @@
 				4456C9C1269D4E8500A29B77 /* Info.plist */,
 				4456C9B9269D4E8400A29B77 /* DiffuserStick.xcdatamodeld */,
 				44E868FC26A80A3A008B2D62 /* fontawesome-webfont.ttf */,
+				4464DCEC2F3DC88E00D65F61 /* Localizable.xcstrings */,
 			);
 			path = DiffuserStick;
 			sourceTree = "<group>";
@@ -239,6 +246,7 @@
 				4464DCD62F3BA45E00D65F61 /* DiffuserWidgetDTO.swift */,
 				4464DCE32F3CB39D00D65F61 /* DiffuserWidgetStorage.swift */,
 				44FDCFCF26A070BB00A7A7FD /* CalendarExtension.swift */,
+				4464DCF12F3DCE7F00D65F61 /* Localized.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -385,7 +393,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 2620;
-				LastUpgradeCheck = 1620;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					4456C9AC269D4E8400A29B77 = {
 						CreatedOnToolsVersion = 12.5;
@@ -402,6 +410,8 @@
 			knownRegions = (
 				ko,
 				Base,
+				en,
+				ja,
 			);
 			mainGroup = 4456C9A4269D4E8400A29B77;
 			packageReferences = (
@@ -430,6 +440,7 @@
 				4456C9BD269D4E8500A29B77 /* Assets.xcassets in Resources */,
 				448784BF2B909ACE0073B2DE /* AppExhibitionAssets.xcassets in Resources */,
 				44E8690226A9423F008B2D62 /* help.html in Resources */,
+				4464DCED2F3DC88E00D65F61 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +448,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4464DCEE2F3DC88E00D65F61 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +464,7 @@
 				448784AD2B8F8C970073B2DE /* TableCollectionViewUtil.swift in Sources */,
 				44E8690426A948C2008B2D62 /* ArchiveViewController.swift in Sources */,
 				448784BD2B90907B0073B2DE /* AppExhibitionTableViewController.swift in Sources */,
+				4464DCF22F3DCE8D00D65F61 /* Localized.swift in Sources */,
 				4456C9BB269D4E8400A29B77 /* DiffuserStick.xcdatamodeld in Sources */,
 				44BB07762B8F665500F57C4B /* IAPHelper.swift in Sources */,
 				44FDCFD826A1BFC200A7A7FD /* CoreData.swift in Sources */,
@@ -488,6 +501,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4464DCF32F3DE7CB00D65F61 /* Localized.swift in Sources */,
 				4464DCD82F3BA47500D65F61 /* DiffuserWidgetDTO.swift in Sources */,
 				4464DCE42F3CB3A500D65F61 /* DiffuserWidgetStorage.swift in Sources */,
 				4464DCE12F3CB23B00D65F61 /* SharedGlobalVariables.swift in Sources */,
@@ -562,6 +576,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 6S2SA26VAN;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -584,7 +599,9 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -626,6 +643,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 6S2SA26VAN;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -641,7 +659,9 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -656,7 +676,6 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6S2SA26VAN;
 				INFOPLIST_FILE = DiffuserStick/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -682,7 +701,6 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6S2SA26VAN;
 				INFOPLIST_FILE = DiffuserStick/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -710,7 +728,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 6S2SA26VAN;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DSWidget/Info.plist;
@@ -747,7 +764,6 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6S2SA26VAN;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DSWidget/Info.plist;

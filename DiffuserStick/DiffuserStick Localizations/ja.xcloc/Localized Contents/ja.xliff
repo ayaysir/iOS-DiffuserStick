@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="DiffuserStick/Base.lproj/Main.storyboard" datatype="plaintext" source-language="ko" target-language="ja">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="26.2" build-num="17C52"/>
+    </header>
+    <body>
+      <trans-unit id="0bF-0J-dFh.text" xml:space="preserve">
+        <source>메모</source>
+        <note>Class = "UILabel"; text = "메모"; ObjectID = "0bF-0J-dFh";</note>
+      </trans-unit>
+      <trans-unit id="1S7-iq-nnh.text" xml:space="preserve">
+        <source>[확인중]</source>
+        <note>Class = "UILabel"; text = "[확인중]"; ObjectID = "1S7-iq-nnh";</note>
+      </trans-unit>
+      <trans-unit id="1jD-HH-I5w.title" xml:space="preserve">
+        <source>리스트</source>
+        <note>Class = "UITabBarItem"; title = "리스트"; ObjectID = "1jD-HH-I5w";</note>
+      </trans-unit>
+      <trans-unit id="2jw-Ht-siP.text" xml:space="preserve">
+        <source>사진 업로드</source>
+        <note>Class = "UILabel"; text = "사진 업로드"; ObjectID = "2jw-Ht-siP";</note>
+      </trans-unit>
+      <trans-unit id="5BG-lM-dH4.text" xml:space="preserve">
+        <source>제작자에게 건의사항 또는 버그 리포트 보내기 </source>
+        <note>Class = "UILabel"; text = "제작자에게 건의사항 또는 버그 리포트 보내기 "; ObjectID = "5BG-lM-dH4";</note>
+      </trans-unit>
+      <trans-unit id="6nX-5r-6Wy.text" xml:space="preserve">
+        <source>Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</source>
+        <note>Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "6nX-5r-6Wy";</note>
+      </trans-unit>
+      <trans-unit id="8Gb-g7-SFL.text" xml:space="preserve">
+        <source>교체 일수</source>
+        <note>Class = "UILabel"; text = "교체 일수"; ObjectID = "8Gb-g7-SFL";</note>
+      </trans-unit>
+      <trans-unit id="70D-oW-AOk.footerTitle" xml:space="preserve">
+        <source>교체 일수를 입력하세요. 일반적인 권장 교체 기간은 30일입니다.</source>
+        <note>Class = "UITableViewSection"; footerTitle = "교체 일수를 입력하세요. 일반적인 권장 교체 기간은 30일입니다."; ObjectID = "70D-oW-AOk";</note>
+      </trans-unit>
+      <trans-unit id="70D-oW-AOk.headerTitle" xml:space="preserve">
+        <source>기본 설정 기간</source>
+        <note>Class = "UITableViewSection"; headerTitle = "기본 설정 기간"; ObjectID = "70D-oW-AOk";</note>
+      </trans-unit>
+      <trans-unit id="Amx-N3-Wyb.normalTitle" xml:space="preserve">
+        <source>Button</source>
+        <note>Class = "UIButton"; normalTitle = "Button"; ObjectID = "Amx-N3-Wyb";</note>
+      </trans-unit>
+      <trans-unit id="BQD-OC-gsb.normalTitle" xml:space="preserve">
+        <source>삭제</source>
+        <note>Class = "UIButton"; normalTitle = "삭제"; ObjectID = "BQD-OC-gsb";</note>
+      </trans-unit>
+      <trans-unit id="BkB-iT-qZU.normalTitle" xml:space="preserve">
+        <source>사진 올리기</source>
+        <note>Class = "UIButton"; normalTitle = "사진 올리기"; ObjectID = "BkB-iT-qZU";</note>
+      </trans-unit>
+      <trans-unit id="Cdb-Xf-3aC.text" xml:space="preserve">
+        <source>디퓨저의 이름이나 위치 등을 알 수 있도록 제목을 작성해주세요.</source>
+        <note>Class = "UILabel"; text = "디퓨저의 이름이나 위치 등을 알 수 있도록 제목을 작성해주세요."; ObjectID = "Cdb-Xf-3aC";</note>
+      </trans-unit>
+      <trans-unit id="DCY-yY-Ikm.text" xml:space="preserve">
+        <source>2021년 7월 7일</source>
+        <note>Class = "UILabel"; text = "2021년 7월 7일"; ObjectID = "DCY-yY-Ikm";</note>
+      </trans-unit>
+      <trans-unit id="DXV-EX-gUJ.text" xml:space="preserve">
+        <source>시작 날짜</source>
+        <note>Class = "UILabel"; text = "시작 날짜"; ObjectID = "DXV-EX-gUJ";</note>
+      </trans-unit>
+      <trans-unit id="DhH-W1-d8c.text" xml:space="preserve">
+        <source>다음 디퓨저 교체일까지 xx일 남았습니다.</source>
+        <note>Class = "UILabel"; text = "다음 디퓨저 교체일까지 xx일 남았습니다."; ObjectID = "DhH-W1-d8c";</note>
+      </trans-unit>
+      <trans-unit id="E1X-Kq-CBa.text" xml:space="preserve">
+        <source>제 2회의실 탁자에 있는 엘레강스 디퓨저</source>
+        <note>Class = "UILabel"; text = "제 2회의실 탁자에 있는 엘레강스 디퓨저"; ObjectID = "E1X-Kq-CBa";</note>
+      </trans-unit>
+      <trans-unit id="ISl-pO-CWT.text" xml:space="preserve">
+        <source>BGSMM의 다른 앱 둘러보기</source>
+        <note>Class = "UILabel"; text = "BGSMM의 다른 앱 둘러보기"; ObjectID = "ISl-pO-CWT";</note>
+      </trans-unit>
+      <trans-unit id="IeW-wB-b9X.title" xml:space="preserve">
+        <source>설정 및 더보기</source>
+        <note>Class = "UINavigationItem"; title = "설정 및 더보기"; ObjectID = "IeW-wB-b9X";</note>
+      </trans-unit>
+      <trans-unit id="IvU-ce-Yb8.normalTitle" xml:space="preserve">
+        <source>저장</source>
+        <note>Class = "UIButton"; normalTitle = "저장"; ObjectID = "IvU-ce-Yb8";</note>
+      </trans-unit>
+      <trans-unit id="KV0-M4-eDQ.normalTitle" xml:space="preserve">
+        <source>수정</source>
+        <note>Class = "UIButton"; normalTitle = "수정"; ObjectID = "KV0-M4-eDQ";</note>
+      </trans-unit>
+      <trans-unit id="LJf-z7-F4V.text" xml:space="preserve">
+        <source>fdsfs</source>
+        <note>Class = "UILabel"; text = "fdsfs"; ObjectID = "LJf-z7-F4V";</note>
+      </trans-unit>
+      <trans-unit id="LSB-6U-l7I.title" xml:space="preserve">
+        <source>도움말</source>
+        <note>Class = "UINavigationItem"; title = "도움말"; ObjectID = "LSB-6U-l7I";</note>
+      </trans-unit>
+      <trans-unit id="M8K-dN-n8m.title" xml:space="preserve">
+        <source>Item</source>
+        <note>Class = "UIBarButtonItem"; title = "Item"; ObjectID = "M8K-dN-n8m";</note>
+      </trans-unit>
+      <trans-unit id="Pt0-zN-PW4.text" xml:space="preserve">
+        <source>광고 제거</source>
+        <note>Class = "UILabel"; text = "광고 제거"; ObjectID = "Pt0-zN-PW4";</note>
+      </trans-unit>
+      <trans-unit id="QEj-m5-otr.text" xml:space="preserve">
+        <source>15일 후 교체 필요</source>
+        <note>Class = "UILabel"; text = "15일 후 교체 필요"; ObjectID = "QEj-m5-otr";</note>
+      </trans-unit>
+      <trans-unit id="QcV-1k-zSe.text" xml:space="preserve">
+        <source>30일</source>
+        <note>Class = "UILabel"; text = "30일"; ObjectID = "QcV-1k-zSe";</note>
+      </trans-unit>
+      <trans-unit id="UEI-vm-AVX.title" xml:space="preserve">
+        <source>설정 및 도움말</source>
+        <note>Class = "UITabBarItem"; title = "설정 및 도움말"; ObjectID = "UEI-vm-AVX";</note>
+      </trans-unit>
+      <trans-unit id="UOo-WQ-FlI.title" xml:space="preserve">
+        <source>보관함</source>
+        <note>Class = "UITabBarItem"; title = "보관함"; ObjectID = "UOo-WQ-FlI";</note>
+      </trans-unit>
+      <trans-unit id="Uum-8B-mKz.text" xml:space="preserve">
+        <source>마지막 디퓨저 교체일은 YYYY년 M월 dd일 입니다.</source>
+        <note>Class = "UILabel"; text = "마지막 디퓨저 교체일은 YYYY년 M월 dd일 입니다."; ObjectID = "Uum-8B-mKz";</note>
+      </trans-unit>
+      <trans-unit id="VzY-fe-BSA.text" xml:space="preserve">
+        <source>디퓨저 어딩디퓨저 어딩디퓨저 어딩디퓨저 어딩 디 가나다라 마바사 아자차카 타파하 고노도로</source>
+        <note>Class = "UILabel"; text = "디퓨저 어딩디퓨저 어딩디퓨저 어딩디퓨저 어딩 디 가나다라 마바사 아자차카 타파하 고노도로"; ObjectID = "VzY-fe-BSA";</note>
+      </trans-unit>
+      <trans-unit id="WKs-pO-3SN.text" xml:space="preserve">
+        <source>구입 정보 복원</source>
+        <note>Class = "UILabel"; text = "구입 정보 복원"; ObjectID = "WKs-pO-3SN";</note>
+      </trans-unit>
+      <trans-unit id="X59-UU-RZ0.headerTitle" xml:space="preserve">
+        <source>App Version - 1.0.0</source>
+        <note>Class = "UITableViewSection"; headerTitle = "App Version - 1.0.0"; ObjectID = "X59-UU-RZ0";</note>
+      </trans-unit>
+      <trans-unit id="XUk-cd-RgC.headerTitle" xml:space="preserve">
+        <source>기타</source>
+        <note>Class = "UITableViewSection"; headerTitle = "기타"; ObjectID = "XUk-cd-RgC";</note>
+      </trans-unit>
+      <trans-unit id="ZoU-UJ-xdc.title" xml:space="preserve">
+        <source>보관함</source>
+        <note>Class = "UINavigationItem"; title = "보관함"; ObjectID = "ZoU-UJ-xdc";</note>
+      </trans-unit>
+      <trans-unit id="blQ-B1-De8.text" xml:space="preserve">
+        <source>제목: 디퓨저 이름, 위치 등</source>
+        <note>Class = "UILabel"; text = "제목: 디퓨저 이름, 위치 등"; ObjectID = "blQ-B1-De8";</note>
+      </trans-unit>
+      <trans-unit id="c6c-E4-KjP.footerTitle" xml:space="preserve">
+        <source>광고를 제거할 수 있습니다.</source>
+        <note>Class = "UITableViewSection"; footerTitle = "광고를 제거할 수 있습니다."; ObjectID = "c6c-E4-KjP";</note>
+      </trans-unit>
+      <trans-unit id="c6c-E4-KjP.headerTitle" xml:space="preserve">
+        <source>인 앱 결제</source>
+        <note>Class = "UITableViewSection"; headerTitle = "인 앱 결제"; ObjectID = "c6c-E4-KjP";</note>
+      </trans-unit>
+      <trans-unit id="ccg-dN-7Yd.normalTitle" xml:space="preserve">
+        <source>보관</source>
+        <note>Class = "UIButton"; normalTitle = "보관"; ObjectID = "ccg-dN-7Yd";</note>
+      </trans-unit>
+      <trans-unit id="d7c-28-cTf.headerTitle" xml:space="preserve">
+        <source>도움말</source>
+        <note>Class = "UITableViewSection"; headerTitle = "도움말"; ObjectID = "d7c-28-cTf";</note>
+      </trans-unit>
+      <trans-unit id="d9h-On-skP.text" xml:space="preserve">
+        <source>다음 디퓨저 교체일은 YYYY년 M월 dd일 입니다.</source>
+        <note>Class = "UILabel"; text = "다음 디퓨저 교체일은 YYYY년 M월 dd일 입니다."; ObjectID = "d9h-On-skP";</note>
+      </trans-unit>
+      <trans-unit id="fyb-ta-Cmg.normalTitle" xml:space="preserve">
+        <source>사진 찍기</source>
+        <note>Class = "UIButton"; normalTitle = "사진 찍기"; ObjectID = "fyb-ta-Cmg";</note>
+      </trans-unit>
+      <trans-unit id="h41-7x-QpR.text" xml:space="preserve">
+        <source>아직 보관목록이 없습니다.</source>
+        <note>Class = "UILabel"; text = "아직 보관목록이 없습니다."; ObjectID = "h41-7x-QpR";</note>
+      </trans-unit>
+      <trans-unit id="j0W-1Y-DSQ.text" xml:space="preserve">
+        <source>30</source>
+        <note>Class = "UILabel"; text = "30"; ObjectID = "j0W-1Y-DSQ";</note>
+      </trans-unit>
+      <trans-unit id="mRq-LL-hv0.normalTitle" xml:space="preserve">
+        <source>교체</source>
+        <note>Class = "UIButton"; normalTitle = "교체"; ObjectID = "mRq-LL-hv0";</note>
+      </trans-unit>
+      <trans-unit id="nkS-cr-38U.text" xml:space="preserve">
+        <source>Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</source>
+        <note>Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "nkS-cr-38U";</note>
+      </trans-unit>
+      <trans-unit id="ow4-es-Xj5.text" xml:space="preserve">
+        <source>도움말 보기</source>
+        <note>Class = "UILabel"; text = "도움말 보기"; ObjectID = "ow4-es-Xj5";</note>
+      </trans-unit>
+      <trans-unit id="rTV-cf-clH.title" xml:space="preserve">
+        <source>DiffuserStick</source>
+        <note>Class = "UINavigationItem"; title = "DiffuserStick"; ObjectID = "rTV-cf-clH";</note>
+      </trans-unit>
+      <trans-unit id="yId-61-a6h.text" xml:space="preserve">
+        <source>Refresh Test</source>
+        <note>Class = "UILabel"; text = "Refresh Test"; ObjectID = "yId-61-a6h";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="DiffuserStick/ko.lproj/InfoPlist.strings" datatype="plaintext" source-language="ko" target-language="ja">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="26.2" build-num="17C52"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>DiffuserStick</source>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSCameraUsageDescription" xml:space="preserve">
+        <source>사진을 찍어 디퓨저 목록, 자세히 보기 페이지 등에서 디퓨저 사진을 보기 위해 필요합니다.</source>
+        <note>Privacy - Camera Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSPhotoLibraryUsageDescription" xml:space="preserve">
+        <source>사진을 가져와 디퓨저 목록, 자세히 보기 페이지 등에서 디퓨저 사진을 보기 위해 필요합니다.</source>
+        <note>Privacy - Photo Library Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSUserTrackingUsageDescription" xml:space="preserve">
+        <source>광고 식별자 수집에 동의하면 배너 광고에 사용자 맞춤형 광고가 표시됩니다.</source>
+        <note>Privacy - Tracking Usage Description</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="DiffuserStick/Localizable.xcstrings" source-language="ko" target-language="ja" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="26.2" build-num="17C52"/>
+    </header>
+    <body>
+      <trans-unit id="Configuration" xml:space="preserve">
+        <source>Configuration</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="DiffuserStick Widget Config" xml:space="preserve">
+        <source>DiffuserStick Widget Config</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.archive.message" xml:space="preserve">
+        <source>보관함으로 이동했습니다. 보관함 메뉴에서 열람할 수 있습니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.archive.title" xml:space="preserve">
+        <source>보관함으로 이동</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.camera.auth.denied.message" xml:space="preserve">
+        <source>카메라 기능 권한이 거부되어 사용할 수 없습니다. 카메라 권한 설정을 변경하시겠습니까?</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.camera.auth.not_determined.message" xml:space="preserve">
+        <source>카메라 권한 설정을 변경하시겠습니까?</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.caution" xml:space="preserve">
+        <source>경고</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.delete.complete.message" xml:space="preserve">
+        <source>삭제 완료되었습니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.delete.complete.title" xml:space="preserve">
+        <source>삭제 완료</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.delete.fail.message" xml:space="preserve">
+        <source>삭제에 실패했습니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.delete.message" xml:space="preserve">
+        <source>정말 삭제하시겠습니까?</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.no" xml:space="preserve">
+        <source>아니오</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.ok" xml:space="preserve">
+        <source>확인</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.photo.auth.denied.message" xml:space="preserve">
+        <source>사진 기능 권한이 거부되어 사용할 수 없습니다. 사진 권한 설정을 변경하시겠습니까?</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.photo.auth.denied.title" xml:space="preserve">
+        <source>권한 거부됨</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.photo.auth.not_determined.message" xml:space="preserve">
+        <source>사진 권한 설정을 변경하시겠습니까?</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.photo.auth.not_determined.title" xml:space="preserve">
+        <source>권한 정보 없음</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.photo.auth.restricted.message" xml:space="preserve">
+        <source>시스템에 의해 거부되었습니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.replace.complete.message" xml:space="preserve">
+        <source>디퓨저 교체 날짜를 오늘로 새로고침하였습니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.replace.complete.title" xml:space="preserve">
+        <source>교체되었습니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.replace.error.message" xml:space="preserve">
+        <source>오류로 인해 날짜가 교체되지 않았습니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.save.complete.message" xml:space="preserve">
+        <source>저장되었습니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.save.failed.message" xml:space="preserve">
+        <source>저장이 되지 않았습니다. 다시 시도해주세요.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.update.complete.message" xml:space="preserve">
+        <source>업데이트 되었습니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.update.complete.title" xml:space="preserve">
+        <source>업데이트 완료</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.update.failed.message" xml:space="preserve">
+        <source>업데이트가 되지 않았습니다. 다시 시도해주세요.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.alert.yes" xml:space="preserve">
+        <source>네</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.archive.empty.list" xml:space="preserve">
+        <source>🫙 아카이브 리스트가 비어있어요.
+
+디퓨저 리스트에서 더 이상 사용하지
+않는 디퓨저가 있는 경우 [보관] 기능을
+이용하면 아카이브에 추가할 수 있어요!</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.archive.title" xml:space="preserve">
+        <source>보관함</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.common.archive" xml:space="preserve">
+        <source>보관</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.common.close" xml:space="preserve">
+        <source>닫기</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.common.complete" xml:space="preserve">
+        <source>완료</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.common.day.formatted" xml:space="preserve">
+        <source>%(day)d일</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.common.delete" xml:space="preserve">
+        <source>삭제</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.common.done" xml:space="preserve">
+        <source>완료</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.common.need.replace" xml:space="preserve">
+        <source>%(days)d일 후 교체 필요</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.common.need.replace.now" xml:space="preserve">
+        <source>즉시 교체 필요!</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.common.need.replace.now.formal" xml:space="preserve">
+        <source>교체일이 지났습니다. 당장 교체해야 합니다!</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.common.replace" xml:space="preserve">
+        <source>교체</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.common.replace.date.formatted" xml:space="preserve">
+        <source>YYYY년 MM월 dd일 교체됨</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.common.replace.date.formatted.formal" xml:space="preserve">
+        <source>마지막 디퓨저 교체일은 YYYY년 M월 dd일 입니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.common.replace.future.formatted.formal" xml:space="preserve">
+        <source>다음 디퓨저 교체일은 YYYY년 M월 dd일 입니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.common.save" xml:space="preserve">
+        <source>저장</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.common.update" xml:space="preserve">
+        <source>수정</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.help.title" xml:space="preserve">
+        <source>도움말</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.iap.complete.message" xml:space="preserve">
+        <source>구매 완료되었습니다. 이제 앱에서 광고가 표시되지 않습니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.iap.complete.title" xml:space="preserve">
+        <source>구매 완료</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.iap.error.noti.nil" xml:space="preserve">
+        <source>구매 실패: 다시 시도해주세요.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.iap.processing.text" xml:space="preserve">
+        <source>결제 작업을 처리중입니다.\n잠시만 기다려 주세요...</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.main.empty.list" xml:space="preserve">
+        <source>🫙 디퓨저 리스트가 비어있어요.
+
+오른쪽 상단의 [+] 버튼을 눌러
+새로운 디퓨저를 추가해보세요.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.main.sort.action.default" xml:space="preserve">
+        <source>디퓨저를 등록한 최근 날짜 순서 (기본)</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.main.sort.action.replace.asc" xml:space="preserve">
+        <source>교체일이 가까운 순서</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.main.sort.action.replace.dsc" xml:space="preserve">
+        <source>교체일이 먼 순서</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.main.sort.message" xml:space="preserve">
+        <source>정렬 방식을 선택하세요</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.main.sort.title" xml:space="preserve">
+        <source>정렬</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.main.tab.item.archive" xml:space="preserve">
+        <source>보관함</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.main.tab.item.list" xml:space="preserve">
+        <source>리스트</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.main.tab.item.settings" xml:space="preserve">
+        <source>설정 및 도움말</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.noti.body" xml:space="preserve">
+        <source>‘%(name)@’ 디퓨저 스틱을 구매해야 합니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.resource.help" xml:space="preserve">
+        <source>help</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.setting.app.tour" xml:space="preserve">
+        <source>개발자의 다른 앱 둘러보기</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.setting.email.body.intro" xml:space="preserve">
+        <source>'디퓨저 스틱' 앱에 대한 문의사항 또는 피드백이 있으신가요?</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.setting.email.error.messaage" xml:space="preserve">
+        <source>사용자의 메일 계정이 설정되어 있지 않습니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.setting.email.error.title" xml:space="preserve">
+        <source>메일 전송 불가</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.setting.email.title" xml:space="preserve">
+        <source>디퓨저 스틱 앱의 피드백</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.setting.footer.days" xml:space="preserve">
+        <source>교체 일수를 입력하세요. 디퓨저 스틱의 일반적인 권장 교체기간은 30일입니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.setting.footer.iap" xml:space="preserve">
+        <source>앱 내 구입을 통해 앱 내의 모든 광고를 제거할 수 있습니다. 더 나은 앱과 서비스를 제공할 수 있도록 응원해 주시면 감사하겠습니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.setting.header.current.app.version" xml:space="preserve">
+        <source>현재 앱 버전</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.setting.header.days" xml:space="preserve">
+        <source>기본 설정 기간</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.setting.header.help" xml:space="preserve">
+        <source>도움말</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.setting.header.iap" xml:space="preserve">
+        <source>앱 내 결제</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.setting.header.other" xml:space="preserve">
+        <source>기타</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.setting.restore.iap" xml:space="preserve">
+        <source>구입 정보 복원</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.setting.send.email" xml:space="preserve">
+        <source>개발자에게 메일 보내기</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.setting.show.help" xml:space="preserve">
+        <source>도움말 보기</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.setting.title" xml:space="preserve">
+        <source>설정 및 더보기</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.share.message" xml:space="preserve">
+        <source>"나의 디퓨저: %(name)@ - DiffuserStick App에서 보냄</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.widget.config.description" xml:space="preserve">
+        <source>교체해야할 디퓨저 목록을 확인할 수 있습니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.widget.config.title" xml:space="preserve">
+        <source>DiffuserStick 위젯</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.widget.dto.mock.title" xml:space="preserve">
+        <source>창가의 로즈블랙 디퓨저</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.widget.replace.now.small" xml:space="preserve">
+        <source>즉시\n교체</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.write.camera" xml:space="preserve">
+        <source>사진 찍기</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.write.image.upload.intro" xml:space="preserve">
+        <source>사진 업로드</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.write.invalid.image.error" xml:space="preserve">
+        <source>이미지 저장 중 오류가 발생하였습니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.write.invalid.no.image" xml:space="preserve">
+        <source>이미지가 첨부되지 않았습니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.write.invalid.title.letter.count" xml:space="preserve">
+        <source>제목은 1자 이상 입력해야 합니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.write.memo.intro" xml:space="preserve">
+        <source>메모</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.write.memo.placeholder" xml:space="preserve">
+        <source>메모를 입력해주세요.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.write.photo.library" xml:space="preserve">
+        <source>사진 올리기</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.write.replace.days.intro" xml:space="preserve">
+        <source>교체 일수</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.write.start.date.intro" xml:space="preserve">
+        <source>시작 날짜</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.write.title.desc" xml:space="preserve">
+        <source>디퓨저의 이름이나 위치 등을 알 수 있도록 제목을 작성해주세요.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.write.title.desc.rewrite" xml:space="preserve">
+        <source>재작성 모드: 보관함에 저장되어 있던 글을 다시 활성 리스트에 업로드할 수 있습니다.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="loc.write.title.intro" xml:space="preserve">
+        <source>제목: 디퓨저 이름, 위치 등</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="widget_isFullColorImage_title" xml:space="preserve">
+        <source>이미지를 풀 컬러로 보기</source>
+        <note/>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="DSWidget/InfoPlist.xcstrings" source-language="ko" target-language="ja" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="26.2" build-num="17C52"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName" xml:space="preserve">
+        <source>DSWidget</source>
+        <note>Bundle display name</note>
+      </trans-unit>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>DSWidgetExtension</source>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
+        <source/>
+        <note>Copyright (human-readable)</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
