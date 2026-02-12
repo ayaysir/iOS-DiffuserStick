@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  DiffuserStick
+
+  Created by 윤범태 on 2/13/26.
+  
+*/
+
+"NSCameraUsageDescription" = "ディフューザー一覧や詳細ページで写真を表示するために、写真を撮影するカメラへのアクセスが必要です。";
+"NSPhotoLibraryUsageDescription" = "ディフューザー一覧や詳細ページで写真を表示するために、写真ライブラリへのアクセスが必要です。";
+"NSUserTrackingUsageDescription" = "トラッキングを許可すると、広告識別子を使用してパーソナライズされたバナー広告が表示されます。";

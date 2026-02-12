@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  DiffuserStick
+
+  Created by 윤범태 on 2/13/26.
+  
+*/
+
+"NSCameraUsageDescription" = "Camera access is required to take photos and display diffuser images in the diffuser list and detail pages.";
+"NSPhotoLibraryUsageDescription" = "Photo library access is required to import photos and display diffuser images in the diffuser list and detail pages.";
+"NSUserTrackingUsageDescription" = "If you allow tracking, your advertising identifier will be used to display personalized banner ads.";

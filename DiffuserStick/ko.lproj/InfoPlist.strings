@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  DiffuserStick
+
+  Created by 윤범태 on 2/13/26.
+  
+*/
+
+"NSCameraUsageDescription" = "사진을 찍어 디퓨저 목록, 자세히 보기 페이지 등에서 디퓨저 사진을 보기 위해 필요합니다.";
+"NSPhotoLibraryUsageDescription" = "사진을 가져와 디퓨저 목록, 자세히 보기 페이지 등에서 디퓨저 사진을 보기 위해 필요합니다.";
+"NSUserTrackingUsageDescription" = "광고 식별자 수집에 동의하면 배너 광고에 사용자 맞춤형 광고가 표시됩니다.";
