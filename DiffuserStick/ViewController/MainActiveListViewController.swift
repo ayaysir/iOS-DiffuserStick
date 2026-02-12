@@ -96,6 +96,18 @@ class MainActiveListViewController: UIViewController {
     
     // data 목록을 app group 폴더에 작성
     sendDiffusersToWidget()
+    
+    if #available(iOS 13.0, *) {
+      if let diffuserId = SceneDelegate.pendingDiffuserId {
+        SceneDelegate.pendingDiffuserId = nil
+        guard let index = viewModel.getDiffuserInfoIndex(of: diffuserId) else {
+          print("Error: no such diffuserId in viewModel")
+          return
+        }
+        
+        showDetailView(at: index)
+      }
+    }
   }
   
   @objc func appClosed() {
@@ -217,13 +229,11 @@ class MainActiveListViewController: UIViewController {
       guard let thumb = makeImageThumbnail(image: image, maxPixelSize: 200) else {
         return
       }
-      guard let (_, url) = saveImage(
+      _ = saveImage(
         thumb,
         fileName: diffuser.id.uuidString,
         location: .appGroup(identifier: .shdAppGroupIdentifier, subdirectory: "thumbs")
-      ) else {
-        return
-      }
+      )
     }
   }
 }

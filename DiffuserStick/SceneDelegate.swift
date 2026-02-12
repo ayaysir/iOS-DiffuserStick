@@ -9,14 +9,20 @@ import UIKit
 
 @available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-  
+  static var pendingDiffuserId: UUID?
   var window: UIWindow?
   
-  func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-    // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-    // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-    // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-    guard let _ = (scene as? UIWindowScene) else { return }
+  func scene(
+    _ scene: UIScene,
+    willConnectTo session: UISceneSession,
+    options connectionOptions: UIScene.ConnectionOptions
+  ) {
+    // guard let _ = (scene as? UIWindowScene) else { return }
+    // Cold launch
+    if let url = connectionOptions.urlContexts.first?.url,
+        let id = extractDiffuserID(url: url) {
+      Self.pendingDiffuserId = id
+    }
   }
   
   func sceneDidDisconnect(_ scene: UIScene) {
@@ -51,27 +57,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   }
   
   func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-    guard let url = URLContexts.first?.url else {
+    guard let url = URLContexts.first?.url,
+          let id = extractDiffuserID(url: url) else {
       return
     }
-    
-    guard url.scheme == "diffuserstick",
-          url.host == "detail"
-    else { return }
-    
-    
-    guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
-          let idString = components.queryItems? .first(where: { $0.name == "id" })?.value,
-          let id = UUID(uuidString: idString)
-    else { return }
-
-    print("추출된 UUID:", id)
     
     NotificationCenter.default.post(
       name: .didReceiveDiffuserPush,
       object: nil,
       userInfo: ["diffuserId": id]
     )
+  }
+  
+  private func extractDiffuserID(url: URL) -> UUID? {
+    guard url.scheme == "diffuserstick",
+          url.host == "detail"
+    else {
+      return nil
+    }
+
+    guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+          let idString = components.queryItems? .first(where: { $0.name == "id" })?.value,
+          let id = UUID(uuidString: idString)
+    else {
+      return nil
+    }
+
+    print("추출된 UUID:", id)
+    
+    return id
   }
 }
 
