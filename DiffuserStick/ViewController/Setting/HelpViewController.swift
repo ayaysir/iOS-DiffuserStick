@@ -60,9 +60,9 @@ extension HelpViewController: WKNavigationDelegate {
     let appUrl = Bundle.main.resourceURL!
     let targetUrl = appUrl.appendingPathComponent("\("loc.resource.help".localized).html")
     
-    if url.description.lowercased().starts(with: "https://") || url.description.lowercased().starts(with: "http://") {
+    if url.description.lowercased().starts(with: "https://") || url.description.lowercased().starts(with: "http://") || url.scheme == "mailto" {
       UIApplication.shared.open(url)
-    }
+    } 
     
     decisionHandler(targetUrl == url ? .allow : .cancel)
   }

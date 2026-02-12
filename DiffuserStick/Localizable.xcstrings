@@ -1440,13 +1440,19 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "help"
+            "value" : "help_en"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "help_ja"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "help"
+            "value" : "help_ko"
           }
         }
       }
