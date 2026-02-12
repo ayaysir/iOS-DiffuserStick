@@ -931,10 +931,41 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="도움말" id="d7c-28-cTf">
+                            <tableViewSection headerTitle="앱 테마" footerTitle="" id="GbZ-25-Qg4">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="43" id="ggQ-Yf-jV1">
+                                        <rect key="frame" x="20" y="354.5" width="374" height="43"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ggQ-Yf-jV1" id="OHc-Gd-Dbd">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WnZ-Lp-2kF">
+                                                    <rect key="frame" x="20" y="10" width="334" height="24"/>
+                                                    <segments>
+                                                        <segment title="First"/>
+                                                        <segment title="Second"/>
+                                                        <segment title="Third"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="segActTheme:" destination="hbR-ZN-aXL" eventType="valueChanged" id="fYZ-2T-CZ7"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="WnZ-Lp-2kF" firstAttribute="leading" secondItem="OHc-Gd-Dbd" secondAttribute="leading" constant="20" symbolic="YES" id="BTi-FC-iiB"/>
+                                                <constraint firstAttribute="trailing" secondItem="WnZ-Lp-2kF" secondAttribute="trailing" constant="20" symbolic="YES" id="GpQ-UK-JuP"/>
+                                                <constraint firstItem="WnZ-Lp-2kF" firstAttribute="top" secondItem="OHc-Gd-Dbd" secondAttribute="top" constant="10" id="ThZ-ur-bOa"/>
+                                                <constraint firstAttribute="bottom" secondItem="WnZ-Lp-2kF" secondAttribute="bottom" constant="10" id="r1z-x3-Cao"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="도움말" footerTitle="" id="d7c-28-cTf">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ow4-es-Xj5" style="IBUITableViewCellStyleDefault" id="pri-it-eWf">
-                                        <rect key="frame" x="20" y="347" width="374" height="52"/>
+                                        <rect key="frame" x="20" y="465.5" width="374" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pri-it-eWf" id="h0F-g1-eHn">
                                             <rect key="frame" x="0.0" y="0.0" width="343.5" height="52"/>
@@ -958,7 +989,7 @@
                             <tableViewSection headerTitle="기타" id="XUk-cd-RgC">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="5BG-lM-dH4" style="IBUITableViewCellStyleDefault" id="OV2-JK-j7X">
-                                        <rect key="frame" x="20" y="455" width="374" height="52"/>
+                                        <rect key="frame" x="20" y="578" width="374" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OV2-JK-j7X" id="Yw4-wh-f7K">
                                             <rect key="frame" x="0.0" y="0.0" width="343.5" height="52"/>
@@ -975,7 +1006,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ISl-pO-CWT" style="IBUITableViewCellStyleDefault" id="rlR-rY-QKZ">
-                                        <rect key="frame" x="20" y="507" width="374" height="52"/>
+                                        <rect key="frame" x="20" y="630" width="374" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rlR-rY-QKZ" id="FXm-9r-iaL">
                                             <rect key="frame" x="0.0" y="0.0" width="343.5" height="52"/>
@@ -1009,6 +1040,7 @@
                         <outlet property="lblRestoreIAP" destination="WKs-pO-3SN" id="YD7-rq-cW6"/>
                         <outlet property="lblSendEmailToDev" destination="5BG-lM-dH4" id="Nsa-pL-xRb"/>
                         <outlet property="lblShowHelp" destination="ow4-es-Xj5" id="cvL-7x-AVj"/>
+                        <outlet property="segTheme" destination="WnZ-Lp-2kF" id="gVd-En-oYY"/>
                         <outlet property="stepperDaysOutlet" destination="96l-Rw-kCD" id="xy4-Qd-shj"/>
                     </connections>
                 </tableViewController>

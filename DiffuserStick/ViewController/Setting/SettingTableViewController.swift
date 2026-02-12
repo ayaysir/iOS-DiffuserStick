@@ -14,9 +14,10 @@ import GoogleMobileAds
 class SettingTableViewController: UITableViewController {
   private let SECTION_IAP = 0
   private let SECTION_DAYS = 1
-  private let SECTION_HELP = 2
-  private let SECTION_OTHER = 3
-  private let SECTION_AD_CONTAINER = 4
+  private let SECTION_THEME = 2
+  private let SECTION_HELP = 3
+  private let SECTION_OTHER = 4
+  private let SECTION_AD_CONTAINER = 5
   
   private var bannerView: GADBannerView!
   private var iapProducts: [SKProduct]?
@@ -28,6 +29,7 @@ class SettingTableViewController: UITableViewController {
   @IBOutlet weak var lblShowHelp: UILabel!
   @IBOutlet weak var lblSendEmailToDev: UILabel!
   @IBOutlet weak var lblAppTour: UILabel!
+  @IBOutlet weak var segTheme: UISegmentedControl!
   
   private var currentDays = UserDefaults.standard.integer(forKey: "config-defaultDays")
   
@@ -43,6 +45,16 @@ class SettingTableViewController: UITableViewController {
     lblSendEmailToDev.text = "loc.setting.send.email".localized
     lblAppTour.text = "loc.setting.app.tour".localized
     
+    segTheme.setTitle("loc.setting.theme.system".localized, forSegmentAt: 0)
+    segTheme.setTitle("loc.setting.theme.light".localized, forSegmentAt: 1)
+    segTheme.setTitle("loc.setting.theme.dark".localized, forSegmentAt: 2)
+    if #available(iOS 13, *) {
+      segTheme.isEnabled = true
+      let theme = UserDefaults.standard.integer(forKey: "config-theme")
+      segTheme.selectedSegmentIndex = theme
+    } else {
+      segTheme.isEnabled = false
+    }
     
     if AdManager.default.isReallyShowAd {
       if #available(iOS 14, *) {
@@ -60,6 +72,32 @@ class SettingTableViewController: UITableViewController {
     lblDays.text = "loc.common.day.formatted".localizedFormat(days)
     refreshDefaultDaysOfConfig(days)
   }
+  
+  @IBAction func segActTheme(_ sender: UISegmentedControl) {
+    if #available(iOS 13.0, *) {
+      
+      let selectedIndex = sender.selectedSegmentIndex
+      UserDefaults.standard.set(selectedIndex, forKey: "config-theme")
+      
+      let style: UIUserInterfaceStyle
+      
+      switch selectedIndex {
+      case 0:
+        style = .unspecified   // 시스템
+      case 1:
+        style = .light        // 라이트
+      case 2:
+        style = .dark         // 다크
+      default:
+        return
+      }
+      
+      if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+         let window = windowScene.windows.first {
+        window.overrideUserInterfaceStyle = style
+      }
+    }
+  }
 }
 
 extension SettingTableViewController {
@@ -76,8 +114,10 @@ extension SettingTableViewController {
       if indexPath.row == 0 {
         launchEmail()
       } else if indexPath.row == 1 {
-        let vc = AppExhibitionTableViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        // let vc = AppExhibitionTableViewController()
+        // navigationController?.pushViewController(vc, animated: true)
+        guard let url = URL(string: "https://apps.apple.com/developer/\(String.shdDevId)") else { return }
+        UIApplication.shared.open(url)
       }
     default:
       break
@@ -96,6 +136,8 @@ extension SettingTableViewController {
       return "loc.setting.header.help".localized
     case SECTION_OTHER:
       return "loc.setting.header.other".localized
+    case SECTION_THEME:
+      return "loc.setting.header.theme".localized
     default:
       break
     }

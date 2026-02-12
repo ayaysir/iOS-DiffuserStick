@@ -23,6 +23,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let id = extractDiffuserID(url: url) {
       Self.pendingDiffuserId = id
     }
+    
+    let theme = UserDefaults.standard.integer(forKey: "config-theme")
+    
+    switch theme {
+    case 1:
+      window?.overrideUserInterfaceStyle = .light
+    case 2:
+      window?.overrideUserInterfaceStyle = .dark
+    default:
+      window?.overrideUserInterfaceStyle = .unspecified
+    }
   }
   
   func sceneDidDisconnect(_ scene: UIScene) {

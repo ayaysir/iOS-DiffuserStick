@@ -16,7 +16,7 @@ extension TableCollectionBackgroundDisplayable {
   func setBackgroundLabel(_ message: String, frame: CGRect) -> UILabel {
     let messageLabel = UILabel(frame: frame)
     messageLabel.text = message
-    messageLabel.textColor = .black
+    messageLabel.textColor = .darkGray
     messageLabel.numberOfLines = 0
     messageLabel.textAlignment = .center
     messageLabel.font = .systemFont(ofSize: 15)

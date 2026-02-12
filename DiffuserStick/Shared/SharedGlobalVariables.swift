@@ -11,4 +11,5 @@ extension String {
   static let shdAppGroupIdentifier = "group.com.yoonbumtae.DiffuserStick"
   static let shdDiffuserJSONFileName = "ds-widget-data.json"
   static let shdDevEmail = "yoonbumtae@gmail.com"
+  static let shdDevId = "id1578285460"
 }
