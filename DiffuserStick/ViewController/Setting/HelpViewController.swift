@@ -20,6 +20,9 @@ class HelpViewController: UIViewController {
     super.viewDidLoad()
     initWebPageLoad()
     
+    // Localizable Texts
+    self.title = "도움말"
+    
     if AdManager.default.isReallyShowAd {
       if #available(iOS 14, *) {
         ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in

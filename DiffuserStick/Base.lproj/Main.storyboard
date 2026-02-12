@@ -270,6 +270,7 @@
                     <connections>
                         <outlet property="collectionView" destination="Pf4-gg-M7Q" id="7G1-Xs-XFO"/>
                         <outlet property="constraintBottom" destination="fUX-Cl-u82" id="dGc-Wz-5aa"/>
+                        <outlet property="navItemTitle" destination="ZoU-UJ-xdc" id="1fB-88-Nqm"/>
                         <outlet property="naviBar" destination="ivh-dl-sQP" id="vV8-OK-noO"/>
                         <segue destination="kqs-M2-Fj3" kind="show" identifier="archiveDetailView" id="BAf-tz-0ve"/>
                     </connections>
@@ -299,13 +300,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="디퓨저의 이름이나 위치 등을 알 수 있도록 제목을 작성해주세요." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Cdb-Xf-3aC">
-                                                <rect key="frame" x="20" y="58.5" width="374" height="41"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="20" y="58.5" width="374" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="diffuser" translatesAutoresizingMaskIntoConstraints="NO" id="pvh-aX-Jan">
-                                                <rect key="frame" x="17" y="202" width="195" height="110"/>
+                                                <rect key="frame" x="17" y="179" width="195" height="110"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="pvh-aX-Jan" secondAttribute="height" multiplier="39:22" id="8Zb-a5-9mN"/>
                                                     <constraint firstAttribute="width" constant="195" id="Ec7-Ph-hGN"/>
@@ -324,13 +325,13 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작 날짜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXV-EX-gUJ">
-                                                <rect key="frame" x="20" y="341" width="374" height="27.5"/>
+                                                <rect key="frame" x="20" y="318" width="374" height="27.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6nX-5r-6Wy">
-                                                <rect key="frame" x="20" y="594" width="374" height="118"/>
+                                                <rect key="frame" x="20" y="571" width="374" height="118"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="118" id="6dR-jw-SGc"/>
@@ -344,7 +345,7 @@
                                                 </connections>
                                             </textView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OaE-5w-rlS">
-                                                <rect key="frame" x="20" y="112.5" width="374" height="34"/>
+                                                <rect key="frame" x="20" y="89.5" width="374" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
@@ -352,19 +353,19 @@
                                                 </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사진 업로드" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2jw-Ht-siP">
-                                                <rect key="frame" x="20" y="166.5" width="374" height="27.5"/>
+                                                <rect key="frame" x="20" y="143.5" width="374" height="27.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minimumValue="15" maximumValue="360" stepValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="p6e-7a-SlM">
-                                                <rect key="frame" x="300" y="506.5" width="94" height="32"/>
+                                                <rect key="frame" x="300" y="483.5" width="94" height="32"/>
                                                 <connections>
                                                     <action selector="stepperDaysAction:" destination="VgC-oY-3JU" eventType="valueChanged" id="QUY-gt-u8Y"/>
                                                 </connections>
                                             </stepper>
                                             <datePicker contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="qc9-uS-5xO">
-                                                <rect key="frame" x="20" y="376.5" width="374" height="98"/>
+                                                <rect key="frame" x="20" y="353.5" width="374" height="98"/>
                                                 <color key="tintColor" systemColor="systemIndigoColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="98" id="1aH-0p-cM7"/>
@@ -372,19 +373,19 @@
                                                 <locale key="locale" localeIdentifier="ko_KR"/>
                                             </datePicker>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메모" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bF-0J-dFh">
-                                                <rect key="frame" x="20" y="558.5" width="374" height="27.5"/>
+                                                <rect key="frame" x="20" y="535.5" width="374" height="27.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="교체 일수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Gb-g7-SFL">
-                                                <rect key="frame" x="20" y="506.5" width="84.5" height="35"/>
+                                                <rect key="frame" x="20" y="483.5" width="84.5" height="35"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0W-1Y-DSQ">
-                                                <rect key="frame" x="256" y="506.5" width="36" height="35"/>
+                                                <rect key="frame" x="256" y="483.5" width="36" height="35"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -404,7 +405,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fyb-ta-Cmg">
-                                                <rect key="frame" x="251" y="202" width="113.5" height="34"/>
+                                                <rect key="frame" x="251" y="179" width="113.5" height="34"/>
                                                 <color key="tintColor" systemColor="systemIndigoColor"/>
                                                 <state key="normal" title="사진 찍기" image="camera.fill" catalog="system">
                                                     <color key="titleColor" systemColor="systemIndigoColor"/>
@@ -415,7 +416,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BkB-iT-qZU">
-                                                <rect key="frame" x="251" y="243" width="128" height="33"/>
+                                                <rect key="frame" x="251" y="220" width="128" height="33"/>
                                                 <color key="tintColor" systemColor="systemIndigoColor"/>
                                                 <state key="normal" title="사진 올리기" image="photo.fill" catalog="system">
                                                     <color key="titleColor" systemColor="systemIndigoColor"/>
@@ -426,7 +427,7 @@
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Qrs-SH-fbc">
-                                                <rect key="frame" x="202" y="204" width="40" height="106"/>
+                                                <rect key="frame" x="202" y="181" width="40" height="106"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x9j-0Q-2SI">
                                                         <rect key="frame" x="0.0" y="0.0" width="40" height="30"/>
@@ -536,12 +537,20 @@
                     </view>
                     <navigationItem key="navigationItem" id="SzK-5H-oyt"/>
                     <connections>
+                        <outlet property="btnCameraDesc" destination="fyb-ta-Cmg" id="G84-hG-hjD"/>
+                        <outlet property="btnLoadPhotoDesc" destination="BkB-iT-qZU" id="m38-1G-YeH"/>
                         <outlet property="btnSaveOutlet" destination="IvU-ce-Yb8" id="deK-2f-c8d"/>
                         <outlet property="datepickerStartDate" destination="qc9-uS-5xO" id="cCc-A9-AgE"/>
                         <outlet property="imgPhoto" destination="pvh-aX-Jan" id="kCR-1e-xq4"/>
                         <outlet property="innerView" destination="Kf0-M0-523" id="fYI-Cy-4HD"/>
                         <outlet property="inputTitle" destination="OaE-5w-rlS" id="619-lt-PkZ"/>
                         <outlet property="lblDays" destination="j0W-1Y-DSQ" id="jdE-Wj-IBM"/>
+                        <outlet property="lblImageUploadIntro" destination="2jw-Ht-siP" id="a0i-4G-7un"/>
+                        <outlet property="lblMemoIntro" destination="0bF-0J-dFh" id="Fyc-cY-7Ri"/>
+                        <outlet property="lblReplaceDaysIntro" destination="8Gb-g7-SFL" id="76y-Kz-Zz5"/>
+                        <outlet property="lblStartDateIntro" destination="DXV-EX-gUJ" id="JWl-8D-oG4"/>
+                        <outlet property="lblTitleDesc" destination="Cdb-Xf-3aC" id="ysf-pu-fak"/>
+                        <outlet property="lblTitleIntro" destination="blQ-B1-De8" id="eEM-rw-aRh"/>
                         <outlet property="scrollView" destination="Kun-S5-UEx" id="drJ-ok-EVa"/>
                         <outlet property="stepperOutlet" destination="p6e-7a-SlM" id="MRi-OV-8DD"/>
                         <outlet property="textComments" destination="6nX-5r-6Wy" id="0b7-Iw-N0G"/>
@@ -995,7 +1004,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="설정 및 더보기" id="IeW-wB-b9X"/>
                     <connections>
+                        <outlet property="lblAppTour" destination="ISl-pO-CWT" id="2S1-Lj-5HY"/>
                         <outlet property="lblDays" destination="QcV-1k-zSe" id="MWc-mg-OOh"/>
+                        <outlet property="lblRestoreIAP" destination="WKs-pO-3SN" id="YD7-rq-cW6"/>
+                        <outlet property="lblSendEmailToDev" destination="5BG-lM-dH4" id="Nsa-pL-xRb"/>
+                        <outlet property="lblShowHelp" destination="ow4-es-Xj5" id="cvL-7x-AVj"/>
                         <outlet property="stepperDaysOutlet" destination="96l-Rw-kCD" id="xy4-Qd-shj"/>
                     </connections>
                 </tableViewController>
@@ -1024,8 +1037,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="21M-zC-7Dn"/>
-        <segue reference="gzH-Nd-pcU"/>
+        <segue reference="BAf-tz-0ve"/>
+        <segue reference="Dsr-pZ-DL4"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="aromatic" width="25" height="25"/>

@@ -58,6 +58,12 @@ class DiffuserDetailViewController: UIViewController {
     btnShare.layer.cornerRadius = 0.5 * btnShare.bounds.size.width
     btnTrayUpToList.layer.cornerRadius = 0.5 * btnTrayUpToList.bounds.size.width
     
+    // Localizable Texts
+    btnDeleteOutlet.setTitle("삭제", for: .normal)
+    btnEditOutlet.setTitle("수정", for: .normal)
+    btnArchiveOutlet.setTitle("보관", for: .normal)
+    btnReplaceOutlet.setTitle("교체", for: .normal)
+    
     // 이미지 탭 이벤트 추가
     imgPhoto.isUserInteractionEnabled = true
 

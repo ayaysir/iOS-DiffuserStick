@@ -25,6 +25,8 @@ class ArchiveViewController: UIViewController {
   @IBOutlet weak var collectionView: UICollectionView!
   @IBOutlet weak var constraintBottom: NSLayoutConstraint!
   
+  @IBOutlet weak var navItemTitle: UINavigationItem!
+  
   var currentSelectedDiffuser: DiffuserVO? = nil
   var currentArrayIndex: Int = 0
   
@@ -36,6 +38,9 @@ class ArchiveViewController: UIViewController {
     } catch {
       print(error)
     }
+    
+    // Localizable texts
+    navItemTitle.title = "보관함"
     
     naviBar.delegate = self
     // collectionViewDelegate, dataSource는 스토리보드 상에서 연결되어 있음

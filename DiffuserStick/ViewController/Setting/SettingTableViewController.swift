@@ -13,6 +13,8 @@ import GoogleMobileAds
 
 class SettingTableViewController: UITableViewController {
   private let SECTION_IAP = 0
+  private let SECTION_DAYS = 1
+  private let SECTION_HELP = 2
   private let SECTION_OTHER = 3
   private let SECTION_AD_CONTAINER = 4
   
@@ -22,12 +24,25 @@ class SettingTableViewController: UITableViewController {
   @IBOutlet weak var lblDays: UILabel!
   @IBOutlet weak var stepperDaysOutlet: UIStepper!
   
+  @IBOutlet weak var lblRestoreIAP: UILabel!
+  @IBOutlet weak var lblShowHelp: UILabel!
+  @IBOutlet weak var lblSendEmailToDev: UILabel!
+  @IBOutlet weak var lblAppTour: UILabel!
+  
   private var currentDays = UserDefaults.standard.integer(forKey: "config-defaultDays")
   
   override func viewDidLoad() {
     super.viewDidLoad()
     initDays()
     initIAP()
+    
+    // Localizable texts
+    self.title = "설정 및 더보기"
+    lblRestoreIAP.text = "구입 정보 복원"
+    lblShowHelp.text = "도움말 보기"
+    lblSendEmailToDev.text = "개발자에게 메일 보내기"
+    lblAppTour.text = "개발자의 다른 앱 둘러보기"
+    
     
     if AdManager.default.isReallyShowAd {
       if #available(iOS 14, *) {
@@ -70,11 +85,35 @@ extension SettingTableViewController {
   }
   
   override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    if section == SECTION_AD_CONTAINER {
+    switch section {
+    case SECTION_AD_CONTAINER:
       return "현재 앱 버전: \(AppMetadataUtil.appVersionAndBuild())"
+    case SECTION_IAP:
+      return "인 앱 결제"
+    case SECTION_DAYS:
+      return "기본 설정 기간"
+    case SECTION_HELP:
+      return "도움말"
+    case SECTION_OTHER:
+      return "기타"
+    default:
+      break
     }
     
     return super.tableView(tableView, titleForHeaderInSection: section)
+  }
+  
+  override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    switch section {
+    case SECTION_IAP:
+      return "앱 내 구입을 통해 앱 내의 모든 광고를 제거할 수 있습니다. 더 나은 앱과 서비스를 제공할 수 있도록 응원해 주시면 감사하겠습니다."
+    case SECTION_DAYS:
+      return "교체 일수를 입력하세요. 디퓨저 스틱의 일반적인 권장 교체기간은 30일입니다."
+    default:
+      break
+    }
+    
+    return super.tableView(tableView, titleForFooterInSection: section)
   }
   
   override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -103,6 +142,7 @@ extension SettingTableViewController {
       let currentProduct = iapProducts[indexPath.row]
       let isPurchased = InAppProducts.helper.isProductPurchased(currentProduct.productIdentifier)
       
+      // 상품 정보 레이블 셀
       if let firstLabel = cell.contentView.subviews[0] as? UILabel {
         firstLabel.text = iapProducts[indexPath.row].localizedTitle
         

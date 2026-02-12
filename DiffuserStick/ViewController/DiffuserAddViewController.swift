@@ -43,6 +43,15 @@ class DiffuserAddViewController: UIViewController {
   @IBOutlet weak var scrollView: UIScrollView!
   @IBOutlet weak var btnSaveOutlet: UIButton!
   
+  @IBOutlet weak var lblTitleIntro: UILabel!
+  @IBOutlet weak var lblTitleDesc: UILabel!
+  @IBOutlet weak var lblImageUploadIntro: UILabel!
+  @IBOutlet weak var btnCameraDesc: UIButton!
+  @IBOutlet weak var btnLoadPhotoDesc: UIButton!
+  @IBOutlet weak var lblStartDateIntro: UILabel!
+  @IBOutlet weak var lblReplaceDaysIntro: UILabel!
+  @IBOutlet weak var lblMemoIntro: UILabel!
+  
   var userDays: Int = UserDefaults.standard.integer(forKey: "config-defaultDays")
   
   // 사진: 이미지 피커 컨트롤러 생성
@@ -78,6 +87,24 @@ class DiffuserAddViewController: UIViewController {
     // 버튼 둥글게
     btnSaveOutlet!.layer.cornerRadius = 0.5 * btnSaveOutlet!.bounds.size.width
     btnSaveOutlet!.clipsToBounds = true
+    
+    // Localizable texts
+    lblTitleIntro.text = "제목: 디퓨저 이름, 위치 등"
+    
+    switch mode {
+    case .add, .modify:
+      lblTitleDesc.text = "디퓨저의 이름이나 위치 등을 알 수 있도록 제목을 작성해주세요."
+    case .rewrite:
+      lblTitleDesc.text = "재작성 모드: 보관함에 저장되어 있던 글을 다시 활성 리스트에 업로드할 수 있습니다."
+    }
+    
+    lblImageUploadIntro.text = "사진 업로드"
+    btnCameraDesc.setTitle("사진 찍기", for: .normal)
+    btnLoadPhotoDesc.setTitle("사진 올리기", for: .normal)
+    lblStartDateIntro.text = "시작 날짜"
+    lblReplaceDaysIntro.text = "교체 일수"
+    lblMemoIntro.text = "메모"
+    btnSaveOutlet.setTitle("저장", for: .normal)
     
     switch mode {
     case .add:
@@ -191,7 +218,7 @@ class DiffuserAddViewController: UIViewController {
       let modifiedPhotoNameWithoutExt = inputTitleText.convertToValidFileName() + "___" + uuid.uuidString
       
       // guard let savePhotoResult = saveImage(image: image, fileNameWithoutExt: modifiedPhotoNameWithoutExt) else {
-      guard let (ext, url) = saveImage(image, fileName: modifiedPhotoNameWithoutExt, location: .documents) else {
+      guard let (ext, _) = saveImage(image, fileName: modifiedPhotoNameWithoutExt, location: .documents) else {
         simpleAlert(self, message: "이미지 저장 중 오류가 발생하였습니다.")
         return
       }
