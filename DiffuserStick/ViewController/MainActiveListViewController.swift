@@ -348,10 +348,12 @@ class DiffuserListCell: UITableViewCell {
       self.contentView.backgroundColor = nil
     } else if betweenDays <= 3 && betweenDays > 0 {
       lblRemainDayText.text = "loc.common.need.replace".localizedFormat(betweenDays)
-      self.contentView.backgroundColor = #colorLiteral(red: 0.9773717523, green: 0.9611932635, blue: 0.7925902009, alpha: 1)
+      // self.contentView.backgroundColor = #colorLiteral(red: 0.9773717523, green: 0.9611932635, blue: 0.7925902009, alpha: 1)
+      contentView.backgroundColor = .cellHighlightYellow
     } else {
       lblRemainDayText.text = "loc.common.need.replace.now".localized
-      self.contentView.backgroundColor = #colorLiteral(red: 0.9926608205, green: 0.8840166926, blue: 0.8681346178, alpha: 1)
+      // self.contentView.backgroundColor = #colorLiteral(red: 0.9926608205, green: 0.8840166926, blue: 0.8681346178, alpha: 1)
+      contentView.backgroundColor = .cellHighlightRed
     }
     
     // 마지막 교체일 또는 신규 등록일에 따라 레이블 구분 (교체, 설치? 등록?)
