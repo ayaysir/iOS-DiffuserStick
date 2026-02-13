@@ -119,6 +119,14 @@ extension SettingTableViewController {
         guard let url = URL(string: "https://apps.apple.com/developer/\(String.shdDevId)") else { return }
         UIApplication.shared.open(url)
       }
+    case SECTION_THEME:
+      if indexPath.row == 1 {
+        if let bundleID = Bundle.main.bundleIdentifier,
+           let url = URL(string: "App-prefs:\(bundleID)"),
+           UIApplication.shared.canOpenURL(url) {
+          UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+      }
     default:
       break
     }

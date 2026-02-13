@@ -227,7 +227,7 @@ class MainActiveListViewController: UIViewController {
   }
   
   func sendDiffusersToWidget() {
-    let dtos = viewModel.diffuserInfoList.map {
+    let dtos = viewModel.diffuserInfoList.filter { $0.isFinished == false }.map {
       DiffuserWidgetDTO(
         id: $0.id,
         title: $0.title,

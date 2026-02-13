@@ -1187,19 +1187,19 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your payment is being processed.\\nPlease wait..."
+            "value" : "Your payment is being processed.\nPlease wait..."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "決済作業を処理中です。\\nしばらくお待ちください···"
+            "value" : "決済作業を処理中です。\nしばらくお待ちください···"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "결제 작업을 처리중입니다.\\n잠시만 기다려 주세요..."
+            "value" : "결제 작업을 처리중입니다.\n잠시만 기다려 주세요..."
           }
         }
       }
@@ -2060,20 +2060,20 @@
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Immediate\\nReplacement"
+            "state" : "needs_review",
+            "value" : "Immediate\nReplacement"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "即時\\n交換"
+            "state" : "needs_review",
+            "value" : "即時\n交換"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "즉시\\n교체"
+            "value" : "즉시\n교체"
           }
         }
       }
