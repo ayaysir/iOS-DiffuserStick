@@ -651,6 +651,29 @@
         }
       }
     },
+    "loc.common.cancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キャンセル"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "취소"
+          }
+        }
+      }
+    },
     "loc.common.close" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1798,6 +1821,75 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "[미구입]"
+          }
+        }
+      }
+    },
+    "loc.setting.language.cancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キャンセル (Cancel)"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "취소 (Cancel)"
+          }
+        }
+      }
+    },
+    "loc.setting.language.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Due to policy, changing the app's language requires access to the iOS Settings menu. You can do this by navigating to [Apps] > [DiffuserStick] > [Language] in the iOS Settings menu."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ポリシー上、アプリの言語を変更するには、iOSの設定メニューを使用する必要があります。 iOSの設定メニューから、[アプリ] > [DiffuserStick] > [言語] メニューから変更できます。\n\nDue to policy, changing the app's language requires access to the iOS Settings menu. You can do this by navigating to [Apps] > [DiffuserStick] > [Language] in the iOS Settings menu."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정책상 앱의 언어를 변경하려면 iOS의 설정 메뉴를 이용해야 합니다. iOS의 설정 메뉴에서 [앱] > [DiffuserStick] > [언어] 메뉴를 통해 변경할 수 있습니다.\n\nDue to policy, changing the app's language requires access to the iOS Settings menu. You can do this by navigating to [Apps] > [DiffuserStick] > [Language] in the iOS Settings menu."
+          }
+        }
+      }
+    },
+    "loc.setting.language.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Change app language"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "言語の変更 (Change app language)"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "언어 변경 (Change app language)"
           }
         }
       }

@@ -121,11 +121,25 @@ extension SettingTableViewController {
       }
     case SECTION_THEME:
       if indexPath.row == 1 {
-        if let bundleID = Bundle.main.bundleIdentifier,
-           let url = URL(string: "App-prefs:\(bundleID)"),
+        // 앱 심사에 통과했지만 만약을 위해 다음부터 아래 방법 사용
+        // if let bundleID = Bundle.main.bundleIdentifier,
+        //    let url = URL(string: "App-prefs:\(bundleID)"),
+        //    UIApplication.shared.canOpenURL(url) {
+        //   UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        // }
+        
+        if let url = URL(string: UIApplication.openSettingsURLString),
            UIApplication.shared.canOpenURL(url) {
           UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
+        
+        // let message = "loc.setting.language.message".localized
+        // let title = "loc.setting.language.title".localized
+        // let cancelText = "loc.setting.language.cancel".localized
+        // 
+        // simpleConfirmAlert(self, message: message, title: title, cancelText: cancelText, okText: "Open Settings") { _ in
+        //   
+        // }
       }
     default:
       break
